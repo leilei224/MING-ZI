@@ -2,45 +2,71 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#899030">
 <title>明子 MING ZI · 美容养生</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- 国内镜像字体 CDN,加载失败自动降级系统字体 -->
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+<link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --g:#899030;--gd:#5C6420;--gl:#E8ECD0;--gp:#F4F6E8;
   --cr:#F8F7F0;--ch:#333333;--mu:#7A7060;--bd:#D8D0B8;
+  --font-serif:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:#1a1a1a;display:flex;justify-content:center;}
-body{overflow:hidden;}
-.shell{width:100%;max-width:390px;height:100dvh;background:var(--cr);display:flex;flex-direction:column;position:relative;overflow:hidden;font-family:'Noto Sans SC',sans-serif;}
+html,body{height:100%;background:var(--cr);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;}
+body{display:flex;justify-content:center;overflow:hidden;}
+
+/* 手机铺满 / 桌面居中预览 */
+.shell{
+  width:100%;
+  height:100dvh;
+  background:var(--cr);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+@media (min-width: 768px){
+  html,body{background:#1a1a1a;}
+  .shell{
+    max-width:390px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  }
+}
+
+/* 状态栏 */
 .statusbar{height:44px;background:var(--g);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;}
 .sb-left{display:flex;align-items:center;gap:7px;}
 .sb-logo svg{width:20px;height:24px;}
-.sb-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:13px;letter-spacing:2px;}
-.sb-right{font-size:11px;color:rgba(255,255,255,.6);}
+.sb-title{font-family:var(--font-serif);color:#fff;font-size:13px;letter-spacing:2px;}
+.sb-right{font-size:11px;color:rgba(255,255,255,.75);font-variant-numeric:tabular-nums;}
+
 .screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .screen::-webkit-scrollbar{display:none;}
 .page{display:none;animation:fadeIn .25s ease;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.tabbar{height:60px;background:#fff;flex-shrink:0;display:flex;border-top:.5px solid var(--bd);}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;font-size:10px;color:var(--mu);transition:color .2s;border:none;background:none;padding:0;}
+
+.tabbar{height:60px;background:#fff;flex-shrink:0;display:flex;border-top:.5px solid var(--bd);padding-bottom:env(safe-area-inset-bottom);}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;font-size:10px;color:var(--mu);transition:color .2s;border:none;background:none;padding:0;font-family:inherit;}
 .tab.on{color:var(--g);}
 .tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;}
 
-/* HOME */
+/* ═══ HOME ═══ */
 .hero{background:var(--g);padding:36px 22px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;}
 .hero::before,.hero::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.07);}
 .hero::before{width:280px;height:280px;top:-80px;left:-80px;}
 .hero::after{width:200px;height:200px;bottom:-60px;right:-60px;}
 .hero-eye{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:4px;margin-bottom:16px;}
-.hero-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:32px;letter-spacing:10px;font-weight:300;line-height:1;margin-top:10px;}
+.hero-zh{font-family:var(--font-serif);color:#fff;font-size:32px;letter-spacing:10px;font-weight:300;line-height:1;margin-top:10px;}
 .hero-en{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:6px;margin-top:5px;}
 .hero-div{width:60px;height:.5px;background:rgba(255,255,255,.2);margin:18px auto;}
 .hero-quote{font-size:11.5px;color:rgba(255,255,255,.55);line-height:2;font-style:italic;}
+
 .qnav{background:#fff;display:flex;border-bottom:.5px solid #eee;}
 .qn{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 6px;cursor:pointer;position:relative;}
 .qn:not(:last-child)::after{content:'';position:absolute;right:0;top:25%;height:50%;width:.5px;background:#eee;}
@@ -48,17 +74,20 @@ body{overflow:hidden;}
 .qn-ic svg{width:17px;height:17px;stroke:var(--g);fill:none;stroke-width:1.5;}
 .qn-nm{font-size:12px;color:var(--ch);font-weight:500;}
 .qn-sb{font-size:9px;color:var(--mu);letter-spacing:1px;}
+
 .mcard{margin:14px 14px 0;background:var(--ch);border-radius:16px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;cursor:pointer;}
 .mc-t1{font-size:11px;color:rgba(255,255,255,.5);display:block;}
 .mc-t2{font-size:13px;color:#fff;font-weight:500;margin-top:3px;display:block;}
-.mc-btn{background:#fff;color:var(--ch);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:500;flex-shrink:0;}
+.mc-btn{background:#fff;color:var(--ch);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:500;flex-shrink:0;border:none;font-family:inherit;}
+
 .shd{font-size:9px;color:var(--mu);letter-spacing:3px;padding:18px 14px 10px;display:flex;align-items:center;gap:8px;}
 .shd::after{content:'';flex:1;height:.5px;background:var(--bd);}
+
 .sg{padding:0 12px;}
 .sg-feat{background:var(--gd);border-radius:16px;padding:22px 18px;margin-bottom:10px;cursor:pointer;position:relative;overflow:hidden;}
 .sg-feat::after{content:'✦';position:absolute;right:14px;bottom:-8px;font-size:64px;color:rgba(255,255,255,.05);}
 .sg-cat{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:2px;display:block;}
-.sg-nm{font-family:'Noto Serif SC',serif;font-size:14px;color:#fff;line-height:1.7;margin-top:8px;display:block;}
+.sg-nm{font-family:var(--font-serif);font-size:14px;color:#fff;line-height:1.7;margin-top:8px;display:block;}
 .sg-pr{font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;display:block;}
 .sg-arr{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:4px;display:block;}
 .sg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
@@ -66,7 +95,7 @@ body{overflow:hidden;}
 .sg2b{background:var(--ch);border-radius:14px;padding:16px 14px;cursor:pointer;}
 .s2-cat{font-size:9px;letter-spacing:1.5px;display:block;margin-bottom:6px;}
 .sg2a .s2-cat{color:var(--gd);}.sg2b .s2-cat{color:rgba(255,255,255,.4);}
-.s2-nm{font-family:'Noto Serif SC',serif;font-size:13px;line-height:1.6;display:block;}
+.s2-nm{font-family:var(--font-serif);font-size:13px;line-height:1.6;display:block;}
 .sg2a .s2-nm{color:var(--ch);}.sg2b .s2-nm{color:#fff;}
 .s2-pr{font-size:11px;margin-top:8px;display:block;}
 .sg2a .s2-pr{color:var(--g);}.sg2b .s2-pr{color:rgba(255,255,255,.4);}
@@ -75,36 +104,44 @@ body{overflow:hidden;}
 .s3-cat{font-size:9px;color:var(--mu);letter-spacing:1.5px;display:block;margin-bottom:5px;}
 .s3-nm{font-size:13px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
 .s3-pr{font-size:11px;color:var(--g);margin-top:6px;display:block;}
+
 .yr-banner{margin:0 12px 16px;background:var(--gd);border-radius:16px;padding:22px 18px;position:relative;overflow:hidden;cursor:pointer;}
-.yr-banner::before{content:'25';position:absolute;right:-4px;bottom:-14px;font-size:90px;color:rgba(255,255,255,.06);font-family:'Noto Serif SC',serif;font-weight:600;line-height:1;}
+.yr-banner::before{content:'25';position:absolute;right:-4px;bottom:-14px;font-size:90px;color:rgba(255,255,255,.06);font-family:var(--font-serif);font-weight:600;line-height:1;}
 .yr-tag{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:3px;display:block;margin-bottom:10px;}
-.yr-qt{font-family:'Noto Serif SC',serif;font-size:14px;color:#fff;line-height:1.9;display:block;}
+.yr-qt{font-family:var(--font-serif);font-size:14px;color:#fff;line-height:1.9;display:block;}
 .yr-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.8;margin-top:12px;display:block;}
 .yr-btn{display:inline-block;margin-top:16px;background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.3);border-radius:20px;padding:8px 18px;font-size:11px;letter-spacing:1px;cursor:pointer;}
-.eval-sec{background:#fff;padding:20px 16px;border-top:.5px solid #eee;}
-.eval-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+
+/* ═══ 评价轮播 ═══ */
+.eval-sec{background:#fff;padding:20px 0 18px;border-top:.5px solid #eee;}
+.eval-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 16px;}
 .eval-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;}
 .eval-stars{color:var(--g);font-size:13px;letter-spacing:3px;}
-.eval-txt{font-size:12.5px;color:var(--ch);line-height:1.9;font-style:italic;}
-.eval-name{font-size:10px;color:var(--mu);margin-top:10px;letter-spacing:1px;display:block;}
+.eval-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:12px;padding:0 16px;}
+.eval-track::-webkit-scrollbar{display:none;}
+.eval-card{flex:0 0 calc(100% - 8px);scroll-snap-align:start;background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:16px 18px;}
+.eval-txt{font-size:12.5px;color:var(--ch);line-height:1.9;font-style:italic;display:block;min-height:90px;}
+.eval-name{font-size:10px;color:var(--mu);margin-top:12px;letter-spacing:1px;display:block;}
+.eval-dots{display:flex;justify-content:center;gap:6px;margin-top:14px;}
+.eval-dot{width:5px;height:5px;border-radius:50%;background:var(--bd);transition:all .3s;}
+.eval-dot.on{background:var(--g);width:16px;border-radius:3px;}
+
 .store-sec{padding:16px 14px 20px;border-top:.5px solid #eee;}
 .store-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;display:block;margin-bottom:12px;}
-.store-card{background:var(--gd);border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;}
-.store-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:14px;display:block;}
+.store-card{background:var(--gd);border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.store-zh{font-family:var(--font-serif);color:#fff;font-size:14px;display:block;}
 .store-en{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-top:4px;display:block;}
 .store-btn{background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.25);border-radius:20px;padding:7px 14px;font-size:10px;white-space:nowrap;}
 
-/* ── AI 体质问卷 ── */
+/* ═══ AI 体质问卷 ═══ */
 .ai-hd{background:var(--ch);padding:24px 20px 20px;}
 .ai-eye{font-size:10px;color:#666;letter-spacing:2px;display:block;margin-bottom:5px;}
-.ai-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:22px;font-weight:400;display:block;}
+.ai-title{font-family:var(--font-serif);color:#fff;font-size:22px;font-weight:400;display:block;}
 .ai-sub{font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:8px;display:block;}
-/* 进度条 */
 .q-progress{padding:16px 18px 0;}
 .q-prog-bar{height:3px;background:var(--gl);border-radius:2px;overflow:hidden;margin-bottom:8px;}
 .q-prog-fill{height:100%;background:var(--g);border-radius:2px;transition:width .4s ease;}
 .q-prog-txt{font-size:10px;color:var(--mu);text-align:right;}
-/* 问题卡 */
 .q-card{padding:20px 18px;}
 .q-num{font-size:10px;color:var(--g);letter-spacing:2px;display:block;margin-bottom:8px;}
 .q-text{font-size:16px;color:var(--ch);line-height:1.6;display:block;margin-bottom:18px;font-weight:500;}
@@ -115,11 +152,10 @@ body{overflow:hidden;}
 .q-nav{display:flex;gap:10px;padding:0 18px 24px;}
 .btn-prev{flex:1;padding:14px;background:transparent;color:var(--mu);border:1px solid var(--bd);border-radius:50px;font-size:14px;cursor:pointer;font-family:inherit;}
 .btn-next{flex:2;padding:14px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;}
-/* 结果 */
 .res-wrap{padding:16px;}
 .const-card{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:16px;margin-bottom:16px;}
 .const-badge{display:inline-block;font-size:10px;color:var(--gd);background:var(--gl);border-radius:20px;padding:4px 12px;letter-spacing:1px;margin-bottom:10px;}
-.const-type{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--gd);display:block;margin-bottom:8px;}
+.const-type{font-family:var(--font-serif);font-size:20px;color:var(--gd);display:block;margin-bottom:8px;}
 .const-sub{font-size:12px;color:var(--mu);line-height:1.8;display:block;}
 .bars{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
 .bar-r{display:flex;align-items:center;gap:8px;}
@@ -138,15 +174,31 @@ body{overflow:hidden;}
 .rc-why{background:var(--gp);border-radius:9px;padding:9px 11px;font-size:11px;color:var(--mu);line-height:1.7;}
 .rc-why b{color:var(--gd);}
 .rc-book-btn{display:block;width:100%;margin-top:10px;padding:11px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:13px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;}
-.btn-retry{display:block;width:calc(100% - 36px);margin:0 18px 24px;padding:14px;background:transparent;color:var(--g);border:1px solid var(--g);border-radius:50px;font-size:14px;text-align:center;cursor:pointer;font-family:inherit;}
+.res-actions{display:flex;gap:10px;margin:0 18px 16px;}
+.btn-share{flex:1;padding:13px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-retry{flex:1;padding:13px;background:transparent;color:var(--g);border:1px solid var(--g);border-radius:50px;font-size:13px;cursor:pointer;font-family:inherit;}
 
-/* ── 预约入口 ── */
+/* ═══ 预约入口页 ═══ */
 .book-wrap{padding:30px 20px;}
 .book-top{background:var(--g);border-radius:20px;padding:28px 24px;margin-bottom:16px;position:relative;overflow:hidden;}
 .book-top::before{content:'✦';position:absolute;right:10px;bottom:-10px;font-size:80px;color:rgba(255,255,255,.06);}
 .book-top-eye{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:3px;display:block;margin-bottom:8px;}
-.book-top-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:20px;font-weight:400;display:block;margin-bottom:6px;}
+.book-top-title{font-family:var(--font-serif);color:#fff;font-size:20px;font-weight:400;display:block;margin-bottom:6px;}
 .book-top-sub{font-size:11px;color:rgba(255,255,255,.55);line-height:1.8;display:block;}
+
+/* 我的预约 */
+.my-bookings{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:16px 18px;margin-bottom:16px;}
+.mb-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.mb-title{font-size:13px;font-weight:500;color:var(--ch);}
+.mb-count{font-size:10px;color:var(--mu);}
+.mb-empty{font-size:11px;color:var(--mu);text-align:center;padding:20px 0;line-height:1.8;}
+.mb-item{background:var(--gp);border-radius:10px;padding:12px;margin-bottom:8px;position:relative;}
+.mb-item:last-child{margin-bottom:0;}
+.mb-i-svc{font-size:12px;font-weight:500;color:var(--ch);display:block;}
+.mb-i-meta{font-size:10.5px;color:var(--mu);margin-top:4px;line-height:1.6;display:block;}
+.mb-i-status{position:absolute;right:12px;top:12px;font-size:9px;padding:3px 8px;border-radius:20px;background:var(--gl);color:var(--gd);}
+.mb-i-del{position:absolute;right:12px;bottom:10px;font-size:10px;color:#c66;background:none;border:none;cursor:pointer;font-family:inherit;}
+
 .book-notice{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:16px;}
 .bn-title{font-size:13px;font-weight:500;color:var(--ch);display:block;margin-bottom:10px;}
 .bn-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px;color:var(--mu);line-height:1.6;}
@@ -157,35 +209,36 @@ body{overflow:hidden;}
 .book-tips{font-size:11px;color:var(--mu);text-align:center;line-height:1.7;display:block;}
 .book-items{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:16px;}
 .bi-title{font-size:11px;color:var(--mu);letter-spacing:2px;display:block;margin-bottom:12px;}
-.bi-cat{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--gd);margin-bottom:6px;margin-top:12px;display:block;}
-.bi-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--gl);font-size:12px;}
+.bi-cat{font-family:var(--font-serif);font-size:13px;color:var(--gd);margin-bottom:6px;margin-top:12px;display:block;}
+.bi-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--gl);font-size:12px;cursor:pointer;}
 .bi-item:last-child{border-bottom:none;}
 .bi-nm{color:var(--ch);flex:1;}
 .bi-pr{color:var(--g);font-weight:500;flex-shrink:0;}
 
-/* ── 菜单 ── */
+/* ═══ 菜单页 ═══ */
 .mn-hd{background:var(--g);padding:22px 18px;}
 .mn-hd-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
-.mn-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:20px;font-weight:400;display:block;}
+.mn-title{font-family:var(--font-serif);color:#fff;font-size:20px;font-weight:400;display:block;}
 .mn-sub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:2px;display:block;}
 .mn-sec{padding:14px 12px 0;}
 .mn-sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
 .mn-dot{width:8px;height:8px;border-radius:50%;background:var(--g);flex-shrink:0;}
-.mn-cat-zh{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);}
+.mn-cat-zh{font-family:var(--font-serif);font-size:15px;color:var(--ch);}
 .mn-cat-en{font-size:9px;color:var(--mu);letter-spacing:2px;margin-left:16px;margin-bottom:10px;display:block;}
 .mn-it{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;}
 .mn-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;flex:1;}
 .mn-ds{font-size:11px;color:var(--mu);line-height:1.6;margin-top:3px;display:block;}
 .mn-pr{font-size:12.5px;color:var(--g);font-weight:500;flex-shrink:0;margin-left:10px;text-align:right;}
 .mn-bk{font-size:9px;color:var(--mu);margin-top:4px;display:block;}
-/* ── 品牌 ── */
+
+/* ═══ 品牌页 ═══ */
 .br-hd{background:var(--g);height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
 .br-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
-.br-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:26px;letter-spacing:7px;}
+.br-zh{font-family:var(--font-serif);color:#fff;font-size:26px;letter-spacing:7px;}
 .br-en{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:6px;}
 .br-sl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:2px;}
 .br-sec{padding:18px 16px;}
-.bs-hd{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);margin-bottom:9px;font-weight:400;display:block;}
+.bs-hd{font-family:var(--font-serif);font-size:15px;color:var(--ch);margin-bottom:9px;font-weight:400;display:block;}
 .bs-bd{font-size:12px;color:var(--mu);line-height:2;display:block;}
 .br-div{height:.5px;background:var(--bd);margin:0 16px;}
 .cl-c{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:13px 14px;margin-bottom:10px;}
@@ -194,8 +247,87 @@ body{overflow:hidden;}
 .cl-en{font-size:9px;color:var(--mu);font-style:italic;margin-top:2px;display:block;}
 .cl-ds{font-size:11.5px;color:var(--mu);line-height:1.8;margin-top:8px;display:block;}
 .claim{padding:10px 0;border-bottom:.5px solid var(--gl);}
-.claim-zh{font-family:'Noto Serif SC',serif;font-size:13.5px;color:var(--gd);line-height:1.6;display:block;}
+.claim-zh{font-family:var(--font-serif);font-size:13.5px;color:var(--gd);line-height:1.6;display:block;}
 .claim-en{font-size:9.5px;color:var(--mu);font-style:italic;margin-top:3px;display:block;}
+
+/* ═══ 门店页 ═══ */
+.stores-hd{background:var(--g);padding:28px 20px 24px;position:relative;overflow:hidden;}
+.stores-hd::after{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
+.stores-title{font-family:var(--font-serif);color:#fff;font-size:22px;font-weight:400;display:block;position:relative;z-index:1;}
+.stores-sub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:2px;margin-top:6px;display:block;position:relative;z-index:1;}
+.stores-wrap{padding:16px 14px 24px;}
+.store-card-full{background:#fff;border:.5px solid var(--bd);border-radius:16px;overflow:hidden;margin-bottom:14px;}
+.store-banner{height:120px;background:linear-gradient(135deg,var(--gd),var(--g));display:flex;align-items:flex-end;padding:14px 16px;position:relative;overflow:hidden;}
+.store-banner::before{content:'';position:absolute;right:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08);}
+.store-banner::after{content:'';position:absolute;right:20px;top:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);}
+.store-tag{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:2px;display:block;position:relative;z-index:1;}
+.store-name-zh{font-family:var(--font-serif);color:#fff;font-size:18px;font-weight:400;display:block;position:relative;z-index:1;margin-top:4px;}
+.store-body{padding:16px;}
+.store-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;font-size:12px;color:var(--mu);line-height:1.6;}
+.store-row:last-of-type{margin-bottom:14px;}
+.store-row-ic{width:16px;flex-shrink:0;text-align:center;font-size:13px;color:var(--g);}
+.store-actions{display:flex;gap:8px;}
+.store-act{flex:1;padding:11px;border-radius:50px;font-size:12px;cursor:pointer;text-align:center;font-family:inherit;border:none;}
+.store-act-p{background:var(--g);color:#fff;}
+.store-act-s{background:transparent;color:var(--g);border:1px solid var(--g);}
+
+/* ═══ 会员页 ═══ */
+.mem-hd{background:linear-gradient(135deg,var(--ch),#555);padding:40px 20px 30px;text-align:center;position:relative;overflow:hidden;}
+.mem-hd::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(137,144,48,.12);}
+.mem-eye{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:3px;display:block;margin-bottom:12px;position:relative;}
+.mem-title{font-family:var(--font-serif);color:#fff;font-size:24px;font-weight:300;letter-spacing:6px;display:block;position:relative;}
+.mem-sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:4px;margin-top:8px;display:block;position:relative;}
+.mem-quote{font-size:11px;color:rgba(255,255,255,.6);font-style:italic;margin-top:18px;line-height:1.8;display:block;position:relative;}
+.mem-wrap{padding:16px 14px 20px;}
+.mem-level{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:18px 16px;margin-bottom:12px;position:relative;overflow:hidden;}
+.mem-level.featured{background:var(--gd);border-color:var(--gd);}
+.mem-level.featured::before{content:'推荐';position:absolute;top:14px;right:14px;font-size:9px;color:var(--gd);background:#fff;padding:3px 10px;border-radius:20px;letter-spacing:1px;}
+.ml-badge{display:inline-block;font-size:9px;padding:3px 10px;border-radius:20px;letter-spacing:1px;margin-bottom:10px;}
+.mem-level:not(.featured) .ml-badge{color:var(--g);background:var(--gp);}
+.mem-level.featured .ml-badge{color:var(--gd);background:var(--gl);}
+.ml-name{font-family:var(--font-serif);font-size:18px;font-weight:400;display:block;margin-bottom:4px;}
+.mem-level:not(.featured) .ml-name{color:var(--ch);}
+.mem-level.featured .ml-name{color:#fff;}
+.ml-price{font-size:11px;display:block;margin-bottom:14px;}
+.mem-level:not(.featured) .ml-price{color:var(--mu);}
+.mem-level.featured .ml-price{color:rgba(255,255,255,.5);}
+.ml-benefits{list-style:none;padding:0;margin:0;}
+.ml-benefits li{font-size:11.5px;padding:6px 0;padding-left:18px;position:relative;line-height:1.6;}
+.ml-benefits li::before{content:'✦';position:absolute;left:0;color:var(--g);}
+.mem-level:not(.featured) .ml-benefits li{color:var(--mu);}
+.mem-level.featured .ml-benefits li{color:rgba(255,255,255,.75);}
+.mem-level.featured .ml-benefits li::before{color:var(--gl);}
+.ml-btn{display:block;width:100%;margin-top:14px;padding:12px;border:none;border-radius:50px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;}
+.mem-level:not(.featured) .ml-btn{background:var(--gp);color:var(--gd);border:1px solid var(--gl);}
+.mem-level.featured .ml-btn{background:#fff;color:var(--gd);}
+
+/* ═══ 预约模态框 ═══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center;z-index:1000;animation:fadeIn .2s ease;}
+.modal-overlay.on{display:flex;}
+@media (min-width:768px){.modal-overlay{align-items:center;}}
+.modal-content{width:100%;max-width:390px;max-height:92vh;background:var(--cr);border-radius:24px 24px 0 0;display:flex;flex-direction:column;animation:slideUp .3s ease;}
+@media (min-width:768px){.modal-content{border-radius:24px;max-height:85vh;}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:none}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:.5px solid var(--bd);flex-shrink:0;}
+.modal-title{font-family:var(--font-serif);font-size:17px;color:var(--ch);font-weight:500;}
+.modal-close{width:30px;height:30px;border:none;background:var(--gp);border-radius:50%;font-size:18px;color:var(--mu);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;}
+.modal-body{padding:18px 20px 24px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:11px;color:var(--mu);display:block;margin-bottom:6px;letter-spacing:.5px;}
+.form-label::before{content:'* ';color:#c66;}
+.form-label.optional::before{content:'';}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 14px;border:1px solid var(--bd);border-radius:10px;font-size:13px;color:var(--ch);background:#fff;font-family:inherit;outline:none;transition:border-color .2s;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--g);}
+.form-textarea{resize:vertical;min-height:70px;font-family:inherit;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.btn-submit{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:6px;letter-spacing:1px;}
+.btn-submit:active{opacity:.85;}
+.form-tips{font-size:11px;color:var(--mu);text-align:center;line-height:1.7;margin-top:10px;}
+.form-alt{font-size:11px;color:var(--mu);text-align:center;margin-top:10px;padding-top:10px;border-top:.5px solid var(--gl);}
+.form-alt a{color:var(--g);cursor:pointer;text-decoration:underline;}
+
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:14px 22px;border-radius:12px;font-size:13px;z-index:2000;display:none;}
+.toast.on{display:block;animation:fadeIn .2s ease;}
 </style>
 </head>
 <body>
@@ -213,7 +345,7 @@ body{overflow:hidden;}
     </div>
     <span class="sb-title">明子 MING ZI</span>
   </div>
-  <span class="sb-right">9:41 ●●● WiFi</span>
+  <span class="sb-right" id="sb-time">--:--</span>
 </div>
 
 <div class="screen" id="screen">
@@ -247,41 +379,65 @@ body{overflow:hidden;}
       <span class="qn-nm">疗愈项目</span><span class="qn-sb">SESSIONS</span>
     </div>
   </div>
-  <div class="mcard">
+  <div class="mcard" onclick="go('member')">
     <div><span class="mc-t1">明子 · 高定会员中心</span><span class="mc-t2">注册后尊享私享定制权益</span></div>
-    <div class="mc-btn" onclick="openBook()">立即加入</div>
+    <button class="mc-btn" onclick="event.stopPropagation();go('member')">立即加入</button>
   </div>
   <div class="shd"><span>HEALING SESSIONS</span></div>
   <div class="sg">
-    <div class="sg-feat" onclick="go('book')">
+    <div class="sg-feat" onclick="openBooking('【凝时】古法骨相轮廓重塑')">
       <span class="sg-cat">风华 · FACIAL RADIANCE</span>
-      <span class="sg-nm">古法骨相轮廓重塑<br>弃用机器，以精湛手法由肌理深层向上托举</span>
+      <span class="sg-nm">古法骨相轮廓重塑<br>弃用机器,以精湛手法由肌理深层向上托举</span>
       <span class="sg-pr">¥ 29,800</span>
       <span class="sg-arr">立即预约 →</span>
     </div>
     <div class="sg2">
-      <div class="sg2a" onclick="go('book')"><span class="s2-cat">内和</span><span class="s2-nm">五脏微观<br>宇宙净化</span><span class="s2-pr">¥ 15,800</span></div>
-      <div class="sg2b" onclick="go('book')"><span class="s2-cat">本源</span><span class="s2-nm">生命能量<br>深层调理</span><span class="s2-pr">¥ 26,800</span></div>
+      <div class="sg2a" onclick="openBooking('【至悦】五脏微观宇宙净化')"><span class="s2-cat">内和</span><span class="s2-nm">五脏微观<br>宇宙净化</span><span class="s2-pr">¥ 15,800</span></div>
+      <div class="sg2b" onclick="openBooking('【生息】女性根源能量深调')"><span class="s2-cat">本源</span><span class="s2-nm">生命能量<br>深层调理</span><span class="s2-pr">¥ 26,800</span></div>
     </div>
     <div class="sg3">
-      <div class="sg3c" onclick="go('book')"><span class="s3-cat">立骨</span><span class="s3-nm">植萃肩颈<br>五感深眠</span><span class="s3-pr">¥ 1,980</span></div>
-      <div class="sg3c" onclick="go('book')"><span class="s3-cat">风华</span><span class="s3-nm">东方经络<br>面部焕和</span><span class="s3-pr">¥ 2,380</span></div>
+      <div class="sg3c" onclick="openBooking('【释压】植萃肩颈五感深眠')"><span class="s3-cat">立骨</span><span class="s3-nm">植萃肩颈<br>五感深眠</span><span class="s3-pr">¥ 1,980</span></div>
+      <div class="sg3c" onclick="openBooking('【焕光】东方经络面部焕和')"><span class="s3-cat">风华</span><span class="s3-nm">东方经络<br>面部焕和</span><span class="s3-pr">¥ 2,380</span></div>
     </div>
   </div>
-  <div class="yr-banner" onclick="go('book')">
+  <div class="yr-banner" onclick="openBooking()">
     <span class="yr-tag">25TH ANNIVERSARY · 明子</span>
-    <span class="yr-qt">"二十五载光阴沉淀，<br>指尖知悉你的每一寸疲惫。"</span>
-    <span class="yr-sub">以仁爱为底，深养于内，盛故于外。<br>每一次触碰，都是 25 年沉淀的温度。</span>
+    <span class="yr-qt">"二十五载光阴沉淀,<br>指尖知悉你的每一寸疲惫。"</span>
+    <span class="yr-sub">以仁爱为底,深养于内,盛故于外。<br>每一次触碰,都是 25 年沉淀的温度。</span>
     <span class="yr-btn">立即预约体验</span>
   </div>
+
+  <!-- 评价轮播 -->
   <div class="eval-sec">
     <div class="eval-hd"><span class="eval-lbl">EVALUATE</span><span class="eval-stars">★★★★★</span></div>
-    <p class="eval-txt">"第一次感受到疗愈不是走流程，而是真的在倾听你的身体。整个过程极其细腻，像被完整地照见了一次。"</p>
-    <span class="eval-name">— 陈女士 · 北京</span>
+    <div class="eval-track" id="eval-track">
+      <div class="eval-card">
+        <span class="eval-txt">"第一次感受到疗愈不是走流程,而是真的在倾听你的身体。整个过程极其细腻,像被完整地照见了一次。"</span>
+        <span class="eval-name">— 陈女士 · 北京</span>
+      </div>
+      <div class="eval-card">
+        <span class="eval-txt">"做完释压肩颈的那一晚,是近半年睡得最沉的一觉。第二天醒来,整个人都是透亮的。"</span>
+        <span class="eval-name">— 林女士 · 上海</span>
+      </div>
+      <div class="eval-card">
+        <span class="eval-txt">"内和系列做了三个疗程,朋友都说我气色变了。不是化妆能化出来的那种通透感,是由内而外的。"</span>
+        <span class="eval-name">— 苏女士 · 深圳</span>
+      </div>
+      <div class="eval-card">
+        <span class="eval-txt">"凝时这个项目让我重新相信手法的力量。没有机器的冰冷,每一下都像在读懂我的肌肤。"</span>
+        <span class="eval-name">— 王女士 · 杭州</span>
+      </div>
+      <div class="eval-card">
+        <span class="eval-txt">"店内的每一位老师都温暖得让人想哭。那种被珍视的感觉,比疗愈本身更治愈。"</span>
+        <span class="eval-name">— 赵女士 · 成都</span>
+      </div>
+    </div>
+    <div class="eval-dots" id="eval-dots"></div>
   </div>
+
   <div class="store-sec">
     <span class="store-lbl">LIST OF OFFLINE STORES</span>
-    <div class="store-card">
+    <div class="store-card" onclick="go('stores')">
       <div><span class="store-zh">线下门店一览</span><span class="store-en">LIST OF OFFLINE STORES</span></div>
       <div class="store-btn">VIEW DETAILS</div>
     </div>
@@ -293,10 +449,8 @@ body{overflow:hidden;}
   <div class="ai-hd">
     <span class="ai-eye">BODY CONSTITUTION ANALYSIS</span>
     <span class="ai-title">体质测评 · 定制方案</span>
-    <span class="ai-sub">回答 10 个问题，AI 为您分析体质类型并推荐最适合的疗愈项目</span>
+    <span class="ai-sub">回答 10 个问题,AI 为您分析体质类型并推荐最适合的疗愈项目</span>
   </div>
-
-  <!-- 问卷区 -->
   <div id="quiz-area">
     <div class="q-progress">
       <div class="q-prog-bar"><div class="q-prog-fill" id="prog-fill" style="width:10%"></div></div>
@@ -312,8 +466,6 @@ body{overflow:hidden;}
       <button class="btn-next" id="btn-next" onclick="nextQ()">下一题</button>
     </div>
   </div>
-
-  <!-- 结果区 -->
   <div id="result-area" style="display:none">
     <div class="res-wrap">
       <div class="const-card">
@@ -326,66 +478,77 @@ body{overflow:hidden;}
       <div class="tags" id="res-tags"></div>
       <span class="r-lbl">AI 推荐疗愈方案</span>
       <div id="res-recs"></div>
+    </div>
+    <div class="res-actions">
+      <button class="btn-share" onclick="shareResult()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        分享结果
+      </button>
       <button class="btn-retry" onclick="restartQuiz()">重新测评</button>
     </div>
   </div>
 </div>
 
-<!-- ══ 预约页 ══ -->
+<!-- ══ 预约入口页 ══ -->
 <div class="page" id="pg-book">
   <div class="book-wrap">
     <div class="book-top">
       <span class="book-top-eye">BOOKING · 明子疗愈预约</span>
       <span class="book-top-title">立即预约疗愈服务</span>
-      <span class="book-top-sub">点击下方按钮，填写预约信息<br>我们将在 2 小时内与您确认预约</span>
+      <span class="book-top-sub">填写预约信息,工作人员将在 24 小时内与您电话确认</span>
+    </div>
+
+    <div class="my-bookings">
+      <div class="mb-hd">
+        <span class="mb-title">我的预约</span>
+        <span class="mb-count" id="mb-count">0 条记录</span>
+      </div>
+      <div id="mb-list"></div>
     </div>
 
     <div class="book-notice">
       <span class="bn-title">预约须知</span>
-      <div class="bn-item"><span class="bn-dot">✦</span><span>请提前 30 分钟到店，以便做好个性化准备</span></div>
-      <div class="bn-item"><span class="bn-dot">✦</span><span>如需更改或取消，请提前 24 小时告知</span></div>
-      <div class="bn-item"><span class="bn-dot">✦</span><span>营业时间 09:00 — 22:00，全年无休</span></div>
-      <div class="bn-item"><span class="bn-dot">✦</span><span>首次到店赠体质初诊，时长约 15 分钟</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>请提前 30 分钟到店,以便做好个性化准备</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>如需更改或取消,请提前 24 小时告知</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>营业时间 09:00 — 22:00,全年无休</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>首次到店赠体质初诊,时长约 15 分钟</span></div>
     </div>
 
-    <button class="btn-book-main" onclick="openBook()">
-      📋 &nbsp;填写预约信息
-    </button>
-    <span class="book-tips">填写完成后，您的预约信息将实时同步至门店<br>工作人员将通过您填写的手机号与您联系</span>
+    <button class="btn-book-main" onclick="openBooking()">📋 &nbsp;填写预约信息</button>
+    <span class="book-tips">您的预约信息将保存在本设备<br>工作人员将通过您填写的手机号与您联系</span>
 
     <div class="shd" style="padding:20px 0 10px"><span>全部疗愈项目</span></div>
     <div class="book-items">
       <span class="bi-title">HEALING SESSIONS · 共 23 项</span>
       <span class="bi-cat">本源 · 生命能量</span>
-      <div class="bi-item"><span class="bi-nm">【蕴生】本草盆腔深层活化</span><span class="bi-pr">¥29,800</span></div>
-      <div class="bi-item"><span class="bi-nm">【生息】女性根源能量深调</span><span class="bi-pr">¥26,800</span></div>
-      <div class="bi-item"><span class="bi-nm">【若水】私享花域紧致温养</span><span class="bi-pr">¥19,800</span></div>
+      <div class="bi-item" onclick="openBooking('【蕴生】本草盆腔深层活化')"><span class="bi-nm">【蕴生】本草盆腔深层活化</span><span class="bi-pr">¥29,800</span></div>
+      <div class="bi-item" onclick="openBooking('【生息】女性根源能量深调')"><span class="bi-nm">【生息】女性根源能量深调</span><span class="bi-pr">¥26,800</span></div>
+      <div class="bi-item" onclick="openBooking('【若水】私享花域紧致温养')"><span class="bi-nm">【若水】私享花域紧致温养</span><span class="bi-pr">¥19,800</span></div>
       <span class="bi-cat">内和 · 五脏调理</span>
-      <div class="bi-item"><span class="bi-nm">【初露】绿素本源深度蕴养</span><span class="bi-pr">¥20,000</span></div>
-      <div class="bi-item"><span class="bi-nm">【至悦】五脏微观宇宙净化</span><span class="bi-pr">¥15,800</span></div>
-      <div class="bi-item"><span class="bi-nm">【普悦】脏腑草本周期平衡</span><span class="bi-pr">¥12,800</span></div>
-      <div class="bi-item"><span class="bi-nm">【筑基】东方体质深层重构</span><span class="bi-pr">¥7,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【心悦】宁心安神气血舒缓</span><span class="bi-pr">¥6,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【初蕊】内在生机基础唤醒</span><span class="bi-pr">¥5,980</span></div>
+      <div class="bi-item" onclick="openBooking('【初露】绿素本源深度蕴养')"><span class="bi-nm">【初露】绿素本源深度蕴养</span><span class="bi-pr">¥20,000</span></div>
+      <div class="bi-item" onclick="openBooking('【至悦】五脏微观宇宙净化')"><span class="bi-nm">【至悦】五脏微观宇宙净化</span><span class="bi-pr">¥15,800</span></div>
+      <div class="bi-item" onclick="openBooking('【普悦】脏腑草本周期平衡')"><span class="bi-nm">【普悦】脏腑草本周期平衡</span><span class="bi-pr">¥12,800</span></div>
+      <div class="bi-item" onclick="openBooking('【筑基】东方体质深层重构')"><span class="bi-nm">【筑基】东方体质深层重构</span><span class="bi-pr">¥7,980</span></div>
+      <div class="bi-item" onclick="openBooking('【心悦】宁心安神气血舒缓')"><span class="bi-nm">【心悦】宁心安神气血舒缓</span><span class="bi-pr">¥6,980</span></div>
+      <div class="bi-item" onclick="openBooking('【初蕊】内在生机基础唤醒')"><span class="bi-nm">【初蕊】内在生机基础唤醒</span><span class="bi-pr">¥5,980</span></div>
       <span class="bi-cat">立骨 · 经络气血</span>
-      <div class="bi-item"><span class="bi-nm">【循经】十四经络古法推揉</span><span class="bi-pr">¥5,680</span></div>
-      <div class="bi-item"><span class="bi-nm">【立骨】本草精气深层复苏</span><span class="bi-pr">¥4,300</span></div>
-      <div class="bi-item"><span class="bi-nm">【行气】周天气血温润理疗</span><span class="bi-pr">¥3,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【净澈】全身水律净化舒缓</span><span class="bi-pr">¥2,380</span></div>
-      <div class="bi-item"><span class="bi-nm">【温中】带脉暖阳通络抚触</span><span class="bi-pr">¥2,380</span></div>
-      <div class="bi-item"><span class="bi-nm">【聚能】盆底气血温养理疗</span><span class="bi-pr">¥2,380</span></div>
-      <div class="bi-item"><span class="bi-nm">【释压】植萃肩颈五感深眠</span><span class="bi-pr">¥1,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【轻盈】肩颈基础释压护理</span><span class="bi-pr">¥990</span></div>
+      <div class="bi-item" onclick="openBooking('【循经】十四经络古法推揉')"><span class="bi-nm">【循经】十四经络古法推揉</span><span class="bi-pr">¥5,680</span></div>
+      <div class="bi-item" onclick="openBooking('【立骨】本草精气深层复苏')"><span class="bi-nm">【立骨】本草精气深层复苏</span><span class="bi-pr">¥4,300</span></div>
+      <div class="bi-item" onclick="openBooking('【行气】周天气血温润理疗')"><span class="bi-nm">【行气】周天气血温润理疗</span><span class="bi-pr">¥3,980</span></div>
+      <div class="bi-item" onclick="openBooking('【净澈】全身水律净化舒缓')"><span class="bi-nm">【净澈】全身水律净化舒缓</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item" onclick="openBooking('【温中】带脉暖阳通络抚触')"><span class="bi-nm">【温中】带脉暖阳通络抚触</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item" onclick="openBooking('【聚能】盆底气血温养理疗')"><span class="bi-nm">【聚能】盆底气血温养理疗</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item" onclick="openBooking('【释压】植萃肩颈五感深眠')"><span class="bi-nm">【释压】植萃肩颈五感深眠</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item" onclick="openBooking('【轻盈】肩颈基础释压护理')"><span class="bi-nm">【轻盈】肩颈基础释压护理</span><span class="bi-pr">¥990</span></div>
       <span class="bi-cat">风华 · 面部高定</span>
-      <div class="bi-item"><span class="bi-nm">【凝时】古法骨相轮廓重塑</span><span class="bi-pr">¥29,800</span></div>
-      <div class="bi-item"><span class="bi-nm">【焕光】东方经络面部焕和</span><span class="bi-pr">¥2,380</span></div>
-      <div class="bi-item"><span class="bi-nm">【韶华】植萃凝时深层滋养</span><span class="bi-pr">¥2,380</span></div>
-      <div class="bi-item"><span class="bi-nm">【抚痕】面部肌理温和舒平</span><span class="bi-pr">¥1,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【晨露】沁透活水舒缓唤醒</span><span class="bi-pr">¥1,980</span></div>
-      <div class="bi-item"><span class="bi-nm">【数字】科技肌底平滑修护</span><span class="bi-pr">¥800</span></div>
-      <div class="bi-item"><span class="bi-nm">【源泉】无创深波补水注入</span><span class="bi-pr">¥600</span></div>
+      <div class="bi-item" onclick="openBooking('【凝时】古法骨相轮廓重塑')"><span class="bi-nm">【凝时】古法骨相轮廓重塑</span><span class="bi-pr">¥29,800</span></div>
+      <div class="bi-item" onclick="openBooking('【焕光】东方经络面部焕和')"><span class="bi-nm">【焕光】东方经络面部焕和</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item" onclick="openBooking('【韶华】植萃凝时深层滋养')"><span class="bi-nm">【韶华】植萃凝时深层滋养</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item" onclick="openBooking('【抚痕】面部肌理温和舒平')"><span class="bi-nm">【抚痕】面部肌理温和舒平</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item" onclick="openBooking('【晨露】沁透活水舒缓唤醒')"><span class="bi-nm">【晨露】沁透活水舒缓唤醒</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item" onclick="openBooking('【数字】科技肌底平滑修护')"><span class="bi-nm">【数字】科技肌底平滑修护</span><span class="bi-pr">¥800</span></div>
+      <div class="bi-item" onclick="openBooking('【源泉】无创深波补水注入')"><span class="bi-nm">【源泉】无创深波补水注入</span><span class="bi-pr">¥600</span></div>
     </div>
-    <button class="btn-book-main" onclick="openBook()">📋 &nbsp;立即填写预约</button>
   </div>
 </div>
 
@@ -422,23 +585,120 @@ body{overflow:hidden;}
     <span class="br-en">MING ZI</span>
     <span class="br-sl">BRAND GUIDELINES · 2024</span>
   </div>
-  <div class="br-sec"><span class="bs-hd">品牌故事</span><span class="bs-bd">明子笃信一个最古老也最质朴的真理：极致的容颜，往往是深层健康的自然显化，犹如一朵旷世的蝴蝶兰——它不依靠叶片的涂抹来获取艳丽，而是依赖根系在土壤深处日复一日的汲取。美，从来不是被制造出来的，它是被"养"出来的。</span></div>
+  <div class="br-sec"><span class="bs-hd">品牌故事</span><span class="bs-bd">明子笃信一个最古老也最质朴的真理:极致的容颜,往往是深层健康的自然显化,犹如一朵旷世的蝴蝶兰——它不依靠叶片的涂抹来获取艳丽,而是依赖根系在土壤深处日复一日的汲取。美,从来不是被制造出来的,它是被"养"出来的。</span></div>
   <div class="br-div"></div>
   <div class="br-sec" style="padding-bottom:6px"><span class="bs-hd">品牌哲学</span></div>
   <div style="padding:0 12px">
-    <div class="cl-c"><span class="cl-n">01 · 仁爱为底</span><span class="cl-zh">身心同调的厚度</span><span class="cl-en">The Philosophy of Benevolence</span><span class="cl-ds">最高级的疗愈，是带着"爱"去触碰。我们面对的是一个个鲜活、承载着压力的灵魂。</span></div>
-    <div class="cl-c"><span class="cl-n">02 · 根源之美</span><span class="cl-zh">由内而外的生机</span><span class="cl-en">Beauty from Within</span><span class="cl-ds">没有内在的健康，所有的外在保养都是无源之水。坚守"固本培元"的调理哲学。</span></div>
+    <div class="cl-c"><span class="cl-n">01 · 仁爱为底</span><span class="cl-zh">身心同调的厚度</span><span class="cl-en">The Philosophy of Benevolence</span><span class="cl-ds">最高级的疗愈,是带着"爱"去触碰。我们面对的是一个个鲜活、承载着压力的灵魂。</span></div>
+    <div class="cl-c"><span class="cl-n">02 · 根源之美</span><span class="cl-zh">由内而外的生机</span><span class="cl-en">Beauty from Within</span><span class="cl-ds">没有内在的健康,所有的外在保养都是无源之水。坚守"固本培元"的调理哲学。</span></div>
   </div>
   <div class="br-div" style="margin-top:8px"></div>
   <div class="br-sec" style="padding-bottom:4px"><span class="bs-hd">核心主张</span></div>
   <div style="padding:0 16px 20px">
-    <div class="claim"><span class="claim-zh">"深养于内，盛故于外"</span><span class="claim-en">Nourished Within, Radiant Without.</span></div>
-    <div class="claim"><span class="claim-zh">"以大爱之心，蕴生命之美。"</span><span class="claim-en">With Great Love, We Cultivate the Beauty of Life.</span></div>
-    <div class="claim"><span class="claim-zh">"不追逐时光，只蕴养风华。"</span><span class="claim-en">Not Chasing Time, Just Nurturing Grace.</span></div>
+    <div class="claim"><span class="claim-zh">"深养于内,盛故于外"</span><span class="claim-en">Nourished Within, Radiant Without.</span></div>
+    <div class="claim"><span class="claim-zh">"以大爱之心,蕴生命之美。"</span><span class="claim-en">With Great Love, We Cultivate the Beauty of Life.</span></div>
+    <div class="claim"><span class="claim-zh">"不追逐时光,只蕴养风华。"</span><span class="claim-en">Not Chasing Time, Just Nurturing Grace.</span></div>
   </div>
 </div>
 
-</div><!-- screen -->
+<!-- ══ 门店页 ══ -->
+<div class="page" id="pg-stores">
+  <div class="stores-hd">
+    <span class="stores-title">线下门店</span>
+    <span class="stores-sub">OFFLINE STORES · 共 2 家</span>
+  </div>
+  <div class="stores-wrap">
+    <div class="store-card-full">
+      <div class="store-banner">
+        <div>
+          <span class="store-tag">FLAGSHIP STORE · 01</span>
+          <span class="store-name-zh">明子 · 北京旗舰店</span>
+        </div>
+      </div>
+      <div class="store-body">
+        <div class="store-row"><span class="store-row-ic">📍</span><span>北京市朝阳区三里屯太古里北区 N8-01 三层</span></div>
+        <div class="store-row"><span class="store-row-ic">📞</span><span>010-6417-8888</span></div>
+        <div class="store-row"><span class="store-row-ic">🕐</span><span>营业时间 10:00 — 22:00 &nbsp;·&nbsp; 全年无休</span></div>
+        <div class="store-row"><span class="store-row-ic">🚇</span><span>地铁 10 号线团结湖站 C 口步行 8 分钟</span></div>
+        <div class="store-actions">
+          <button class="store-act store-act-p" onclick="openBooking()">立即预约</button>
+          <button class="store-act store-act-s" onclick="navigateToStore('北京三里屯太古里')">导航到店</button>
+        </div>
+      </div>
+    </div>
+    <div class="store-card-full">
+      <div class="store-banner">
+        <div>
+          <span class="store-tag">PREMIUM STORE · 02</span>
+          <span class="store-name-zh">明子 · 上海外滩店</span>
+        </div>
+      </div>
+      <div class="store-body">
+        <div class="store-row"><span class="store-row-ic">📍</span><span>上海市黄浦区中山东一路 18 号外滩源 5 层</span></div>
+        <div class="store-row"><span class="store-row-ic">📞</span><span>021-6323-8888</span></div>
+        <div class="store-row"><span class="store-row-ic">🕐</span><span>营业时间 10:00 — 22:00 &nbsp;·&nbsp; 全年无休</span></div>
+        <div class="store-row"><span class="store-row-ic">🚇</span><span>地铁 2 号线南京东路站 2 号口步行 12 分钟</span></div>
+        <div class="store-actions">
+          <button class="store-act store-act-p" onclick="openBooking()">立即预约</button>
+          <button class="store-act store-act-s" onclick="navigateToStore('上海外滩源')">导航到店</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 会员页 ══ -->
+<div class="page" id="pg-member">
+  <div class="mem-hd">
+    <span class="mem-eye">MING ZI MEMBERSHIP</span>
+    <span class="mem-title">会员中心</span>
+    <span class="mem-sub">PRIVILEGE & CARE</span>
+    <span class="mem-quote">"以仁爱为底,蕴生命之美"</span>
+  </div>
+  <div class="mem-wrap">
+    <div class="mem-level">
+      <span class="ml-badge">LEVEL 01</span>
+      <span class="ml-name">体验会员</span>
+      <span class="ml-price">注册即享 · 免费加入</span>
+      <ul class="ml-benefits">
+        <li>首次到店赠体质初诊(15 分钟)</li>
+        <li>每月节气养生资讯推送</li>
+        <li>新品项目优先体验资格</li>
+        <li>生日当月赠精美伴手礼</li>
+      </ul>
+      <button class="ml-btn" onclick="openBooking()">免费注册</button>
+    </div>
+    <div class="mem-level featured">
+      <span class="ml-badge">LEVEL 02</span>
+      <span class="ml-name">荣耀会员</span>
+      <span class="ml-price">充值 ¥30,000 起 · 开通权益</span>
+      <ul class="ml-benefits">
+        <li>所有疗愈项目享 85 折专属优惠</li>
+        <li>每季度赠送"焕光"面部焕和一次</li>
+        <li>专属养护顾问 1v1 定制方案</li>
+        <li>生日月额外赠送 ¥1,000 储值</li>
+        <li>优先预约热门时段与资深疗愈师</li>
+      </ul>
+      <button class="ml-btn" onclick="openBooking()">立即开通</button>
+    </div>
+    <div class="mem-level">
+      <span class="ml-badge">LEVEL 03</span>
+      <span class="ml-name">御享会员</span>
+      <span class="ml-price">充值 ¥100,000 起 · 尊享权益</span>
+      <ul class="ml-benefits">
+        <li>所有疗愈项目享 75 折至尊优惠</li>
+        <li>每月赠送高定系列项目一次</li>
+        <li>私享包厢,全程专属服务</li>
+        <li>全球连锁门店通用权益</li>
+        <li>年度专属中医体质调理方案</li>
+        <li>家庭成员共享 1 个副卡权益</li>
+      </ul>
+      <button class="ml-btn" onclick="openBooking()">立即开通</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /screen -->
 
 <div class="tabbar">
   <button class="tab on" id="tb-home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>首页</button>
@@ -447,72 +707,365 @@ body{overflow:hidden;}
   <button class="tab" id="tb-menu" onclick="go('menu')"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>疗愈</button>
   <button class="tab" id="tb-brand" onclick="go('brand')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>明子</button>
 </div>
+</div><!-- /shell -->
+
+<!-- ══ 预约模态框 ══ -->
+<div class="modal-overlay" id="booking-modal" onclick="if(event.target===this)closeBooking()">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-title">疗愈预约</span>
+      <button class="modal-close" onclick="closeBooking()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">姓名</label>
+        <input type="text" class="form-input" id="f-name" placeholder="请输入您的姓名" maxlength="20">
+      </div>
+      <div class="form-group">
+        <label class="form-label">手机号</label>
+        <input type="tel" class="form-input" id="f-phone" placeholder="请输入 11 位手机号" maxlength="11">
+      </div>
+      <div class="form-group">
+        <label class="form-label">预约项目</label>
+        <select class="form-select" id="f-service">
+          <option value="">请选择疗愈项目...</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">预约日期</label>
+          <input type="date" class="form-input" id="f-date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">预约时段</label>
+          <select class="form-select" id="f-time">
+            <option value="">选择时段</option>
+            <option>10:00</option>
+            <option>11:00</option>
+            <option>12:00</option>
+            <option>13:30</option>
+            <option>14:30</option>
+            <option>15:30</option>
+            <option>16:30</option>
+            <option>17:30</option>
+            <option>18:30</option>
+            <option>19:30</option>
+            <option>20:30</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label optional">备注说明</label>
+        <textarea class="form-textarea" id="f-note" placeholder="特殊需求或身体状况说明(选填)" maxlength="200"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitBooking()">提交预约</button>
+      <p class="form-tips">提交后预约信息将保存在本设备<br>工作人员将在 24 小时内电话与您确认</p>
+      <p class="form-alt">或 <a onclick="openTencentForm()">使用腾讯文档表单提交</a></p>
+    </div>
+  </div>
 </div>
 
+<div class="toast" id="toast"></div>
+
 <script>
-// ══ 腾讯文档预约表单链接 ══
+// ═══════════════════════════════════════════
+// 明子 MING ZI · 前端逻辑
+// ═══════════════════════════════════════════
+
+// 腾讯文档表单备选链接
 const BOOK_URL = 'https://docs.qq.com/form/page/DQUVnUGpqZXZyWWRh';
 
-function openBook() {
+// localStorage key
+const LS_KEY = 'mingzi_bookings_v1';
+
+// ═══ 状态栏实时时间 ═══
+function updateTime() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const el = document.getElementById('sb-time');
+  if (el) el.textContent = `${hh}:${mm}`;
+}
+updateTime();
+setInterval(updateTime, 30000);
+
+// ═══ Toast 提示 ═══
+function toast(msg, dur = 2000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), dur);
+}
+
+// ═══ 页面导航 ═══
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('pg-' + id).classList.add('active');
+  const tb = document.getElementById('tb-' + id);
+  if (tb) tb.classList.add('on');
+  document.getElementById('screen').scrollTop = 0;
+  // 进入预约页时刷新"我的预约"列表
+  if (id === 'book') renderMyBookings();
+}
+
+// ═══ 评价轮播 ═══
+function initEvalCarousel() {
+  const track = document.getElementById('eval-track');
+  const dotsEl = document.getElementById('eval-dots');
+  const cards = track.children;
+  const total = cards.length;
+
+  // 生成圆点
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'eval-dot' + (i === 0 ? ' on' : '');
+    dotsEl.appendChild(d);
+  }
+  const dots = dotsEl.children;
+
+  // 滚动监听更新圆点
+  track.addEventListener('scroll', () => {
+    const idx = Math.round(track.scrollLeft / track.clientWidth);
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('on', i === idx);
+    }
+  });
+
+  // 自动轮播
+  let current = 0;
+  setInterval(() => {
+    if (document.hidden) return;
+    current = (current + 1) % total;
+    track.scrollTo({ left: current * track.clientWidth, behavior: 'smooth' });
+  }, 4500);
+}
+
+// ═══ 预约模态框 ═══
+const ALL_SERVICES = [
+  '【蕴生】本草盆腔深层活化',
+  '【生息】女性根源能量深调',
+  '【若水】私享花域紧致温养',
+  '【初露】绿素本源深度蕴养',
+  '【至悦】五脏微观宇宙净化',
+  '【普悦】脏腑草本周期平衡',
+  '【筑基】东方体质深层重构',
+  '【心悦】宁心安神气血舒缓',
+  '【初蕊】内在生机基础唤醒',
+  '【循经】十四经络古法推揉',
+  '【立骨】本草精气深层复苏',
+  '【行气】周天气血温润理疗',
+  '【净澈】全身水律净化舒缓',
+  '【温中】带脉暖阳通络抚触',
+  '【聚能】盆底气血温养理疗',
+  '【释压】植萃肩颈五感深眠',
+  '【轻盈】肩颈基础释压护理',
+  '【凝时】古法骨相轮廓重塑',
+  '【焕光】东方经络面部焕和',
+  '【韶华】植萃凝时深层滋养',
+  '【抚痕】面部肌理温和舒平',
+  '【晨露】沁透活水舒缓唤醒',
+  '【数字】科技肌底平滑修护',
+  '【源泉】无创深波补水注入'
+];
+
+function fillServiceOptions() {
+  const sel = document.getElementById('f-service');
+  ALL_SERVICES.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  });
+}
+
+function openBooking(preSelectService) {
+  // 重置表单
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-service').value = preSelectService || '';
+  document.getElementById('f-note').value = '';
+  document.getElementById('f-time').value = '';
+
+  // 日期默认为明天,最早可选今天
+  const today = new Date();
+  const tomorrow = new Date(today.getTime() + 86400000);
+  const fmt = d => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+  const dateEl = document.getElementById('f-date');
+  dateEl.min = fmt(today);
+  dateEl.value = fmt(tomorrow);
+
+  document.getElementById('booking-modal').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBooking() {
+  document.getElementById('booking-modal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+function submitBooking() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const date = document.getElementById('f-date').value;
+  const time = document.getElementById('f-time').value;
+  const note = document.getElementById('f-note').value.trim();
+
+  // 校验
+  if (!name) { toast('请填写姓名'); return; }
+  if (!/^1[3-9]\d{9}$/.test(phone)) { toast('请填写正确的手机号'); return; }
+  if (!service) { toast('请选择预约项目'); return; }
+  if (!date) { toast('请选择预约日期'); return; }
+  if (!time) { toast('请选择预约时段'); return; }
+
+  // 保存到 localStorage
+  const bookings = loadBookings();
+  const id = Date.now();
+  bookings.unshift({
+    id, name, phone, service, date, time, note,
+    createdAt: new Date().toISOString()
+  });
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(bookings));
+  } catch (e) {
+    toast('保存失败,请重试');
+    return;
+  }
+
+  closeBooking();
+  toast('✓ 预约已提交,工作人员将尽快联系您', 2500);
+
+  // 刷新预约列表
+  setTimeout(() => {
+    go('book');
+  }, 800);
+}
+
+function loadBookings() {
+  try {
+    return JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function deleteBooking(id) {
+  if (!confirm('确定要删除这条预约记录吗?')) return;
+  const list = loadBookings().filter(b => b.id !== id);
+  localStorage.setItem(LS_KEY, JSON.stringify(list));
+  renderMyBookings();
+  toast('已删除');
+}
+
+function renderMyBookings() {
+  const list = loadBookings();
+  const container = document.getElementById('mb-list');
+  const count = document.getElementById('mb-count');
+  count.textContent = `${list.length} 条记录`;
+
+  if (list.length === 0) {
+    container.innerHTML = '<div class="mb-empty">暂无预约记录<br>点击下方按钮创建您的第一次预约</div>';
+    return;
+  }
+
+  container.innerHTML = list.map(b => {
+    // 格式化日期显示 2024-01-05 → 1月5日
+    const [y, m, d] = b.date.split('-');
+    const dateStr = `${parseInt(m)}月${parseInt(d)}日`;
+    return `
+      <div class="mb-item">
+        <span class="mb-i-svc">${b.service}</span>
+        <span class="mb-i-meta">${dateStr} · ${b.time} &nbsp;|&nbsp; ${b.name} · ${b.phone.slice(0,3)}****${b.phone.slice(7)}</span>
+        <span class="mb-i-status">待确认</span>
+        <button class="mb-i-del" onclick="deleteBooking(${b.id})">删除</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function openTencentForm() {
   window.open(BOOK_URL, '_blank');
 }
 
-// ══ 导航 ══
-function go(id) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.getElementById('pg-'+id).classList.add('active');
-  const tb = document.getElementById('tb-'+id);
-  if(tb) tb.classList.add('on');
-  document.getElementById('screen').scrollTop = 0;
+// ═══ 体质问卷分享 ═══
+function shareResult() {
+  const type = document.getElementById('res-type').textContent;
+  const desc = document.getElementById('res-desc').textContent;
+  const shareText = `【明子 MING ZI · 体质测评】\n\n我的体质类型:${type}\n\n${desc}\n\n—— 深养于内,盛故于外 ——\n二十五载光阴沉淀,指尖知悉你的每一寸疲惫。`;
+  const shareData = {
+    title: '明子 MING ZI · 我的体质测评',
+    text: shareText,
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText + '\n' + window.location.href)
+      .then(() => toast('✓ 结果已复制,可粘贴分享给朋友', 2500))
+      .catch(() => toast('复制失败,请手动截屏分享'));
+  } else {
+    toast('请长按屏幕截图分享');
+  }
 }
 
-// ══ 体质问卷 ══
+// ═══ 门店导航 ═══
+function navigateToStore(name) {
+  const url = `https://uri.amap.com/search?keyword=${encodeURIComponent('明子 ' + name)}`;
+  window.open(url, '_blank');
+}
+
+// ═══ 体质问卷数据 ═══
 const QUESTIONS = [
-  { text:'您平时最常见的身体感受是？', opts:['容易疲倦乏力，说话没劲','手脚发凉，怕冷怕风','面色发黄，头晕眼花','口干舌燥，手心发热','身体沉重，容易出油'] },
-  { text:'您的睡眠状况如何？', opts:['容易入睡但总觉得睡不够','睡眠很浅，容易惊醒','难以入睡，心烦意乱','睡得多但睡醒仍然疲倦','入睡困难，多梦易醒'] },
-  { text:'您的情绪状态通常是？', opts:['情绪低落，容易萎靡','情绪起伏大，容易紧张','焦虑烦躁，压力大','平稳但偶有郁闷','喜怒无常，情绪不稳'] },
-  { text:'您的皮肤状态是？', opts:['偏干，易起皮脱屑','肤色暗沉，黑眼圈重','T区出油，两颊偏干','细腻但容易潮红过敏','油腻，毛孔粗大'] },
-  { text:'您的消化功能如何？', opts:['食欲不振，饭量小','吃生冷食物容易腹泻','口苦，消化慢','口干，喜欢喝水','腹部容易胀气'] },
-  { text:'您的月经状况（男士选最后一项）？', opts:['量少，颜色浅淡','量少且有血块，痛经','周期不规律，量时多时少','量少，色深且黑','我是男士'] },
-  { text:'您最近身体哪个部位最不舒服？', opts:['腰膝酸软无力','肩颈僵硬酸痛','腹部寒凉，小腹坠胀','眼睛干涩，耳鸣','头脑不清晰，记忆力下降'] },
-  { text:'您的体型特征是？', opts:['偏瘦，肌肉松软','偏胖，容易水肿','正常但脂肪松弛','偏瘦，皮肤干燥','腰腹部赘肉多'] },
-  { text:'您对什么最敏感？', opts:['对劳累敏感，稍动就累','对寒冷敏感，冬天特别难熬','对压力敏感，容易烦躁','对干燥敏感，皮肤紧绷','对潮湿敏感，阴天身体重'] },
-  { text:'您最希望通过疗愈改善什么？', opts:['气色和精力状态','手脚冰凉和怕冷','情绪和睡眠质量','肌肤干燥和暗沉','身体沉重和水肿感'] }
+  { text:'您平时最常见的身体感受是?', opts:['容易疲倦乏力,说话没劲','手脚发凉,怕冷怕风','面色发黄,头晕眼花','口干舌燥,手心发热','身体沉重,容易出油'] },
+  { text:'您的睡眠状况如何?', opts:['容易入睡但总觉得睡不够','睡眠很浅,容易惊醒','难以入睡,心烦意乱','睡得多但睡醒仍然疲倦','入睡困难,多梦易醒'] },
+  { text:'您的情绪状态通常是?', opts:['情绪低落,容易萎靡','情绪起伏大,容易紧张','焦虑烦躁,压力大','平稳但偶有郁闷','喜怒无常,情绪不稳'] },
+  { text:'您的皮肤状态是?', opts:['偏干,易起皮脱屑','肤色暗沉,黑眼圈重','T区出油,两颊偏干','细腻但容易潮红过敏','油腻,毛孔粗大'] },
+  { text:'您的消化功能如何?', opts:['食欲不振,饭量小','吃生冷食物容易腹泻','口苦,消化慢','口干,喜欢喝水','腹部容易胀气'] },
+  { text:'您的月经状况(男士选最后一项)?', opts:['量少,颜色浅淡','量少且有血块,痛经','周期不规律,量时多时少','量少,色深且黑','我是男士'] },
+  { text:'您最近身体哪个部位最不舒服?', opts:['腰膝酸软无力','肩颈僵硬酸痛','腹部寒凉,小腹坠胀','眼睛干涩,耳鸣','头脑不清晰,记忆力下降'] },
+  { text:'您的体型特征是?', opts:['偏瘦,肌肉松软','偏胖,容易水肿','正常但脂肪松弛','偏瘦,皮肤干燥','腰腹部赘肉多'] },
+  { text:'您对什么最敏感?', opts:['对劳累敏感,稍动就累','对寒冷敏感,冬天特别难熬','对压力敏感,容易烦躁','对干燥敏感,皮肤紧绷','对潮湿敏感,阴天身体重'] },
+  { text:'您最希望通过疗愈改善什么?', opts:['气色和精力状态','手脚冰凉和怕冷','情绪和睡眠质量','肌肤干燥和暗沉','身体沉重和水肿感'] }
 ];
 
-// 体质类型映射（选项0-4对应）
 const TYPES = [
-  { name:'气虚型',   en:'QI DEFICIENCY',   desc:'气血不足、容易疲倦，身体底层能量亏耗。建议以补气养血为核心，温和激活身体的自我修复力。',
+  { name:'气虚型',   en:'QI DEFICIENCY',   desc:'气血不足、容易疲倦,身体底层能量亏耗。建议以补气养血为核心,温和激活身体的自我修复力。',
     dims:[{n:'气血充盈',v:45},{n:'脏腑和谐',v:62},{n:'经络通畅',v:58},{n:'面部活力',v:55},{n:'情志平衡',v:68}],
     tags:['气血亏虚','容易疲倦','脏腑偏弱','需补气养血'],
-    recs:[{icon:'🌿',nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',why:'气血指数偏低，专为气虚底层设计，温和激活自我修复动能'},
-          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'调和气血同时安抚情志，适合气虚伴随的轻度焦虑'},
-          {icon:'🌸',nm:'【行气】周天气血温润理疗',pr:'¥3,980',why:'疏通气血运行路径，让能量自然流转全身'}] },
-  { name:'阳虚型',   en:'YANG DEFICIENCY',  desc:'阳气不足、体寒畏冷，经络运行迟缓。需以温阳散寒、疏通经络为主，重建身体内在的温度与生机。',
+    recs:[{icon:'🌿',nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',why:'气血指数偏低,专为气虚底层设计,温和激活自我修复动能'},
+          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'调和气血同时安抚情志,适合气虚伴随的轻度焦虑'},
+          {icon:'🌸',nm:'【行气】周天气血温润理疗',pr:'¥3,980',why:'疏通气血运行路径,让能量自然流转全身'}] },
+  { name:'阳虚型',   en:'YANG DEFICIENCY',  desc:'阳气不足、体寒畏冷,经络运行迟缓。需以温阳散寒、疏通经络为主,重建身体内在的温度与生机。',
     dims:[{n:'气血充盈',v:52},{n:'脏腑和谐',v:48},{n:'经络通畅',v:44},{n:'面部活力',v:50},{n:'情志平衡',v:65}],
     tags:['体寒阳虚','经络迟滞','宫寒明显','需温阳散寒'],
-    recs:[{icon:'🔥',nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',why:'专注腰腹核心区，以草本热能驱散中段寒气，阳虚首选'},
-          {icon:'🌿',nm:'【循经】十四经络古法推揉',pr:'¥5,680',why:'以温热精油顺应经脉走向，驱散深层宫寒，改善阳虚体质'},
-          {icon:'✦',nm:'【筑基】东方体质深层重构',pr:'¥7,980',why:'从根源改善体质偏寒状态，建立长效温阳机制'}] },
-  { name:'气郁型',   en:'QI STAGNATION',    desc:'情志郁结、气机不畅，长期压力导致身体内循环受阻。以疏肝解郁、调畅气机为核心，释放深层情绪积压。',
+    recs:[{icon:'🔥',nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',why:'专注腰腹核心区,以草本热能驱散中段寒气,阳虚首选'},
+          {icon:'🌿',nm:'【循经】十四经络古法推揉',pr:'¥5,680',why:'以温热精油顺应经脉走向,驱散深层宫寒,改善阳虚体质'},
+          {icon:'✦',nm:'【筑基】东方体质深层重构',pr:'¥7,980',why:'从根源改善体质偏寒状态,建立长效温阳机制'}] },
+  { name:'气郁型',   en:'QI STAGNATION',    desc:'情志郁结、气机不畅,长期压力导致身体内循环受阻。以疏肝解郁、调畅气机为核心,释放深层情绪积压。',
     dims:[{n:'气血充盈',v:60},{n:'脏腑和谐',v:55},{n:'经络通畅',v:50},{n:'面部活力',v:62},{n:'情志平衡',v:40}],
     tags:['情志郁结','气机不畅','压力积压','需疏肝解郁'],
-    recs:[{icon:'🌙',nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',why:'精准化解肩颈郁结，伴随植物香气让大脑深度放松'},
-          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'气郁型首要任务是安定情志，通过宁心带动气机自然流转'},
-          {icon:'🌿',nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',why:'卸下五脏积压的浊气，从深层恢复内在生态秩序'}] },
-  { name:'阴虚型',   en:'YIN DEFICIENCY',   desc:'阴液亏虚、虚热内生，肌肤缺乏内在滋润。以滋阴润养、清热生津为核心，由内而外恢复肌肤的饱满与光泽。',
+    recs:[{icon:'🌙',nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',why:'精准化解肩颈郁结,伴随植物香气让大脑深度放松'},
+          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'气郁型首要任务是安定情志,通过宁心带动气机自然流转'},
+          {icon:'🌿',nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',why:'卸下五脏积压的浊气,从深层恢复内在生态秩序'}] },
+  { name:'阴虚型',   en:'YIN DEFICIENCY',   desc:'阴液亏虚、虚热内生,肌肤缺乏内在滋润。以滋阴润养、清热生津为核心,由内而外恢复肌肤的饱满与光泽。',
     dims:[{n:'气血充盈',v:65},{n:'脏腑和谐',v:58},{n:'经络通畅',v:68},{n:'面部活力',v:55},{n:'情志平衡',v:52}],
     tags:['阴津不足','虚热内生','肌肤干燥','需滋阴润养'],
-    recs:[{icon:'💧',nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',why:'如晨露拂过叶脉，专为阴虚肌肤修护屏障，带来深层沁润'},
-          {icon:'✨',nm:'【焕光】东方经络面部焕和',pr:'¥2,380',why:'释放深层热郁，让肌肤透出纯净光泽，改善阴虚暗沉'},
-          {icon:'🌿',nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',why:'深度净化并滋养，从根源补充阴液，适合阴虚较重者'}] },
-  { name:'痰湿型',   en:'PHLEGM-DAMPNESS',  desc:'湿气偏重、代谢迟缓，身体容易积滞。以化湿行气、健脾利水为核心，唤醒身体的代谢动力与轻盈感。',
+    recs:[{icon:'💧',nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',why:'如晨露拂过叶脉,专为阴虚肌肤修护屏障,带来深层沁润'},
+          {icon:'✨',nm:'【焕光】东方经络面部焕和',pr:'¥2,380',why:'释放深层热郁,让肌肤透出纯净光泽,改善阴虚暗沉'},
+          {icon:'🌿',nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',why:'深度净化并滋养,从根源补充阴液,适合阴虚较重者'}] },
+  { name:'痰湿型',   en:'PHLEGM-DAMPNESS',  desc:'湿气偏重、代谢迟缓,身体容易积滞。以化湿行气、健脾利水为核心,唤醒身体的代谢动力与轻盈感。',
     dims:[{n:'气血充盈',v:55},{n:'脏腑和谐',v:50},{n:'经络通畅',v:48},{n:'面部活力',v:58},{n:'情志平衡',v:62}],
     tags:['湿气偏重','代谢迟缓','身体沉重','需化湿行气'],
-    recs:[{icon:'🌊',nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',why:'温和代谢停滞与浊水，痰湿体质必选，带来极致轻盈感'},
-          {icon:'🌿',nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',why:'循序渐进建立内循环平衡机制，改善痰湿体质的根本'},
-          {icon:'✦',nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',why:'改善下焦循环不畅，重塑能量与生机，减轻下肢沉重感'}] }
+    recs:[{icon:'🌊',nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',why:'温和代谢停滞与浊水,痰湿体质必选,带来极致轻盈感'},
+          {icon:'🌿',nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',why:'循序渐进建立内循环平衡机制,改善痰湿体质的根本'},
+          {icon:'✦',nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',why:'改善下焦循环不畅,重塑能量与生机,减轻下肢沉重感'}] }
 ];
 
 let curQ = 0, answers = [];
@@ -547,14 +1100,13 @@ function prevQ() {
 
 function nextQ() {
   if(answers[curQ] === undefined) {
-    alert('请先选择一个选项');return;
+    toast('请先选择一个选项'); return;
   }
   if(curQ < QUESTIONS.length-1) { curQ++; renderQ(); }
   else { showResult(); }
 }
 
 function showResult() {
-  // 统计最多选的体质倾向
   const count = [0,0,0,0,0];
   answers.forEach(a => { if(a!==undefined) count[a]++; });
   const typeIdx = count.indexOf(Math.max(...count));
@@ -580,8 +1132,8 @@ function showResult() {
         <div class="rc-dot">${r.icon}</div>
         <div><span class="rc-nm">${r.nm}</span><span class="rc-pr">${r.pr}</span></div>
       </div>
-      <div class="rc-why"><b>推荐理由：</b>${r.why}</div>
-      <button class="rc-book-btn" onclick="openBook()">📋 立即预约此项目</button>
+      <div class="rc-why"><b>推荐理由:</b>${r.why}</div>
+      <button class="rc-book-btn" onclick="openBooking('${r.nm}')">📋 立即预约此项目</button>
     </div>`).join('');
 
   document.getElementById('quiz-area').style.display = 'none';
@@ -597,39 +1149,39 @@ function restartQuiz() {
   document.getElementById('screen').scrollTop = 0;
 }
 
-// ══ 疗愈菜单 ══
+// ═══ 疗愈菜单 ═══
 const SVCS = {
   '本源':{ en:'INTIMATE & CORE ENERGY', items:[
-    {nm:'【蕴生】本草盆腔深层活化',pr:'¥29,800',ds:'循古法经络，疏通盆底淤堵，唤醒内部生命力。'},
-    {nm:'【生息】女性根源能量深调',pr:'¥26,800',ds:'摒弃外力干预，温润内在土壤，让内分泌回归自然韵律。'},
-    {nm:'【若水】私享花域紧致温养',pr:'¥19,800',ds:'极度私密的柔和护理，重塑如初绽般的紧致与健康生态。'}
+    {nm:'【蕴生】本草盆腔深层活化',pr:'¥29,800',ds:'循古法经络,疏通盆底淤堵,唤醒内部生命力。'},
+    {nm:'【生息】女性根源能量深调',pr:'¥26,800',ds:'摒弃外力干预,温润内在土壤,让内分泌回归自然韵律。'},
+    {nm:'【若水】私享花域紧致温养',pr:'¥19,800',ds:'极度私密的柔和护理,重塑如初绽般的紧致与健康生态。'}
   ]},
   '内和':{ en:'INNER HARMONY', items:[
-    {nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',ds:'汲取自然植萃的磅礴能量，深度净化并滋养每一寸土壤。'},
-    {nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',ds:'卸下五脏六腑长久积压的浊气，恢复内在生态秩序与宁静。'},
-    {nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',ds:'循序渐进的内循环调理，为身体建立长效的生态平衡机制。'},
-    {nm:'【筑基】东方体质深层重构',pr:'¥7,980',ds:'结合中医智慧，从根源改善易疲劳与亚健康状态。'},
-    {nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',ds:'抚平焦躁情绪，通过草本温养达到深度的宁静与彻底放松。'},
-    {nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',ds:'针对初级气血亏虚，温和唤醒身体底层的自然活力。'}
+    {nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',ds:'汲取自然植萃的磅礴能量,深度净化并滋养每一寸土壤。'},
+    {nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',ds:'卸下五脏六腑长久积压的浊气,恢复内在生态秩序与宁静。'},
+    {nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',ds:'循序渐进的内循环调理,为身体建立长效的生态平衡机制。'},
+    {nm:'【筑基】东方体质深层重构',pr:'¥7,980',ds:'结合中医智慧,从根源改善易疲劳与亚健康状态。'},
+    {nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',ds:'抚平焦躁情绪,通过草本温养达到深度的宁静与彻底放松。'},
+    {nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',ds:'针对初级气血亏虚,温和唤醒身体底层的自然活力。'}
   ]},
   '立骨':{ en:'MERIDIAN FLOW', items:[
-    {nm:'【循经】十四经络古法推揉',pr:'¥5,680',ds:'顺应人体十四经脉走向，以带有温度的精油驱散深层宫寒。'},
-    {nm:'【立骨】本草精气深层复苏',pr:'¥4,300',ds:'疏通骨缝与关节深处的寒湿，唤醒身体本源的精气神。'},
-    {nm:'【行气】周天气血温润理疗',pr:'¥3,980',ds:'打通身体气血淤堵的节点，让健康气色由内而外红润。'},
-    {nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',ds:'温和代谢身体的停滞与浊水，为全身带来极致的轻盈感。'},
-    {nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',ds:'专注腰腹核心区，以草本热能驱散中段的寒气与滞重感。'},
-    {nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',ds:'改善久坐带来的下焦循环不畅，重塑盆底能量与生机。'},
-    {nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',ds:'精准化解肩颈僵硬，伴随植物香气让大脑进入深度休息。'},
-    {nm:'【轻盈】肩颈基础释压护理',pr:'¥990',ds:'快速缓解日常肌肉紧绷，适合快节奏日常中的片刻喘息。'}
+    {nm:'【循经】十四经络古法推揉',pr:'¥5,680',ds:'顺应人体十四经脉走向,以带有温度的精油驱散深层宫寒。'},
+    {nm:'【立骨】本草精气深层复苏',pr:'¥4,300',ds:'疏通骨缝与关节深处的寒湿,唤醒身体本源的精气神。'},
+    {nm:'【行气】周天气血温润理疗',pr:'¥3,980',ds:'打通身体气血淤堵的节点,让健康气色由内而外红润。'},
+    {nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',ds:'温和代谢身体的停滞与浊水,为全身带来极致的轻盈感。'},
+    {nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',ds:'专注腰腹核心区,以草本热能驱散中段的寒气与滞重感。'},
+    {nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',ds:'改善久坐带来的下焦循环不畅,重塑盆底能量与生机。'},
+    {nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',ds:'精准化解肩颈僵硬,伴随植物香气让大脑进入深度休息。'},
+    {nm:'【轻盈】肩颈基础释压护理',pr:'¥990',ds:'快速缓解日常肌肉紧绷,适合快节奏日常中的片刻喘息。'}
   ]},
   '风华':{ en:'FACIAL RADIANCE', items:[
-    {nm:'【凝时】古法骨相轮廓重塑',pr:'¥29,800',ds:'弃用机器，以精湛手法由肌理深层向上托举，重塑岁月风骨。'},
-    {nm:'【焕光】东方经络面部焕和',pr:'¥2,380',ds:'拨开岁月的蒙尘，释放深层压力，让肌肤透出纯净光泽。'},
-    {nm:'【韶华】植萃凝时深层滋养',pr:'¥2,380',ds:'为肌肤提供极其丰盈的草本营养，温和抚平岁月痕迹。'},
-    {nm:'【抚痕】面部肌理温和舒平',pr:'¥1,980',ds:'细腻解开面部筋膜粘连，还原本真的柔软、平滑与放松。'},
-    {nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',ds:'如晨露拂过叶脉般轻柔，修护受损屏障，带来深层沁润。'},
-    {nm:'【数字】科技肌底平滑修护',pr:'¥800',ds:'借助精密仪器，温和导入科技精华，精准且克制地修护肌底。'},
-    {nm:'【源泉】无创深波补水注入',pr:'¥600',ds:'高效、快速的深层源泉补水，适合日常状态的密集养护。'}
+    {nm:'【凝时】古法骨相轮廓重塑',pr:'¥29,800',ds:'弃用机器,以精湛手法由肌理深层向上托举,重塑岁月风骨。'},
+    {nm:'【焕光】东方经络面部焕和',pr:'¥2,380',ds:'拨开岁月的蒙尘,释放深层压力,让肌肤透出纯净光泽。'},
+    {nm:'【韶华】植萃凝时深层滋养',pr:'¥2,380',ds:'为肌肤提供极其丰盈的草本营养,温和抚平岁月痕迹。'},
+    {nm:'【抚痕】面部肌理温和舒平',pr:'¥1,980',ds:'细腻解开面部筋膜粘连,还原本真的柔软、平滑与放松。'},
+    {nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',ds:'如晨露拂过叶脉般轻柔,修护受损屏障,带来深层沁润。'},
+    {nm:'【数字】科技肌底平滑修护',pr:'¥800',ds:'借助精密仪器,温和导入科技精华,精准且克制地修护肌底。'},
+    {nm:'【源泉】无创深波补水注入',pr:'¥600',ds:'高效、快速的深层源泉补水,适合日常状态的密集养护。'}
   ]}
 };
 
@@ -644,7 +1196,7 @@ function renderMenu() {
     c.items.forEach(s=>{
       const it = document.createElement('div');
       it.className = 'mn-it';
-      it.onclick = openBook;
+      it.onclick = () => openBooking(s.nm);
       it.innerHTML = `<div style="flex:1"><span class="mn-nm">${s.nm}</span><span class="mn-ds">${s.ds}</span></div><div style="text-align:right;flex-shrink:0;margin-left:10px"><span class="mn-pr">${s.pr}</span><span class="mn-bk">预约 ›</span></div>`;
       sec.appendChild(it);
     });
@@ -652,8 +1204,12 @@ function renderMenu() {
   });
 }
 
+// ═══ 初始化 ═══
+fillServiceOptions();
 renderMenu();
 renderQ();
+initEvalCarousel();
+renderMyBookings();
 </script>
 </body>
 </html>

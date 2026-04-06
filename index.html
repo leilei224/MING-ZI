@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#899030">
+<title>明子 MING ZI · 美容养生</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#899030;--gd:#5C6420;--gm:#A8A840;--gl:#E8ECD0;--gp:#F4F6E8;
+  --cr:#F8F7F0;--ch:#333333;--mu:#7A7060;--bd:#D8D0B8;--tan:#DABEEE;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:#1a1a1a;display:flex;justify-content:center;align-items:flex-start;}
+body{overflow:hidden;}
+
+/* ── 手机外壳 ── */
+.shell{
+  width:100%;max-width:390px;height:100dvh;
+  background:var(--cr);display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  font-family:'Noto Sans SC',sans-serif;
+}
+
+/* ── 状态栏 ── */
+.statusbar{
+  height:44px;background:var(--g);flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;z-index:100;
+}
+.sb-left{display:flex;align-items:center;gap:7px;}
+.sb-logo svg{width:22px;height:26px;}
+.sb-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:13px;letter-spacing:2px;}
+.sb-right{font-size:11px;color:rgba(255,255,255,.6);}
+
+/* ── 滚动内容区 ── */
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.screen::-webkit-scrollbar{display:none;}
+.page{display:none;animation:fadeIn .25s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── TabBar ── */
+.tabbar{
+  height:60px;background:#fff;flex-shrink:0;
+  display:flex;border-top:.5px solid var(--bd);
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;cursor:pointer;font-size:10px;color:var(--mu);transition:color .2s;
+  border:none;background:none;padding:0;
+}
+.tab.on{color:var(--g);}
+.tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;}
+
+/* ═══════════════ HOME ═══════════════ */
+.hero{
+  background:var(--g);padding:36px 22px 30px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before,.hero::after{
+  content:'';position:absolute;border-radius:50%;
+  border:1px solid rgba(255,255,255,.07);
+}
+.hero::before{width:280px;height:280px;top:-80px;left:-80px;}
+.hero::after{width:200px;height:200px;bottom:-60px;right:-60px;}
+.hero-eye{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:4px;margin-bottom:16px;}
+.hero-logo-wrap{margin-bottom:4px;}
+.hero-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:32px;letter-spacing:10px;font-weight:300;line-height:1;}
+.hero-en{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:6px;margin-top:5px;}
+.hero-div{width:60px;height:.5px;background:rgba(255,255,255,.2);margin:18px auto;}
+.hero-quote{font-size:11.5px;color:rgba(255,255,255,.55);line-height:2;font-style:italic;}
+
+.qnav{background:#fff;display:flex;border-bottom:.5px solid #eee;}
+.qn{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 6px;cursor:pointer;position:relative;}
+.qn:not(:last-child)::after{content:'';position:absolute;right:0;top:25%;height:50%;width:.5px;background:#eee;}
+.qn-ic{width:42px;height:42px;border-radius:50%;border:.5px solid var(--bd);display:flex;align-items:center;justify-content:center;}
+.qn-ic svg{width:17px;height:17px;stroke:var(--g);fill:none;stroke-width:1.5;}
+.qn-nm{font-size:12px;color:var(--ch);font-weight:500;}
+.qn-sb{font-size:9px;color:var(--mu);letter-spacing:1px;}
+
+.mcard{margin:14px 14px 0;background:var(--ch);border-radius:16px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;cursor:pointer;}
+.mcard::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.04);}
+.mc-t1{font-size:11px;color:rgba(255,255,255,.5);display:block;}
+.mc-t2{font-size:13px;color:#fff;font-weight:500;margin-top:3px;display:block;}
+.mc-btn{background:#fff;color:var(--ch);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:500;flex-shrink:0;z-index:1;cursor:pointer;}
+
+.shd{font-size:9px;color:var(--mu);letter-spacing:3px;padding:18px 14px 10px;display:flex;align-items:center;gap:8px;}
+.shd::after{content:'';flex:1;height:.5px;background:var(--bd);}
+
+.sg{padding:0 12px;}
+.sg-feat{background:var(--gd);border-radius:16px;padding:22px 18px;margin-bottom:10px;cursor:pointer;position:relative;overflow:hidden;}
+.sg-feat::after{content:'✦';position:absolute;right:14px;bottom:-8px;font-size:64px;color:rgba(255,255,255,.05);}
+.sg-cat{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:2px;display:block;}
+.sg-nm{font-family:'Noto Serif SC',serif;font-size:14px;color:#fff;line-height:1.7;margin-top:8px;display:block;}
+.sg-pr{font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;display:block;}
+.sg-arr{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:4px;display:block;}
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.sg2a{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:16px 14px;cursor:pointer;}
+.sg2b{background:var(--ch);border-radius:14px;padding:16px 14px;cursor:pointer;}
+.s2-cat{font-size:9px;letter-spacing:1.5px;display:block;margin-bottom:6px;}
+.sg2a .s2-cat{color:var(--gd);}
+.sg2b .s2-cat{color:rgba(255,255,255,.4);}
+.s2-nm{font-family:'Noto Serif SC',serif;font-size:13px;line-height:1.6;display:block;}
+.sg2a .s2-nm{color:var(--ch);}
+.sg2b .s2-nm{color:#fff;}
+.s2-pr{font-size:11px;margin-top:8px;display:block;}
+.sg2a .s2-pr{color:var(--g);}
+.sg2b .s2-pr{color:rgba(255,255,255,.4);}
+.sg3{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.sg3c{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:16px 14px;cursor:pointer;}
+.s3-cat{font-size:9px;color:var(--mu);letter-spacing:1.5px;display:block;margin-bottom:5px;}
+.s3-nm{font-size:13px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
+.s3-pr{font-size:11px;color:var(--g);margin-top:6px;display:block;}
+
+.yr-banner{margin:0 12px 16px;background:var(--gd);border-radius:16px;padding:22px 18px;position:relative;overflow:hidden;cursor:pointer;}
+.yr-banner::before{content:'25';position:absolute;right:-4px;bottom:-14px;font-size:90px;color:rgba(255,255,255,.06);font-family:'Noto Serif SC',serif;font-weight:600;line-height:1;}
+.yr-tag{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:3px;display:block;margin-bottom:10px;}
+.yr-qt{font-family:'Noto Serif SC',serif;font-size:14px;color:#fff;line-height:1.9;display:block;}
+.yr-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.8;margin-top:12px;display:block;}
+.yr-btn{display:inline-block;margin-top:16px;background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.3);border-radius:20px;padding:8px 18px;font-size:11px;letter-spacing:1px;cursor:pointer;}
+
+.eval-sec{background:#fff;padding:20px 16px;border-top:.5px solid #eee;}
+.eval-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.eval-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;}
+.eval-stars{color:var(--g);font-size:13px;letter-spacing:3px;}
+.eval-txt{font-size:12.5px;color:var(--ch);line-height:1.9;font-style:italic;}
+.eval-name{font-size:10px;color:var(--mu);margin-top:10px;letter-spacing:1px;display:block;}
+
+.store-sec{padding:16px 14px 20px;border-top:.5px solid #eee;}
+.store-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;display:block;margin-bottom:12px;}
+.store-card{background:var(--gd);border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.store-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:14px;display:block;}
+.store-en{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-top:4px;display:block;}
+.store-btn{background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.25);border-radius:20px;padding:7px 14px;font-size:10px;cursor:pointer;white-space:nowrap;}
+
+/* ═══════════════ AI ═══════════════ */
+.ai-hd{background:var(--ch);padding:24px 20px 20px;}
+.ai-eye{font-size:10px;color:#666;letter-spacing:2px;display:block;margin-bottom:5px;}
+.ai-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:22px;font-weight:400;display:block;}
+.ai-sub{font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:8px;display:block;}
+
+.cam-wrap{background:#181810;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.cam-fr{width:100%;height:200px;border-radius:16px;border:1px solid #303028;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.face-o{width:120px;height:158px;border-radius:50% 50% 46% 46%;border:1.5px dashed rgba(137,144,48,.65);position:absolute;}
+.scanl{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,rgba(137,144,48,.9),transparent);animation:scan 2.5s ease-in-out infinite;}
+@keyframes scan{0%,100%{top:15%;}50%{top:80%;}}
+.cam-ht{font-size:11px;color:#444;text-align:center;line-height:1.6;}
+
+.ai-steps{padding:20px 18px;display:flex;flex-direction:column;gap:14px;}
+.ai-step{display:flex;align-items:center;gap:14px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-num span{font-size:12px;color:#fff;font-weight:500;}
+.step-txt{font-size:13px;color:var(--ch);}
+
+.btn-g{display:block;width:calc(100% - 28px);margin:0 14px 14px;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;transition:opacity .2s;}
+.btn-g:active{opacity:.8;}
+.btn-note{display:block;text-align:center;font-size:10px;color:var(--mu);margin-bottom:16px;}
+
+.res-wrap{padding:14px;}
+.r-lbl{font-size:11px;font-weight:500;color:var(--ch);letter-spacing:.5px;display:block;margin-bottom:8px;}
+.const-card{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:14px;margin-bottom:14px;}
+.const-type{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--gd);display:block;margin-bottom:5px;}
+.const-sub{font-size:11px;color:var(--mu);line-height:1.7;display:block;}
+.bars{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.bar-r{display:flex;align-items:center;gap:8px;}
+.bar-l{font-size:11px;color:var(--mu);width:54px;flex-shrink:0;}
+.bar-t{flex:1;height:5px;background:var(--gl);border-radius:3px;overflow:hidden;}
+.bar-f{height:100%;border-radius:3px;background:var(--g);transition:width 1s ease;}
+.bar-v{font-size:11px;color:var(--ch);width:26px;text-align:right;flex-shrink:0;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.tag-i{font-size:10px;padding:4px 10px;border-radius:20px;background:var(--gp);color:var(--gd);border:.5px solid var(--gl);}
+.rec-c{background:#fff;border-radius:14px;border:.5px solid var(--bd);padding:14px;margin-bottom:10px;cursor:pointer;transition:transform .15s;}
+.rec-c:active{transform:scale(.98);}
+.rc-t{display:flex;gap:10px;margin-bottom:10px;}
+.rc-dot{width:40px;height:40px;border-radius:10px;background:var(--gp);flex-shrink:0;}
+.rc-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
+.rc-pr{font-size:11px;color:var(--g);margin-top:3px;display:block;}
+.rc-why{background:var(--gp);border-radius:9px;padding:8px 10px;font-size:11px;color:var(--mu);line-height:1.7;}
+.rc-why b{color:var(--gd);}
+.rc-book{display:block;text-align:right;font-size:11px;color:var(--g);margin-top:8px;}
+.btn-outline{display:block;width:calc(100% - 28px);margin:0 14px 20px;padding:14px;background:transparent;color:var(--g);border:1px solid var(--g);border-radius:50px;font-size:14px;text-align:center;cursor:pointer;font-family:inherit;}
+
+/* ═══════════════ BOOKING ═══════════════ */
+.bk-hd{background:#fff;padding:18px 16px 12px;border-bottom:.5px solid var(--bd);}
+.bk-logo-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+.bk-logo-t{font-size:12px;color:var(--g);font-family:'Noto Serif SC',serif;letter-spacing:1.5px;}
+.bk-title{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--ch);font-weight:400;display:block;}
+.bk-sub{font-size:10px;color:var(--mu);letter-spacing:.5px;display:block;margin-top:3px;}
+.ctabs{display:flex;background:#fff;border-bottom:.5px solid var(--bd);}
+.ctab{flex:1;font-size:12.5px;padding:11px 2px;text-align:center;color:var(--mu);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
+.ctab.on{color:var(--g);border-bottom-color:var(--g);font-weight:500;}
+.svc-list{padding:10px 12px;}
+.svc-it{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:9px;cursor:pointer;transition:all .15s;}
+.svc-it.sel{border-color:var(--g);background:var(--gp);}
+.sv-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.sv-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;flex:1;}
+.sv-chk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-left:8px;transition:all .2s;font-size:12px;}
+.sv-chk.on{background:var(--g);border-color:var(--g);color:#fff;}
+.sv-ds{font-size:11px;color:var(--mu);margin-top:4px;line-height:1.6;display:block;}
+.sv-ft{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.sv-tm{font-size:10px;color:var(--mu);}
+.sv-pr{font-size:14px;font-weight:500;color:var(--g);}
+.ts-sec{padding:12px 14px;}
+.ts-hd{font-size:10px;color:var(--mu);letter-spacing:1px;display:block;margin-bottom:9px;}
+.days{display:flex;gap:6px;}
+.dy{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;cursor:pointer;border:.5px solid var(--bd);background:#fff;transition:all .15s;font-family:inherit;}
+.dy.on{background:var(--g);border-color:var(--g);}
+.dy-w{font-size:9px;color:var(--mu);}
+.dy.on .dy-w,.dy.on .dy-d{color:#fff;}
+.dy-d{font-size:16px;font-weight:500;color:var(--ch);}
+.slots{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px 0;}
+.sl{font-size:12px;padding:7px 14px;border-radius:20px;border:.5px solid var(--bd);cursor:pointer;color:var(--ch);background:#fff;font-family:inherit;transition:all .15s;}
+.sl.on{background:var(--g);color:#fff;border-color:var(--g);}
+.sl.dis{color:#ccc;border-color:#eee;cursor:not-allowed;}
+.confirm-wrap{padding:14px 14px 24px;}
+.btn-confirm{display:block;width:100%;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;transition:opacity .2s;}
+.btn-confirm:active{opacity:.8;}
+
+/* ═══════════════ SUCCESS ═══════════════ */
+.suc-wrap{display:flex;flex-direction:column;align-items:center;padding:40px 20px 30px;background:var(--cr);}
+.suc-logo-r{display:flex;align-items:center;gap:8px;margin-bottom:30px;}
+.suc-logo-zh{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--g);letter-spacing:4px;}
+.suc-logo-en{font-size:11px;color:var(--g);letter-spacing:3px;}
+.suc-chk{width:60px;height:60px;border-radius:50%;background:var(--gp);border:1px solid var(--gl);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.suc-chk svg{width:24px;height:24px;stroke:var(--g);fill:none;stroke-width:2;}
+.suc-title{font-family:'Noto Serif SC',serif;font-size:22px;color:var(--ch);letter-spacing:3px;display:block;}
+.suc-en{font-size:10px;color:var(--mu);letter-spacing:3px;margin-top:5px;margin-bottom:24px;display:block;}
+.suc-msg{background:var(--g);border-radius:16px;padding:20px 18px;text-align:center;width:100%;margin-bottom:18px;}
+.suc-msg-tag{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:3px;display:block;margin-bottom:10px;}
+.suc-msg-qt{font-family:'Noto Serif SC',serif;color:#fff;font-size:15px;line-height:1.9;display:block;}
+.suc-msg-body{font-size:11px;color:rgba(255,255,255,.55);line-height:1.8;margin-top:12px;display:block;}
+.suc-detail{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:16px 18px;width:100%;margin-bottom:20px;}
+.suc-dhd{font-size:9px;color:var(--mu);letter-spacing:3px;display:block;margin-bottom:12px;}
+.suc-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;}
+.suc-row:last-child{margin-bottom:0;}
+.suc-row .lbl{color:var(--mu);}
+.suc-row .val{color:var(--ch);font-weight:500;}
+.suc-row .val-g{color:var(--g);font-weight:500;}
+.btn-home{display:block;width:100%;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;}
+
+/* ═══════════════ MENU ═══════════════ */
+.mn-hd{background:var(--g);padding:22px 18px;}
+.mn-hd-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
+.mn-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:20px;font-weight:400;display:block;}
+.mn-sub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:2px;display:block;}
+.mn-sec{padding:14px 12px 0;}
+.mn-sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.mn-dot{width:8px;height:8px;border-radius:50%;background:var(--g);flex-shrink:0;}
+.mn-cat-zh{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);font-weight:400;}
+.mn-cat-en{font-size:9px;color:var(--mu);letter-spacing:2px;margin-left:16px;margin-bottom:10px;display:block;}
+.mn-it{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;transition:transform .15s;}
+.mn-it:active{transform:scale(.98);}
+.mn-il{flex:1;}
+.mn-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
+.mn-ds{font-size:11px;color:var(--mu);line-height:1.6;margin-top:3px;display:block;}
+.mn-ir{text-align:right;flex-shrink:0;margin-left:12px;}
+.mn-pr{font-size:12.5px;color:var(--g);font-weight:500;display:block;}
+.mn-bk{font-size:9px;color:var(--mu);margin-top:4px;display:block;}
+.mn-pad{height:20px;}
+
+/* ═══════════════ BRAND ═══════════════ */
+.br-hd{background:var(--g);height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.br-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
+.br-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:26px;letter-spacing:7px;}
+.br-en{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:6px;}
+.br-sl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:2px;}
+.br-sec{padding:18px 16px;}
+.bs-hd{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);margin-bottom:9px;font-weight:400;display:block;}
+.bs-bd{font-size:12px;color:var(--mu);line-height:2;display:block;}
+.br-div{height:.5px;background:var(--bd);margin:0 16px;}
+.cl-c{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:13px 14px;margin-bottom:10px;}
+.cl-n{font-size:9px;color:var(--g);letter-spacing:1.5px;display:block;margin-bottom:4px;}
+.cl-zh{font-size:14px;font-weight:500;color:var(--ch);display:block;}
+.cl-en{font-size:9px;color:var(--mu);font-style:italic;margin-top:2px;display:block;}
+.cl-ds{font-size:11.5px;color:var(--mu);line-height:1.8;margin-top:8px;display:block;}
+.claim{padding:10px 0;border-bottom:.5px solid var(--gl);}
+.claim-zh{font-family:'Noto Serif SC',serif;font-size:13.5px;color:var(--gd);line-height:1.6;display:block;}
+.claim-en{font-size:9.5px;color:var(--mu);font-style:italic;margin-top:3px;display:block;}
+.br-pad{height:20px;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- 状态栏 -->
+<div class="statusbar">
+  <div class="sb-left">
+    <div class="sb-logo">
+      <svg viewBox="0 0 100 122" fill="none">
+        <path fill="white" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+        <path fill="white" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+        <path fill="white" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+        <path fill="white" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+      </svg>
+    </div>
+    <span class="sb-title">明子 MING ZI</span>
+  </div>
+  <span class="sb-right">9:41 ●●● WiFi</span>
+</div>
+
+<!-- 内容区 -->
+<div class="screen" id="screen">
+
+  <!-- ══ 首页 ══ -->
+  <div class="page active" id="pg-home">
+    <div class="hero">
+      <span class="hero-eye">NATURE · GUIDED · HEALING</span>
+      <div class="hero-logo-wrap">
+        <svg width="50" height="61" viewBox="0 0 100 122" fill="none">
+          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+          <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+          <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+        </svg>
+      </div>
+      <span class="hero-zh">明子</span>
+      <span class="hero-en">MING ZI</span>
+      <div class="hero-div"></div>
+      <span class="hero-quote">二十五载光阴沉淀<br>指尖知悉你的每一寸疲惫</span>
+    </div>
+
+    <div class="qnav">
+      <div class="qn" onclick="go('ai')">
+        <div class="qn-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div>
+        <span class="qn-nm">AI面诊</span><span class="qn-sb">DIAGNOSIS</span>
+      </div>
+      <div class="qn" onclick="go('book')">
+        <div class="qn-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <span class="qn-nm">立即预约</span><span class="qn-sb">BOOKING</span>
+      </div>
+      <div class="qn" onclick="go('menu')">
+        <div class="qn-ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <span class="qn-nm">疗愈项目</span><span class="qn-sb">SESSIONS</span>
+      </div>
+    </div>
+
+    <div class="mcard" onclick="alert('会员功能即将上线，敬请期待 ✦')">
+      <div><span class="mc-t1">明子 · 高定会员中心</span><span class="mc-t2">注册后尊享私享定制权益</span></div>
+      <div class="mc-btn">立即加入</div>
+    </div>
+
+    <div class="shd"><span>HEALING SESSIONS</span></div>
+    <div class="sg">
+      <div class="sg-feat" onclick="go('menu')">
+        <span class="sg-cat">风华 · FACIAL RADIANCE</span>
+        <span class="sg-nm">古法骨相轮廓重塑<br>弃用机器，以精湛手法由肌理深层向上托举</span>
+        <span class="sg-pr">¥ 29,800</span>
+        <span class="sg-arr">VIEW DETAILS →</span>
+      </div>
+      <div class="sg2">
+        <div class="sg2a" onclick="go('menu')">
+          <span class="s2-cat">内和</span>
+          <span class="s2-nm">五脏微观<br>宇宙净化</span>
+          <span class="s2-pr">¥ 15,800</span>
+        </div>
+        <div class="sg2b" onclick="go('menu')">
+          <span class="s2-cat">本源</span>
+          <span class="s2-nm">生命能量<br>深层调理</span>
+          <span class="s2-pr">¥ 26,800</span>
+        </div>
+      </div>
+      <div class="sg3">
+        <div class="sg3c" onclick="go('menu')">
+          <span class="s3-cat">立骨</span>
+          <span class="s3-nm">植萃肩颈<br>五感深眠</span>
+          <span class="s3-pr">¥ 1,980</span>
+        </div>
+        <div class="sg3c" onclick="go('menu')">
+          <span class="s3-cat">风华</span>
+          <span class="s3-nm">东方经络<br>面部焕和</span>
+          <span class="s3-pr">¥ 2,380</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="yr-banner" onclick="go('book')">
+      <span class="yr-tag">25TH ANNIVERSARY · 明子</span>
+      <span class="yr-qt">"二十五载光阴沉淀，<br>指尖知悉你的每一寸疲惫。"</span>
+      <span class="yr-sub">以仁爱为底，深养于内，盛故于外。<br>每一次触碰，都是 25 年沉淀的温度。</span>
+      <span class="yr-btn" onclick="event.stopPropagation();go('book')">立即预约体验</span>
+    </div>
+
+    <div class="eval-sec">
+      <div class="eval-hd"><span class="eval-lbl">EVALUATE</span><span class="eval-stars">★★★★★</span></div>
+      <p class="eval-txt">"第一次感受到疗愈不是走流程，而是真的在倾听你的身体。整个过程极其细腻，像被完整地照见了一次。"</p>
+      <span class="eval-name">— 陈女士 · 北京</span>
+    </div>
+
+    <div class="store-sec">
+      <span class="store-lbl">LIST OF OFFLINE STORES</span>
+      <div class="store-card">
+        <div><span class="store-zh">线下门店一览</span><span class="store-en">LIST OF OFFLINE STORES</span></div>
+        <div class="store-btn">VIEW DETAILS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AI面诊 ══ -->
+  <div class="page" id="pg-ai">
+    <div id="ai-scan">
+      <div class="ai-hd">
+        <span class="ai-eye">INTELLIGENT BODY ANALYSIS</span>
+        <span class="ai-title">AI 体质 · 面部诊断</span>
+        <span class="ai-sub">结合中医体质学说，由 AI 为您生成专属调理方案</span>
+      </div>
+      <div class="cam-wrap">
+        <div class="cam-fr"><div class="face-o"></div><div class="scanl"></div></div>
+        <span class="cam-ht">请在自然光线下使用 · 免妆或淡妆效果更佳</span>
+      </div>
+      <div class="ai-steps">
+        <div class="ai-step"><div class="step-num"><span>1</span></div><span class="step-txt">面部对准引导框</span></div>
+        <div class="ai-step"><div class="step-num"><span>2</span></div><span class="step-txt">AI 分析五维体质数据</span></div>
+        <div class="ai-step"><div class="step-num"><span>3</span></div><span class="step-txt">获取专属疗愈方案并预约</span></div>
+      </div>
+      <button class="btn-g" onclick="doScan()">开始诊断</button>
+      <span class="btn-note">诊断结果仅供参考，不构成医疗建议</span>
+    </div>
+    <div id="ai-result" style="display:none">
+      <div class="res-wrap">
+        <div class="const-card">
+          <span class="r-lbl" style="margin-bottom:6px">体质类型判定</span>
+          <span class="const-type">气虚兼阴虚型</span>
+          <span class="const-sub">气血不足、内在津液偏亏的综合状态。容易疲倦、肌肤偏干、气色偏沉、经络略有郁滞。建议从补气养血与滋阴润养双向入手。</span>
+        </div>
+        <span class="r-lbl">五维能量指数</span>
+        <div class="bars">
+          <div class="bar-r"><span class="bar-l">气血充盈</span><div class="bar-t"><div class="bar-f" style="width:54%"></div></div><span class="bar-v">54</span></div>
+          <div class="bar-r"><span class="bar-l">脏腑和谐</span><div class="bar-t"><div class="bar-f" style="width:68%"></div></div><span class="bar-v">68</span></div>
+          <div class="bar-r"><span class="bar-l">经络通畅</span><div class="bar-t"><div class="bar-f" style="width:61%"></div></div><span class="bar-v">61</span></div>
+          <div class="bar-r"><span class="bar-l">面部活力</span><div class="bar-t"><div class="bar-f" style="width:72%"></div></div><span class="bar-v">72</span></div>
+          <div class="bar-r"><span class="bar-l">情志平衡</span><div class="bar-t"><div class="bar-f" style="width:48%"></div></div><span class="bar-v">48</span></div>
+        </div>
+        <div class="tags">
+          <span class="tag-i">气血偏亏</span><span class="tag-i">阴津不足</span><span class="tag-i">经络轻滞</span><span class="tag-i">情志略显焦虑</span>
+        </div>
+        <span class="r-lbl">AI 定制疗愈方案</span>
+        <div class="rec-c" onclick="go('book')">
+          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·初蕊】内在生机基础唤醒</span><span class="rc-pr">¥ 5,980</span></div></div>
+          <div class="rc-why"><b>推荐理由：</b>气血指数54属明显气虚底层，以草本温养为核心激活身体自我修复动能，是气虚型体质的最佳入门选择。</div>
+          <span class="rc-book">立即预约 ›</span>
+        </div>
+        <div class="rec-c" onclick="go('book')">
+          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·心悦】宁心安神气血舒缓</span><span class="rc-pr">¥ 6,980</span></div></div>
+          <div class="rc-why"><b>推荐理由：</b>情志指数48五维最低，草本芳香疗法抚平焦躁，通过宁心带动气血自然流转。</div>
+          <span class="rc-book">立即预约 ›</span>
+        </div>
+        <div class="rec-c" onclick="go('book')">
+          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·晨露】沁透活水舒缓唤醒</span><span class="rc-pr">¥ 1,980</span></div></div>
+          <div class="rc-why"><b>推荐理由：</b>阴虚体质肌肤缺乏内在滋润，专项修护受损屏障，配合体质调理事半功倍。</div>
+          <span class="rc-book">立即预约 ›</span>
+        </div>
+        <button class="btn-outline" onclick="resetScan()">重新诊断</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 预约 ══ -->
+  <div class="page" id="pg-book">
+    <div class="bk-hd">
+      <div class="bk-logo-row">
+        <svg width="18" height="22" viewBox="0 0 100 122" fill="none">
+          <path fill="#899030" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+          <path fill="#899030" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+          <path fill="#899030" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+          <path fill="#899030" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+        </svg>
+        <span class="bk-logo-t">明子 MING ZI</span>
+      </div>
+      <span class="bk-title">疗愈预约</span>
+      <span class="bk-sub">BOOK YOUR HEALING SESSION · 共 23 项</span>
+    </div>
+    <div class="ctabs">
+      <div class="ctab on" onclick="switchCat('风华',this)">风华</div>
+      <div class="ctab" onclick="switchCat('立骨',this)">立骨</div>
+      <div class="ctab" onclick="switchCat('内和',this)">内和</div>
+      <div class="ctab" onclick="switchCat('本源',this)">本源</div>
+    </div>
+    <div class="svc-list" id="svc-list"></div>
+    <div class="ts-sec">
+      <span class="ts-hd">选择日期</span>
+      <div class="days" id="days"></div>
+    </div>
+    <div class="slots" id="slots">
+      <div class="sl dis">09:00</div>
+      <div class="sl" onclick="selSlot(this)">10:00</div>
+      <div class="sl on" onclick="selSlot(this)">11:00</div>
+      <div class="sl" onclick="selSlot(this)">13:30</div>
+      <div class="sl" onclick="selSlot(this)">15:00</div>
+      <div class="sl dis">16:00</div>
+      <div class="sl" onclick="selSlot(this)">17:00</div>
+    </div>
+    <div class="confirm-wrap">
+      <button class="btn-confirm" onclick="confirmBook()">确认预约</button>
+    </div>
+  </div>
+
+  <!-- ══ 预约成功 ══ -->
+  <div class="page" id="pg-success">
+    <div class="suc-wrap">
+      <div class="suc-logo-r">
+        <span class="suc-logo-zh">明子</span>
+        <span class="suc-logo-en">MING ZI</span>
+      </div>
+      <div class="suc-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="suc-title">预约已确认</span>
+      <span class="suc-en">APPOINTMENT CONFIRMED</span>
+      <div class="suc-msg">
+        <span class="suc-msg-tag">一封来自明子的信</span>
+        <span class="suc-msg-qt">"你即将体验的，<br>是历经 25 年打磨的顶级手法。"</span>
+        <span class="suc-msg-body">二十五载光阴沉淀，每一次触碰都承载着<br>对生命之美最深沉的理解与热爱。<br>我们已为您备好一切，静待您的到来。</span>
+      </div>
+      <div class="suc-detail">
+        <span class="suc-dhd">APPOINTMENT DETAILS</span>
+        <div class="suc-row"><span class="lbl">日期</span><span class="val" id="suc-date">—</span></div>
+        <div class="suc-row"><span class="lbl">时间</span><span class="val" id="suc-time">—</span></div>
+        <div class="suc-row"><span class="lbl">状态</span><span class="val-g">24小时内电话确认</span></div>
+      </div>
+      <button class="btn-home" onclick="go('home')">返回首页</button>
+    </div>
+  </div>
+
+  <!-- ══ 疗愈项目 ══ -->
+  <div class="page" id="pg-menu">
+    <div class="mn-hd">
+      <div class="mn-hd-row">
+        <svg width="22" height="27" viewBox="0 0 100 122" fill="none">
+          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+          <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+          <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+        </svg>
+      </div>
+      <span class="mn-title">全部疗愈项目</span>
+      <span class="mn-sub">HEALING SESSIONS · MING ZI · 共 23 项</span>
+    </div>
+    <div id="menu-content"></div>
+    <div class="mn-pad"></div>
+  </div>
+
+  <!-- ══ 品牌 ══ -->
+  <div class="page" id="pg-brand">
+    <div class="br-hd">
+      <div class="br-circle">
+        <svg width="50" height="61" viewBox="0 0 100 122" fill="none">
+          <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+          <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+          <path fill="rgba(255,255,255,0.9)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+          <path fill="rgba(255,255,255,0.9)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+        </svg>
+      </div>
+      <span class="br-zh">明子</span>
+      <span class="br-en">MING ZI</span>
+      <span class="br-sl">BRAND GUIDELINES · 2024</span>
+    </div>
+    <div class="br-sec">
+      <span class="bs-hd">品牌故事</span>
+      <span class="bs-bd">明子笃信一个最古老也最质朴的真理：极致的容颜，往往是深层健康的自然显化，犹如一朵旷世的蝴蝶兰——它不依靠叶片的涂抹来获取艳丽，而是依赖根系在土壤深处日复一日的汲取。美，从来不是被制造出来的，它是被"养"出来的。</span>
+    </div>
+    <div class="br-div"></div>
+    <div class="br-sec" style="padding-bottom:6px"><span class="bs-hd">品牌哲学</span></div>
+    <div style="padding:0 12px">
+      <div class="cl-c"><span class="cl-n">01 · 仁爱为底</span><span class="cl-zh">身心同调的厚度</span><span class="cl-en">The Philosophy of Benevolence</span><span class="cl-ds">最高级的疗愈，是带着"爱"去触碰。我们面对的是一个个鲜活、承载着压力的灵魂。</span></div>
+      <div class="cl-c"><span class="cl-n">02 · 根源之美</span><span class="cl-zh">由内而外的生机</span><span class="cl-en">Beauty from Within</span><span class="cl-ds">没有内在的健康，所有的外在保养都是无源之水。坚守"固本培元"的调理哲学。</span></div>
+    </div>
+    <div class="br-div" style="margin-top:8px"></div>
+    <div class="br-sec" style="padding-bottom:4px"><span class="bs-hd">核心主张</span></div>
+    <div style="padding:0 16px">
+      <div class="claim"><span class="claim-zh">"深养于内，盛故于外"</span><span class="claim-en">Nourished Within, Radiant Without.</span></div>
+      <div class="claim"><span class="claim-zh">"以大爱之心，蕴生命之美。"</span><span class="claim-en">With Great Love, We Cultivate the Beauty of Life.</span></div>
+      <div class="claim"><span class="claim-zh">"不追逐时光，只蕴养风华。"</span><span class="claim-en">Not Chasing Time, Just Nurturing Grace.</span></div>
+    </div>
+    <div class="br-pad"></div>
+  </div>
+
+</div><!-- screen end -->
+
+<!-- TabBar -->
+<div class="tabbar">
+  <button class="tab on" id="tb-home" onclick="go('home')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    首页
+  </button>
+  <button class="tab" id="tb-ai" onclick="go('ai')">
+    <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+    面诊
+  </button>
+  <button class="tab" id="tb-book" onclick="go('book')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    预约
+  </button>
+  <button class="tab" id="tb-menu" onclick="go('menu')">
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    疗愈
+  </button>
+  <button class="tab" id="tb-brand" onclick="go('brand')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    明子
+  </button>
+</div>
+
+</div><!-- shell end -->
+
+<script>
+// ── 全部服务数据 ──
+const SVCS={
+  '本源':[
+    {id:'by1',name:'【明子·蕴生】本草盆腔深层活化',price:'¥ 29,800',dur:'高定私享',desc:'循古法经络，疏通盆底淤堵，唤醒内部生命力。'},
+    {id:'by2',name:'【明子·生息】女性根源能量深调',price:'¥ 26,800',dur:'高定私享',desc:'摒弃外力干预，温润内在土壤，让内分泌回归自然韵律。'},
+    {id:'by3',name:'【明子·若水】私享花域紧致温养',price:'¥ 19,800',dur:'高定私享',desc:'极度私密的柔和护理，重塑如初绽般的紧致与健康生态。'}
+  ],
+  '内和':[
+    {id:'nh1',name:'【明子·初露】绿素本源深度蕴养',price:'¥ 20,000',dur:'深度疗愈',desc:'汲取自然植萃的磅礴能量，深度净化并滋养每一寸土壤。'},
+    {id:'nh2',name:'【明子·至悦】五脏微观宇宙净化',price:'¥ 15,800',dur:'深度疗愈',desc:'卸下五脏六腑长久积压的浊气，恢复内在生态秩序与宁静。'},
+    {id:'nh3',name:'【明子·普悦】脏腑草本周期平衡',price:'¥ 12,800',dur:'周期调理',desc:'循序渐进的内循环调理，为身体建立长效的生态平衡机制。'},
+    {id:'nh4',name:'【明子·筑基】东方体质深层重构',price:'¥ 7,980',dur:'体质重构',desc:'结合中医智慧，从根源改善易疲劳与亚健康状态。'},
+    {id:'nh5',name:'【明子·心悦】宁心安神气血舒缓',price:'¥ 6,980',dur:'情志调养',desc:'抚平焦躁情绪，通过草本温养达到深度的宁静与彻底放松。'},
+    {id:'nh6',name:'【明子·初蕊】内在生机基础唤醒',price:'¥ 5,980',dur:'基础入门',desc:'针对初级气血亏虚，温和唤醒身体底层的自然活力。'}
+  ],
+  '立骨':[
+    {id:'lg1',name:'【明子·循经】十四经络古法推揉',price:'¥ 5,680',dur:'经络理疗',desc:'顺应人体十四经脉走向，以带有温度的精油驱散深层宫寒。'},
+    {id:'lg2',name:'【明子·立骨】本草精气深层复苏',price:'¥ 4,300',dur:'骨骼深层',desc:'疏通骨缝与关节深处的寒湿，唤醒身体本源的精气神。'},
+    {id:'lg3',name:'【明子·行气】周天气血温润理疗',price:'¥ 3,980',dur:'气血调理',desc:'打通身体气血淤堵的节点，让健康气色由内而外红润。'},
+    {id:'lg4',name:'【明子·净澈】全身水律净化舒缓',price:'¥ 2,380',dur:'全身护理',desc:'温和代谢身体的停滞与浊水，为全身带来极致的轻盈感。'},
+    {id:'lg5',name:'【明子·温中】带脉暖阳通络抚触',price:'¥ 2,380',dur:'腰腹核心',desc:'专注腰腹核心区，以草本热能驱散中段的寒气与滞重感。'},
+    {id:'lg6',name:'【明子·聚能】盆底气血温养理疗',price:'¥ 2,380',dur:'盆底修护',desc:'改善久坐带来的下焦循环不畅，重塑盆底能量与生机。'},
+    {id:'lg7',name:'【明子·释压】植萃肩颈五感深眠',price:'¥ 1,980',dur:'肩颈深度',desc:'精准化解肩颈僵硬，伴随植物香气让大脑进入深度休息。'},
+    {id:'lg8',name:'【明子·轻盈】肩颈基础释压护理',price:'¥ 990',dur:'日常维护',desc:'快速缓解日常肌肉紧绷，适合快节奏日常中的片刻喘息。'}
+  ],
+  '风华':[
+    {id:'fh1',name:'【明子·凝时】古法骨相轮廓重塑',price:'¥ 29,800',dur:'面部高定',desc:'弃用机器，以精湛手法由肌理深层向上托举，重塑岁月风骨。'},
+    {id:'fh2',name:'【明子·焕光】东方经络面部焕和',price:'¥ 2,380',dur:'60 分钟',desc:'拨开岁月的蒙尘，释放深层压力，让肌肤透出纯净光泽。'},
+    {id:'fh3',name:'【明子·韶华】植萃凝时深层滋养',price:'¥ 2,380',dur:'75 分钟',desc:'为肌肤提供极其丰盈的草本营养，温和抚平岁月痕迹。'},
+    {id:'fh4',name:'【明子·抚痕】面部肌理温和舒平',price:'¥ 1,980',dur:'60 分钟',desc:'细腻解开面部筋膜粘连，还原本真的柔软、平滑与放松。'},
+    {id:'fh5',name:'【明子·晨露】沁透活水舒缓唤醒',price:'¥ 1,980',dur:'45 分钟',desc:'如晨露拂过叶脉般轻柔，修护受损屏障，带来深层沁润。'},
+    {id:'fh6',name:'【明子·数字】科技肌底平滑修护',price:'¥ 800',dur:'30 分钟',desc:'借助精密仪器，温和导入科技精华，精准且克制地修护肌底。'},
+    {id:'fh7',name:'【明子·源泉】无创深波补水注入',price:'¥ 600',dur:'25 分钟',desc:'高效、快速的深层源泉补水，适合日常状态的密集养护。'}
+  ]
+};
+const CAT_EN={'本源':'INTIMATE & CORE ENERGY','内和':'INNER HARMONY','立骨':'MERIDIAN FLOW','风华':'FACIAL RADIANCE'};
+
+// ── 状态 ──
+let curCat='风华', selDate='', selTime='11:00', selSvcIds=new Set();
+
+// ── 导航 ──
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('active');
+  const tb=document.getElementById('tb-'+id);
+  if(tb)tb.classList.add('on');
+  document.getElementById('screen').scrollTop=0;
+}
+
+// ── AI 面诊 ──
+function doScan(){
+  const btn=document.querySelector('#ai-scan .btn-g');
+  btn.textContent='分析中...';btn.disabled=true;
+  setTimeout(()=>{
+    document.getElementById('ai-scan').style.display='none';
+    document.getElementById('ai-result').style.display='block';
+    btn.textContent='开始诊断';btn.disabled=false;
+  },2200);
+}
+function resetScan(){
+  document.getElementById('ai-scan').style.display='block';
+  document.getElementById('ai-result').style.display='none';
+  document.getElementById('screen').scrollTop=0;
+}
+
+// ── 预约服务列表 ──
+function renderSvcList(cat){
+  const list=document.getElementById('svc-list');
+  list.innerHTML='';
+  (SVCS[cat]||[]).forEach(s=>{
+    const sel=selSvcIds.has(s.id);
+    const div=document.createElement('div');
+    div.className='svc-it'+(sel?' sel':'');
+    div.innerHTML=`<div class="sv-top"><span class="sv-nm">${s.name}</span><div class="sv-chk${sel?' on':''}">${sel?'✓':''}</div></div><span class="sv-ds">${s.desc}</span><div class="sv-ft"><span class="sv-tm">${s.dur}</span><span class="sv-pr">${s.price}</span></div>`;
+    div.onclick=()=>{
+      if(selSvcIds.has(s.id))selSvcIds.delete(s.id);else selSvcIds.add(s.id);
+      renderSvcList(curCat);
+    };
+    list.appendChild(div);
+  });
+}
+function switchCat(cat,el){
+  curCat=cat;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  renderSvcList(cat);
+}
+
+// ── 日期 ──
+function initDates(){
+  const wrap=document.getElementById('days');
+  const weeks=['日','一','二','三','四','五','六'];
+  const today=new Date();
+  wrap.innerHTML='';
+  for(let i=0;i<7;i++){
+    const d=new Date(today);d.setDate(today.getDate()+i);
+    const dateStr=`${d.getMonth()+1}月${d.getDate()}日`;
+    const btn=document.createElement('button');
+    btn.className='dy'+(i===1?' on':'');
+    btn.innerHTML=`<span class="dy-w">周${weeks[d.getDay()]}</span><span class="dy-d">${d.getDate()}</span>`;
+    btn.onclick=()=>{
+      document.querySelectorAll('.dy').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');selDate=dateStr;
+    };
+    if(i===1)selDate=dateStr;
+    wrap.appendChild(btn);
+  }
+}
+function selSlot(el){
+  if(el.classList.contains('dis'))return;
+  document.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+  el.classList.add('on');selTime=el.textContent;
+}
+
+// ── 确认预约 ──
+function confirmBook(){
+  if(!selSvcIds.size){alert('请选择疗愈项目');return;}
+  if(!selDate){alert('请选择日期');return;}
+  document.getElementById('suc-date').textContent=selDate;
+  document.getElementById('suc-time').textContent=selTime;
+  go('success');
+}
+
+// ── 疗愈菜单 ──
+function renderMenu(){
+  const mc=document.getElementById('menu-content');
+  mc.innerHTML='';
+  ['本源','内和','立骨','风华'].forEach(cat=>{
+    const sec=document.createElement('div');
+    sec.className='mn-sec';
+    sec.innerHTML=`<div class="mn-sec-hd"><div class="mn-dot"></div><span class="mn-cat-zh">${cat}</span></div><span class="mn-cat-en">${CAT_EN[cat]}</span>`;
+    SVCS[cat].forEach(s=>{
+      const it=document.createElement('div');it.className='mn-it';
+      it.innerHTML=`<div class="mn-il"><span class="mn-nm">${s.name}</span><span class="mn-ds">${s.desc}</span></div><div class="mn-ir"><span class="mn-pr">${s.price}</span><span class="mn-bk">预约 ›</span></div>`;
+      it.onclick=()=>go('book');
+      sec.appendChild(it);
+    });
+    mc.appendChild(sec);
+  });
+}
+
+// ── 初始化 ──
+renderSvcList('风华');
+initDates();
+renderMenu();
+</script>
+</body>
+</html>

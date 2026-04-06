@@ -9,71 +9,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --g:#899030;--gd:#5C6420;--gm:#A8A840;--gl:#E8ECD0;--gp:#F4F6E8;
-  --cr:#F8F7F0;--ch:#333333;--mu:#7A7060;--bd:#D8D0B8;--tan:#DABEEE;
+  --g:#899030;--gd:#5C6420;--gl:#E8ECD0;--gp:#F4F6E8;
+  --cr:#F8F7F0;--ch:#333333;--mu:#7A7060;--bd:#D8D0B8;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:#1a1a1a;display:flex;justify-content:center;align-items:flex-start;}
+html,body{height:100%;background:#1a1a1a;display:flex;justify-content:center;}
 body{overflow:hidden;}
-
-/* ── 手机外壳 ── */
-.shell{
-  width:100%;max-width:390px;height:100dvh;
-  background:var(--cr);display:flex;flex-direction:column;
-  position:relative;overflow:hidden;
-  font-family:'Noto Sans SC',sans-serif;
-}
-
-/* ── 状态栏 ── */
-.statusbar{
-  height:44px;background:var(--g);flex-shrink:0;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;z-index:100;
-}
+.shell{width:100%;max-width:390px;height:100dvh;background:var(--cr);display:flex;flex-direction:column;position:relative;overflow:hidden;font-family:'Noto Sans SC',sans-serif;}
+.statusbar{height:44px;background:var(--g);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;}
 .sb-left{display:flex;align-items:center;gap:7px;}
-.sb-logo svg{width:22px;height:26px;}
+.sb-logo svg{width:20px;height:24px;}
 .sb-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:13px;letter-spacing:2px;}
 .sb-right{font-size:11px;color:rgba(255,255,255,.6);}
-
-/* ── 滚动内容区 ── */
 .screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .screen::-webkit-scrollbar{display:none;}
 .page{display:none;animation:fadeIn .25s ease;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* ── TabBar ── */
-.tabbar{
-  height:60px;background:#fff;flex-shrink:0;
-  display:flex;border-top:.5px solid var(--bd);
-}
-.tab{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;cursor:pointer;font-size:10px;color:var(--mu);transition:color .2s;
-  border:none;background:none;padding:0;
-}
+.tabbar{height:60px;background:#fff;flex-shrink:0;display:flex;border-top:.5px solid var(--bd);}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;font-size:10px;color:var(--mu);transition:color .2s;border:none;background:none;padding:0;}
 .tab.on{color:var(--g);}
 .tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;}
 
-/* ═══════════════ HOME ═══════════════ */
-.hero{
-  background:var(--g);padding:36px 22px 30px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  position:relative;overflow:hidden;
-}
-.hero::before,.hero::after{
-  content:'';position:absolute;border-radius:50%;
-  border:1px solid rgba(255,255,255,.07);
-}
+/* HOME */
+.hero{background:var(--g);padding:36px 22px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.07);}
 .hero::before{width:280px;height:280px;top:-80px;left:-80px;}
 .hero::after{width:200px;height:200px;bottom:-60px;right:-60px;}
 .hero-eye{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:4px;margin-bottom:16px;}
-.hero-logo-wrap{margin-bottom:4px;}
-.hero-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:32px;letter-spacing:10px;font-weight:300;line-height:1;}
+.hero-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:32px;letter-spacing:10px;font-weight:300;line-height:1;margin-top:10px;}
 .hero-en{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:6px;margin-top:5px;}
 .hero-div{width:60px;height:.5px;background:rgba(255,255,255,.2);margin:18px auto;}
 .hero-quote{font-size:11.5px;color:rgba(255,255,255,.55);line-height:2;font-style:italic;}
-
 .qnav{background:#fff;display:flex;border-bottom:.5px solid #eee;}
 .qn{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 6px;cursor:pointer;position:relative;}
 .qn:not(:last-child)::after{content:'';position:absolute;right:0;top:25%;height:50%;width:.5px;background:#eee;}
@@ -81,16 +48,12 @@ body{overflow:hidden;}
 .qn-ic svg{width:17px;height:17px;stroke:var(--g);fill:none;stroke-width:1.5;}
 .qn-nm{font-size:12px;color:var(--ch);font-weight:500;}
 .qn-sb{font-size:9px;color:var(--mu);letter-spacing:1px;}
-
 .mcard{margin:14px 14px 0;background:var(--ch);border-radius:16px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;cursor:pointer;}
-.mcard::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.04);}
 .mc-t1{font-size:11px;color:rgba(255,255,255,.5);display:block;}
 .mc-t2{font-size:13px;color:#fff;font-weight:500;margin-top:3px;display:block;}
-.mc-btn{background:#fff;color:var(--ch);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:500;flex-shrink:0;z-index:1;cursor:pointer;}
-
+.mc-btn{background:#fff;color:var(--ch);border-radius:20px;padding:7px 16px;font-size:11px;font-weight:500;flex-shrink:0;}
 .shd{font-size:9px;color:var(--mu);letter-spacing:3px;padding:18px 14px 10px;display:flex;align-items:center;gap:8px;}
 .shd::after{content:'';flex:1;height:.5px;background:var(--bd);}
-
 .sg{padding:0 12px;}
 .sg-feat{background:var(--gd);border-radius:16px;padding:22px 18px;margin-bottom:10px;cursor:pointer;position:relative;overflow:hidden;}
 .sg-feat::after{content:'✦';position:absolute;right:14px;bottom:-8px;font-size:64px;color:rgba(255,255,255,.05);}
@@ -102,147 +65,105 @@ body{overflow:hidden;}
 .sg2a{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:16px 14px;cursor:pointer;}
 .sg2b{background:var(--ch);border-radius:14px;padding:16px 14px;cursor:pointer;}
 .s2-cat{font-size:9px;letter-spacing:1.5px;display:block;margin-bottom:6px;}
-.sg2a .s2-cat{color:var(--gd);}
-.sg2b .s2-cat{color:rgba(255,255,255,.4);}
+.sg2a .s2-cat{color:var(--gd);}.sg2b .s2-cat{color:rgba(255,255,255,.4);}
 .s2-nm{font-family:'Noto Serif SC',serif;font-size:13px;line-height:1.6;display:block;}
-.sg2a .s2-nm{color:var(--ch);}
-.sg2b .s2-nm{color:#fff;}
+.sg2a .s2-nm{color:var(--ch);}.sg2b .s2-nm{color:#fff;}
 .s2-pr{font-size:11px;margin-top:8px;display:block;}
-.sg2a .s2-pr{color:var(--g);}
-.sg2b .s2-pr{color:rgba(255,255,255,.4);}
+.sg2a .s2-pr{color:var(--g);}.sg2b .s2-pr{color:rgba(255,255,255,.4);}
 .sg3{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
 .sg3c{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:16px 14px;cursor:pointer;}
 .s3-cat{font-size:9px;color:var(--mu);letter-spacing:1.5px;display:block;margin-bottom:5px;}
 .s3-nm{font-size:13px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
 .s3-pr{font-size:11px;color:var(--g);margin-top:6px;display:block;}
-
 .yr-banner{margin:0 12px 16px;background:var(--gd);border-radius:16px;padding:22px 18px;position:relative;overflow:hidden;cursor:pointer;}
 .yr-banner::before{content:'25';position:absolute;right:-4px;bottom:-14px;font-size:90px;color:rgba(255,255,255,.06);font-family:'Noto Serif SC',serif;font-weight:600;line-height:1;}
 .yr-tag{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:3px;display:block;margin-bottom:10px;}
 .yr-qt{font-family:'Noto Serif SC',serif;font-size:14px;color:#fff;line-height:1.9;display:block;}
 .yr-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.8;margin-top:12px;display:block;}
 .yr-btn{display:inline-block;margin-top:16px;background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.3);border-radius:20px;padding:8px 18px;font-size:11px;letter-spacing:1px;cursor:pointer;}
-
 .eval-sec{background:#fff;padding:20px 16px;border-top:.5px solid #eee;}
 .eval-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
 .eval-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;}
 .eval-stars{color:var(--g);font-size:13px;letter-spacing:3px;}
 .eval-txt{font-size:12.5px;color:var(--ch);line-height:1.9;font-style:italic;}
 .eval-name{font-size:10px;color:var(--mu);margin-top:10px;letter-spacing:1px;display:block;}
-
 .store-sec{padding:16px 14px 20px;border-top:.5px solid #eee;}
 .store-lbl{font-size:9px;color:var(--mu);letter-spacing:3px;display:block;margin-bottom:12px;}
-.store-card{background:var(--gd);border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.store-card{background:var(--gd);border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;}
 .store-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:14px;display:block;}
 .store-en{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-top:4px;display:block;}
-.store-btn{background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.25);border-radius:20px;padding:7px 14px;font-size:10px;cursor:pointer;white-space:nowrap;}
+.store-btn{background:rgba(255,255,255,.12);color:#fff;border:.5px solid rgba(255,255,255,.25);border-radius:20px;padding:7px 14px;font-size:10px;white-space:nowrap;}
 
-/* ═══════════════ AI ═══════════════ */
+/* ── AI 体质问卷 ── */
 .ai-hd{background:var(--ch);padding:24px 20px 20px;}
 .ai-eye{font-size:10px;color:#666;letter-spacing:2px;display:block;margin-bottom:5px;}
 .ai-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:22px;font-weight:400;display:block;}
 .ai-sub{font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:8px;display:block;}
-
-.cam-wrap{background:#181810;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;}
-.cam-fr{width:100%;height:200px;border-radius:16px;border:1px solid #303028;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.face-o{width:120px;height:158px;border-radius:50% 50% 46% 46%;border:1.5px dashed rgba(137,144,48,.65);position:absolute;}
-.scanl{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,rgba(137,144,48,.9),transparent);animation:scan 2.5s ease-in-out infinite;}
-@keyframes scan{0%,100%{top:15%;}50%{top:80%;}}
-.cam-ht{font-size:11px;color:#444;text-align:center;line-height:1.6;}
-
-.ai-steps{padding:20px 18px;display:flex;flex-direction:column;gap:14px;}
-.ai-step{display:flex;align-items:center;gap:14px;}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.step-num span{font-size:12px;color:#fff;font-weight:500;}
-.step-txt{font-size:13px;color:var(--ch);}
-
-.btn-g{display:block;width:calc(100% - 28px);margin:0 14px 14px;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;transition:opacity .2s;}
-.btn-g:active{opacity:.8;}
-.btn-note{display:block;text-align:center;font-size:10px;color:var(--mu);margin-bottom:16px;}
-
-.res-wrap{padding:14px;}
-.r-lbl{font-size:11px;font-weight:500;color:var(--ch);letter-spacing:.5px;display:block;margin-bottom:8px;}
-.const-card{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:14px;margin-bottom:14px;}
-.const-type{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--gd);display:block;margin-bottom:5px;}
-.const-sub{font-size:11px;color:var(--mu);line-height:1.7;display:block;}
-.bars{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+/* 进度条 */
+.q-progress{padding:16px 18px 0;}
+.q-prog-bar{height:3px;background:var(--gl);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.q-prog-fill{height:100%;background:var(--g);border-radius:2px;transition:width .4s ease;}
+.q-prog-txt{font-size:10px;color:var(--mu);text-align:right;}
+/* 问题卡 */
+.q-card{padding:20px 18px;}
+.q-num{font-size:10px;color:var(--g);letter-spacing:2px;display:block;margin-bottom:8px;}
+.q-text{font-size:16px;color:var(--ch);line-height:1.6;display:block;margin-bottom:18px;font-weight:500;}
+.q-opts{display:flex;flex-direction:column;gap:10px;}
+.q-opt{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px 16px;cursor:pointer;font-size:13px;color:var(--ch);line-height:1.5;transition:all .15s;text-align:left;font-family:inherit;}
+.q-opt:active{transform:scale(.98);}
+.q-opt.sel{border-color:var(--g);background:var(--gp);color:var(--gd);font-weight:500;}
+.q-nav{display:flex;gap:10px;padding:0 18px 24px;}
+.btn-prev{flex:1;padding:14px;background:transparent;color:var(--mu);border:1px solid var(--bd);border-radius:50px;font-size:14px;cursor:pointer;font-family:inherit;}
+.btn-next{flex:2;padding:14px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;}
+/* 结果 */
+.res-wrap{padding:16px;}
+.const-card{background:var(--gp);border:.5px solid var(--gl);border-radius:14px;padding:16px;margin-bottom:16px;}
+.const-badge{display:inline-block;font-size:10px;color:var(--gd);background:var(--gl);border-radius:20px;padding:4px 12px;letter-spacing:1px;margin-bottom:10px;}
+.const-type{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--gd);display:block;margin-bottom:8px;}
+.const-sub{font-size:12px;color:var(--mu);line-height:1.8;display:block;}
+.bars{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
 .bar-r{display:flex;align-items:center;gap:8px;}
 .bar-l{font-size:11px;color:var(--mu);width:54px;flex-shrink:0;}
 .bar-t{flex:1;height:5px;background:var(--gl);border-radius:3px;overflow:hidden;}
-.bar-f{height:100%;border-radius:3px;background:var(--g);transition:width 1s ease;}
+.bar-f{height:100%;border-radius:3px;background:var(--g);}
 .bar-v{font-size:11px;color:var(--ch);width:26px;text-align:right;flex-shrink:0;}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.r-lbl{font-size:11px;font-weight:500;color:var(--ch);letter-spacing:.5px;display:block;margin-bottom:10px;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
 .tag-i{font-size:10px;padding:4px 10px;border-radius:20px;background:var(--gp);color:var(--gd);border:.5px solid var(--gl);}
-.rec-c{background:#fff;border-radius:14px;border:.5px solid var(--bd);padding:14px;margin-bottom:10px;cursor:pointer;transition:transform .15s;}
-.rec-c:active{transform:scale(.98);}
-.rc-t{display:flex;gap:10px;margin-bottom:10px;}
-.rc-dot{width:40px;height:40px;border-radius:10px;background:var(--gp);flex-shrink:0;}
-.rc-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
+.rec-c{background:#fff;border-radius:14px;border:.5px solid var(--bd);padding:14px;margin-bottom:10px;cursor:pointer;}
+.rc-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.rc-dot{width:40px;height:40px;border-radius:10px;background:var(--gp);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.rc-nm{font-size:13px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
 .rc-pr{font-size:11px;color:var(--g);margin-top:3px;display:block;}
-.rc-why{background:var(--gp);border-radius:9px;padding:8px 10px;font-size:11px;color:var(--mu);line-height:1.7;}
+.rc-why{background:var(--gp);border-radius:9px;padding:9px 11px;font-size:11px;color:var(--mu);line-height:1.7;}
 .rc-why b{color:var(--gd);}
-.rc-book{display:block;text-align:right;font-size:11px;color:var(--g);margin-top:8px;}
-.btn-outline{display:block;width:calc(100% - 28px);margin:0 14px 20px;padding:14px;background:transparent;color:var(--g);border:1px solid var(--g);border-radius:50px;font-size:14px;text-align:center;cursor:pointer;font-family:inherit;}
+.rc-book-btn{display:block;width:100%;margin-top:10px;padding:11px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:13px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;}
+.btn-retry{display:block;width:calc(100% - 36px);margin:0 18px 24px;padding:14px;background:transparent;color:var(--g);border:1px solid var(--g);border-radius:50px;font-size:14px;text-align:center;cursor:pointer;font-family:inherit;}
 
-/* ═══════════════ BOOKING ═══════════════ */
-.bk-hd{background:#fff;padding:18px 16px 12px;border-bottom:.5px solid var(--bd);}
-.bk-logo-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
-.bk-logo-t{font-size:12px;color:var(--g);font-family:'Noto Serif SC',serif;letter-spacing:1.5px;}
-.bk-title{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--ch);font-weight:400;display:block;}
-.bk-sub{font-size:10px;color:var(--mu);letter-spacing:.5px;display:block;margin-top:3px;}
-.ctabs{display:flex;background:#fff;border-bottom:.5px solid var(--bd);}
-.ctab{flex:1;font-size:12.5px;padding:11px 2px;text-align:center;color:var(--mu);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
-.ctab.on{color:var(--g);border-bottom-color:var(--g);font-weight:500;}
-.svc-list{padding:10px 12px;}
-.svc-it{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:9px;cursor:pointer;transition:all .15s;}
-.svc-it.sel{border-color:var(--g);background:var(--gp);}
-.sv-top{display:flex;justify-content:space-between;align-items:flex-start;}
-.sv-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;flex:1;}
-.sv-chk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-left:8px;transition:all .2s;font-size:12px;}
-.sv-chk.on{background:var(--g);border-color:var(--g);color:#fff;}
-.sv-ds{font-size:11px;color:var(--mu);margin-top:4px;line-height:1.6;display:block;}
-.sv-ft{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
-.sv-tm{font-size:10px;color:var(--mu);}
-.sv-pr{font-size:14px;font-weight:500;color:var(--g);}
-.ts-sec{padding:12px 14px;}
-.ts-hd{font-size:10px;color:var(--mu);letter-spacing:1px;display:block;margin-bottom:9px;}
-.days{display:flex;gap:6px;}
-.dy{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;cursor:pointer;border:.5px solid var(--bd);background:#fff;transition:all .15s;font-family:inherit;}
-.dy.on{background:var(--g);border-color:var(--g);}
-.dy-w{font-size:9px;color:var(--mu);}
-.dy.on .dy-w,.dy.on .dy-d{color:#fff;}
-.dy-d{font-size:16px;font-weight:500;color:var(--ch);}
-.slots{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px 0;}
-.sl{font-size:12px;padding:7px 14px;border-radius:20px;border:.5px solid var(--bd);cursor:pointer;color:var(--ch);background:#fff;font-family:inherit;transition:all .15s;}
-.sl.on{background:var(--g);color:#fff;border-color:var(--g);}
-.sl.dis{color:#ccc;border-color:#eee;cursor:not-allowed;}
-.confirm-wrap{padding:14px 14px 24px;}
-.btn-confirm{display:block;width:100%;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;transition:opacity .2s;}
-.btn-confirm:active{opacity:.8;}
+/* ── 预约入口 ── */
+.book-wrap{padding:30px 20px;}
+.book-top{background:var(--g);border-radius:20px;padding:28px 24px;margin-bottom:16px;position:relative;overflow:hidden;}
+.book-top::before{content:'✦';position:absolute;right:10px;bottom:-10px;font-size:80px;color:rgba(255,255,255,.06);}
+.book-top-eye{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:3px;display:block;margin-bottom:8px;}
+.book-top-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:20px;font-weight:400;display:block;margin-bottom:6px;}
+.book-top-sub{font-size:11px;color:rgba(255,255,255,.55);line-height:1.8;display:block;}
+.book-notice{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:16px;}
+.bn-title{font-size:13px;font-weight:500;color:var(--ch);display:block;margin-bottom:10px;}
+.bn-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px;color:var(--mu);line-height:1.6;}
+.bn-item:last-child{margin-bottom:0;}
+.bn-dot{color:var(--g);flex-shrink:0;font-size:14px;line-height:1.4;}
+.btn-book-main{display:block;width:100%;padding:18px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;letter-spacing:1px;margin-bottom:12px;}
+.btn-book-main:active{opacity:.85;}
+.book-tips{font-size:11px;color:var(--mu);text-align:center;line-height:1.7;display:block;}
+.book-items{background:#fff;border:.5px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:16px;}
+.bi-title{font-size:11px;color:var(--mu);letter-spacing:2px;display:block;margin-bottom:12px;}
+.bi-cat{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--gd);margin-bottom:6px;margin-top:12px;display:block;}
+.bi-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--gl);font-size:12px;}
+.bi-item:last-child{border-bottom:none;}
+.bi-nm{color:var(--ch);flex:1;}
+.bi-pr{color:var(--g);font-weight:500;flex-shrink:0;}
 
-/* ═══════════════ SUCCESS ═══════════════ */
-.suc-wrap{display:flex;flex-direction:column;align-items:center;padding:40px 20px 30px;background:var(--cr);}
-.suc-logo-r{display:flex;align-items:center;gap:8px;margin-bottom:30px;}
-.suc-logo-zh{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--g);letter-spacing:4px;}
-.suc-logo-en{font-size:11px;color:var(--g);letter-spacing:3px;}
-.suc-chk{width:60px;height:60px;border-radius:50%;background:var(--gp);border:1px solid var(--gl);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-.suc-chk svg{width:24px;height:24px;stroke:var(--g);fill:none;stroke-width:2;}
-.suc-title{font-family:'Noto Serif SC',serif;font-size:22px;color:var(--ch);letter-spacing:3px;display:block;}
-.suc-en{font-size:10px;color:var(--mu);letter-spacing:3px;margin-top:5px;margin-bottom:24px;display:block;}
-.suc-msg{background:var(--g);border-radius:16px;padding:20px 18px;text-align:center;width:100%;margin-bottom:18px;}
-.suc-msg-tag{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:3px;display:block;margin-bottom:10px;}
-.suc-msg-qt{font-family:'Noto Serif SC',serif;color:#fff;font-size:15px;line-height:1.9;display:block;}
-.suc-msg-body{font-size:11px;color:rgba(255,255,255,.55);line-height:1.8;margin-top:12px;display:block;}
-.suc-detail{background:#fff;border:.5px solid var(--bd);border-radius:14px;padding:16px 18px;width:100%;margin-bottom:20px;}
-.suc-dhd{font-size:9px;color:var(--mu);letter-spacing:3px;display:block;margin-bottom:12px;}
-.suc-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;}
-.suc-row:last-child{margin-bottom:0;}
-.suc-row .lbl{color:var(--mu);}
-.suc-row .val{color:var(--ch);font-weight:500;}
-.suc-row .val-g{color:var(--g);font-weight:500;}
-.btn-home{display:block;width:100%;padding:16px;background:var(--g);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:500;text-align:center;cursor:pointer;font-family:inherit;}
-
-/* ═══════════════ MENU ═══════════════ */
+/* ── 菜单 ── */
 .mn-hd{background:var(--g);padding:22px 18px;}
 .mn-hd-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
 .mn-title{font-family:'Noto Serif SC',serif;color:#fff;font-size:20px;font-weight:400;display:block;}
@@ -250,21 +171,16 @@ body{overflow:hidden;}
 .mn-sec{padding:14px 12px 0;}
 .mn-sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
 .mn-dot{width:8px;height:8px;border-radius:50%;background:var(--g);flex-shrink:0;}
-.mn-cat-zh{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);font-weight:400;}
+.mn-cat-zh{font-family:'Noto Serif SC',serif;font-size:15px;color:var(--ch);}
 .mn-cat-en{font-size:9px;color:var(--mu);letter-spacing:2px;margin-left:16px;margin-bottom:10px;display:block;}
-.mn-it{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;transition:transform .15s;}
-.mn-it:active{transform:scale(.98);}
-.mn-il{flex:1;}
-.mn-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;display:block;}
+.mn-it{background:#fff;border:.5px solid var(--bd);border-radius:13px;padding:12px 14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;}
+.mn-nm{font-size:12.5px;font-weight:500;color:var(--ch);line-height:1.5;flex:1;}
 .mn-ds{font-size:11px;color:var(--mu);line-height:1.6;margin-top:3px;display:block;}
-.mn-ir{text-align:right;flex-shrink:0;margin-left:12px;}
-.mn-pr{font-size:12.5px;color:var(--g);font-weight:500;display:block;}
+.mn-pr{font-size:12.5px;color:var(--g);font-weight:500;flex-shrink:0;margin-left:10px;text-align:right;}
 .mn-bk{font-size:9px;color:var(--mu);margin-top:4px;display:block;}
-.mn-pad{height:20px;}
-
-/* ═══════════════ BRAND ═══════════════ */
+/* ── 品牌 ── */
 .br-hd{background:var(--g);height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
-.br-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
+.br-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
 .br-zh{font-family:'Noto Serif SC',serif;color:#fff;font-size:26px;letter-spacing:7px;}
 .br-en{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:6px;}
 .br-sl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:2px;}
@@ -280,13 +196,11 @@ body{overflow:hidden;}
 .claim{padding:10px 0;border-bottom:.5px solid var(--gl);}
 .claim-zh{font-family:'Noto Serif SC',serif;font-size:13.5px;color:var(--gd);line-height:1.6;display:block;}
 .claim-en{font-size:9.5px;color:var(--mu);font-style:italic;margin-top:3px;display:block;}
-.br-pad{height:20px;}
 </style>
 </head>
 <body>
 <div class="shell">
 
-<!-- 状态栏 -->
 <div class="statusbar">
   <div class="sb-left">
     <div class="sb-logo">
@@ -302,455 +216,444 @@ body{overflow:hidden;}
   <span class="sb-right">9:41 ●●● WiFi</span>
 </div>
 
-<!-- 内容区 -->
 <div class="screen" id="screen">
 
-  <!-- ══ 首页 ══ -->
-  <div class="page active" id="pg-home">
-    <div class="hero">
-      <span class="hero-eye">NATURE · GUIDED · HEALING</span>
-      <div class="hero-logo-wrap">
-        <svg width="50" height="61" viewBox="0 0 100 122" fill="none">
-          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
-          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
-          <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
-          <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
-        </svg>
-      </div>
-      <span class="hero-zh">明子</span>
-      <span class="hero-en">MING ZI</span>
-      <div class="hero-div"></div>
-      <span class="hero-quote">二十五载光阴沉淀<br>指尖知悉你的每一寸疲惫</span>
+<!-- ══ 首页 ══ -->
+<div class="page active" id="pg-home">
+  <div class="hero">
+    <span class="hero-eye">NATURE · GUIDED · HEALING</span>
+    <svg width="48" height="58" viewBox="0 0 100 122" fill="none" style="margin-bottom:4px">
+      <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+      <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+      <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+      <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+    </svg>
+    <span class="hero-zh">明子</span>
+    <span class="hero-en">MING ZI</span>
+    <div class="hero-div"></div>
+    <span class="hero-quote">二十五载光阴沉淀<br>指尖知悉你的每一寸疲惫</span>
+  </div>
+  <div class="qnav">
+    <div class="qn" onclick="go('ai')">
+      <div class="qn-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div>
+      <span class="qn-nm">体质面诊</span><span class="qn-sb">DIAGNOSIS</span>
     </div>
-
-    <div class="qnav">
-      <div class="qn" onclick="go('ai')">
-        <div class="qn-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div>
-        <span class="qn-nm">AI面诊</span><span class="qn-sb">DIAGNOSIS</span>
-      </div>
-      <div class="qn" onclick="go('book')">
-        <div class="qn-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <span class="qn-nm">立即预约</span><span class="qn-sb">BOOKING</span>
-      </div>
-      <div class="qn" onclick="go('menu')">
-        <div class="qn-ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <span class="qn-nm">疗愈项目</span><span class="qn-sb">SESSIONS</span>
-      </div>
+    <div class="qn" onclick="go('book')">
+      <div class="qn-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <span class="qn-nm">立即预约</span><span class="qn-sb">BOOKING</span>
     </div>
-
-    <div class="mcard" onclick="alert('会员功能即将上线，敬请期待 ✦')">
-      <div><span class="mc-t1">明子 · 高定会员中心</span><span class="mc-t2">注册后尊享私享定制权益</span></div>
-      <div class="mc-btn">立即加入</div>
-    </div>
-
-    <div class="shd"><span>HEALING SESSIONS</span></div>
-    <div class="sg">
-      <div class="sg-feat" onclick="go('menu')">
-        <span class="sg-cat">风华 · FACIAL RADIANCE</span>
-        <span class="sg-nm">古法骨相轮廓重塑<br>弃用机器，以精湛手法由肌理深层向上托举</span>
-        <span class="sg-pr">¥ 29,800</span>
-        <span class="sg-arr">VIEW DETAILS →</span>
-      </div>
-      <div class="sg2">
-        <div class="sg2a" onclick="go('menu')">
-          <span class="s2-cat">内和</span>
-          <span class="s2-nm">五脏微观<br>宇宙净化</span>
-          <span class="s2-pr">¥ 15,800</span>
-        </div>
-        <div class="sg2b" onclick="go('menu')">
-          <span class="s2-cat">本源</span>
-          <span class="s2-nm">生命能量<br>深层调理</span>
-          <span class="s2-pr">¥ 26,800</span>
-        </div>
-      </div>
-      <div class="sg3">
-        <div class="sg3c" onclick="go('menu')">
-          <span class="s3-cat">立骨</span>
-          <span class="s3-nm">植萃肩颈<br>五感深眠</span>
-          <span class="s3-pr">¥ 1,980</span>
-        </div>
-        <div class="sg3c" onclick="go('menu')">
-          <span class="s3-cat">风华</span>
-          <span class="s3-nm">东方经络<br>面部焕和</span>
-          <span class="s3-pr">¥ 2,380</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="yr-banner" onclick="go('book')">
-      <span class="yr-tag">25TH ANNIVERSARY · 明子</span>
-      <span class="yr-qt">"二十五载光阴沉淀，<br>指尖知悉你的每一寸疲惫。"</span>
-      <span class="yr-sub">以仁爱为底，深养于内，盛故于外。<br>每一次触碰，都是 25 年沉淀的温度。</span>
-      <span class="yr-btn" onclick="event.stopPropagation();go('book')">立即预约体验</span>
-    </div>
-
-    <div class="eval-sec">
-      <div class="eval-hd"><span class="eval-lbl">EVALUATE</span><span class="eval-stars">★★★★★</span></div>
-      <p class="eval-txt">"第一次感受到疗愈不是走流程，而是真的在倾听你的身体。整个过程极其细腻，像被完整地照见了一次。"</p>
-      <span class="eval-name">— 陈女士 · 北京</span>
-    </div>
-
-    <div class="store-sec">
-      <span class="store-lbl">LIST OF OFFLINE STORES</span>
-      <div class="store-card">
-        <div><span class="store-zh">线下门店一览</span><span class="store-en">LIST OF OFFLINE STORES</span></div>
-        <div class="store-btn">VIEW DETAILS</div>
-      </div>
+    <div class="qn" onclick="go('menu')">
+      <div class="qn-ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <span class="qn-nm">疗愈项目</span><span class="qn-sb">SESSIONS</span>
     </div>
   </div>
-
-  <!-- ══ AI面诊 ══ -->
-  <div class="page" id="pg-ai">
-    <div id="ai-scan">
-      <div class="ai-hd">
-        <span class="ai-eye">INTELLIGENT BODY ANALYSIS</span>
-        <span class="ai-title">AI 体质 · 面部诊断</span>
-        <span class="ai-sub">结合中医体质学说，由 AI 为您生成专属调理方案</span>
-      </div>
-      <div class="cam-wrap">
-        <div class="cam-fr"><div class="face-o"></div><div class="scanl"></div></div>
-        <span class="cam-ht">请在自然光线下使用 · 免妆或淡妆效果更佳</span>
-      </div>
-      <div class="ai-steps">
-        <div class="ai-step"><div class="step-num"><span>1</span></div><span class="step-txt">面部对准引导框</span></div>
-        <div class="ai-step"><div class="step-num"><span>2</span></div><span class="step-txt">AI 分析五维体质数据</span></div>
-        <div class="ai-step"><div class="step-num"><span>3</span></div><span class="step-txt">获取专属疗愈方案并预约</span></div>
-      </div>
-      <button class="btn-g" onclick="doScan()">开始诊断</button>
-      <span class="btn-note">诊断结果仅供参考，不构成医疗建议</span>
+  <div class="mcard">
+    <div><span class="mc-t1">明子 · 高定会员中心</span><span class="mc-t2">注册后尊享私享定制权益</span></div>
+    <div class="mc-btn" onclick="openBook()">立即加入</div>
+  </div>
+  <div class="shd"><span>HEALING SESSIONS</span></div>
+  <div class="sg">
+    <div class="sg-feat" onclick="go('book')">
+      <span class="sg-cat">风华 · FACIAL RADIANCE</span>
+      <span class="sg-nm">古法骨相轮廓重塑<br>弃用机器，以精湛手法由肌理深层向上托举</span>
+      <span class="sg-pr">¥ 29,800</span>
+      <span class="sg-arr">立即预约 →</span>
     </div>
-    <div id="ai-result" style="display:none">
-      <div class="res-wrap">
-        <div class="const-card">
-          <span class="r-lbl" style="margin-bottom:6px">体质类型判定</span>
-          <span class="const-type">气虚兼阴虚型</span>
-          <span class="const-sub">气血不足、内在津液偏亏的综合状态。容易疲倦、肌肤偏干、气色偏沉、经络略有郁滞。建议从补气养血与滋阴润养双向入手。</span>
-        </div>
-        <span class="r-lbl">五维能量指数</span>
-        <div class="bars">
-          <div class="bar-r"><span class="bar-l">气血充盈</span><div class="bar-t"><div class="bar-f" style="width:54%"></div></div><span class="bar-v">54</span></div>
-          <div class="bar-r"><span class="bar-l">脏腑和谐</span><div class="bar-t"><div class="bar-f" style="width:68%"></div></div><span class="bar-v">68</span></div>
-          <div class="bar-r"><span class="bar-l">经络通畅</span><div class="bar-t"><div class="bar-f" style="width:61%"></div></div><span class="bar-v">61</span></div>
-          <div class="bar-r"><span class="bar-l">面部活力</span><div class="bar-t"><div class="bar-f" style="width:72%"></div></div><span class="bar-v">72</span></div>
-          <div class="bar-r"><span class="bar-l">情志平衡</span><div class="bar-t"><div class="bar-f" style="width:48%"></div></div><span class="bar-v">48</span></div>
-        </div>
-        <div class="tags">
-          <span class="tag-i">气血偏亏</span><span class="tag-i">阴津不足</span><span class="tag-i">经络轻滞</span><span class="tag-i">情志略显焦虑</span>
-        </div>
-        <span class="r-lbl">AI 定制疗愈方案</span>
-        <div class="rec-c" onclick="go('book')">
-          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·初蕊】内在生机基础唤醒</span><span class="rc-pr">¥ 5,980</span></div></div>
-          <div class="rc-why"><b>推荐理由：</b>气血指数54属明显气虚底层，以草本温养为核心激活身体自我修复动能，是气虚型体质的最佳入门选择。</div>
-          <span class="rc-book">立即预约 ›</span>
-        </div>
-        <div class="rec-c" onclick="go('book')">
-          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·心悦】宁心安神气血舒缓</span><span class="rc-pr">¥ 6,980</span></div></div>
-          <div class="rc-why"><b>推荐理由：</b>情志指数48五维最低，草本芳香疗法抚平焦躁，通过宁心带动气血自然流转。</div>
-          <span class="rc-book">立即预约 ›</span>
-        </div>
-        <div class="rec-c" onclick="go('book')">
-          <div class="rc-t"><div class="rc-dot"></div><div><span class="rc-nm">【明子·晨露】沁透活水舒缓唤醒</span><span class="rc-pr">¥ 1,980</span></div></div>
-          <div class="rc-why"><b>推荐理由：</b>阴虚体质肌肤缺乏内在滋润，专项修护受损屏障，配合体质调理事半功倍。</div>
-          <span class="rc-book">立即预约 ›</span>
-        </div>
-        <button class="btn-outline" onclick="resetScan()">重新诊断</button>
-      </div>
+    <div class="sg2">
+      <div class="sg2a" onclick="go('book')"><span class="s2-cat">内和</span><span class="s2-nm">五脏微观<br>宇宙净化</span><span class="s2-pr">¥ 15,800</span></div>
+      <div class="sg2b" onclick="go('book')"><span class="s2-cat">本源</span><span class="s2-nm">生命能量<br>深层调理</span><span class="s2-pr">¥ 26,800</span></div>
+    </div>
+    <div class="sg3">
+      <div class="sg3c" onclick="go('book')"><span class="s3-cat">立骨</span><span class="s3-nm">植萃肩颈<br>五感深眠</span><span class="s3-pr">¥ 1,980</span></div>
+      <div class="sg3c" onclick="go('book')"><span class="s3-cat">风华</span><span class="s3-nm">东方经络<br>面部焕和</span><span class="s3-pr">¥ 2,380</span></div>
     </div>
   </div>
-
-  <!-- ══ 预约 ══ -->
-  <div class="page" id="pg-book">
-    <div class="bk-hd">
-      <div class="bk-logo-row">
-        <svg width="18" height="22" viewBox="0 0 100 122" fill="none">
-          <path fill="#899030" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
-          <path fill="#899030" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
-          <path fill="#899030" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
-          <path fill="#899030" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
-        </svg>
-        <span class="bk-logo-t">明子 MING ZI</span>
-      </div>
-      <span class="bk-title">疗愈预约</span>
-      <span class="bk-sub">BOOK YOUR HEALING SESSION · 共 23 项</span>
-    </div>
-    <div class="ctabs">
-      <div class="ctab on" onclick="switchCat('风华',this)">风华</div>
-      <div class="ctab" onclick="switchCat('立骨',this)">立骨</div>
-      <div class="ctab" onclick="switchCat('内和',this)">内和</div>
-      <div class="ctab" onclick="switchCat('本源',this)">本源</div>
-    </div>
-    <div class="svc-list" id="svc-list"></div>
-    <div class="ts-sec">
-      <span class="ts-hd">选择日期</span>
-      <div class="days" id="days"></div>
-    </div>
-    <div class="slots" id="slots">
-      <div class="sl dis">09:00</div>
-      <div class="sl" onclick="selSlot(this)">10:00</div>
-      <div class="sl on" onclick="selSlot(this)">11:00</div>
-      <div class="sl" onclick="selSlot(this)">13:30</div>
-      <div class="sl" onclick="selSlot(this)">15:00</div>
-      <div class="sl dis">16:00</div>
-      <div class="sl" onclick="selSlot(this)">17:00</div>
-    </div>
-    <div class="confirm-wrap">
-      <button class="btn-confirm" onclick="confirmBook()">确认预约</button>
+  <div class="yr-banner" onclick="go('book')">
+    <span class="yr-tag">25TH ANNIVERSARY · 明子</span>
+    <span class="yr-qt">"二十五载光阴沉淀，<br>指尖知悉你的每一寸疲惫。"</span>
+    <span class="yr-sub">以仁爱为底，深养于内，盛故于外。<br>每一次触碰，都是 25 年沉淀的温度。</span>
+    <span class="yr-btn">立即预约体验</span>
+  </div>
+  <div class="eval-sec">
+    <div class="eval-hd"><span class="eval-lbl">EVALUATE</span><span class="eval-stars">★★★★★</span></div>
+    <p class="eval-txt">"第一次感受到疗愈不是走流程，而是真的在倾听你的身体。整个过程极其细腻，像被完整地照见了一次。"</p>
+    <span class="eval-name">— 陈女士 · 北京</span>
+  </div>
+  <div class="store-sec">
+    <span class="store-lbl">LIST OF OFFLINE STORES</span>
+    <div class="store-card">
+      <div><span class="store-zh">线下门店一览</span><span class="store-en">LIST OF OFFLINE STORES</span></div>
+      <div class="store-btn">VIEW DETAILS</div>
     </div>
   </div>
-
-  <!-- ══ 预约成功 ══ -->
-  <div class="page" id="pg-success">
-    <div class="suc-wrap">
-      <div class="suc-logo-r">
-        <span class="suc-logo-zh">明子</span>
-        <span class="suc-logo-en">MING ZI</span>
-      </div>
-      <div class="suc-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <span class="suc-title">预约已确认</span>
-      <span class="suc-en">APPOINTMENT CONFIRMED</span>
-      <div class="suc-msg">
-        <span class="suc-msg-tag">一封来自明子的信</span>
-        <span class="suc-msg-qt">"你即将体验的，<br>是历经 25 年打磨的顶级手法。"</span>
-        <span class="suc-msg-body">二十五载光阴沉淀，每一次触碰都承载着<br>对生命之美最深沉的理解与热爱。<br>我们已为您备好一切，静待您的到来。</span>
-      </div>
-      <div class="suc-detail">
-        <span class="suc-dhd">APPOINTMENT DETAILS</span>
-        <div class="suc-row"><span class="lbl">日期</span><span class="val" id="suc-date">—</span></div>
-        <div class="suc-row"><span class="lbl">时间</span><span class="val" id="suc-time">—</span></div>
-        <div class="suc-row"><span class="lbl">状态</span><span class="val-g">24小时内电话确认</span></div>
-      </div>
-      <button class="btn-home" onclick="go('home')">返回首页</button>
-    </div>
-  </div>
-
-  <!-- ══ 疗愈项目 ══ -->
-  <div class="page" id="pg-menu">
-    <div class="mn-hd">
-      <div class="mn-hd-row">
-        <svg width="22" height="27" viewBox="0 0 100 122" fill="none">
-          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
-          <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
-          <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
-          <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
-        </svg>
-      </div>
-      <span class="mn-title">全部疗愈项目</span>
-      <span class="mn-sub">HEALING SESSIONS · MING ZI · 共 23 项</span>
-    </div>
-    <div id="menu-content"></div>
-    <div class="mn-pad"></div>
-  </div>
-
-  <!-- ══ 品牌 ══ -->
-  <div class="page" id="pg-brand">
-    <div class="br-hd">
-      <div class="br-circle">
-        <svg width="50" height="61" viewBox="0 0 100 122" fill="none">
-          <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
-          <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
-          <path fill="rgba(255,255,255,0.9)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
-          <path fill="rgba(255,255,255,0.9)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
-        </svg>
-      </div>
-      <span class="br-zh">明子</span>
-      <span class="br-en">MING ZI</span>
-      <span class="br-sl">BRAND GUIDELINES · 2024</span>
-    </div>
-    <div class="br-sec">
-      <span class="bs-hd">品牌故事</span>
-      <span class="bs-bd">明子笃信一个最古老也最质朴的真理：极致的容颜，往往是深层健康的自然显化，犹如一朵旷世的蝴蝶兰——它不依靠叶片的涂抹来获取艳丽，而是依赖根系在土壤深处日复一日的汲取。美，从来不是被制造出来的，它是被"养"出来的。</span>
-    </div>
-    <div class="br-div"></div>
-    <div class="br-sec" style="padding-bottom:6px"><span class="bs-hd">品牌哲学</span></div>
-    <div style="padding:0 12px">
-      <div class="cl-c"><span class="cl-n">01 · 仁爱为底</span><span class="cl-zh">身心同调的厚度</span><span class="cl-en">The Philosophy of Benevolence</span><span class="cl-ds">最高级的疗愈，是带着"爱"去触碰。我们面对的是一个个鲜活、承载着压力的灵魂。</span></div>
-      <div class="cl-c"><span class="cl-n">02 · 根源之美</span><span class="cl-zh">由内而外的生机</span><span class="cl-en">Beauty from Within</span><span class="cl-ds">没有内在的健康，所有的外在保养都是无源之水。坚守"固本培元"的调理哲学。</span></div>
-    </div>
-    <div class="br-div" style="margin-top:8px"></div>
-    <div class="br-sec" style="padding-bottom:4px"><span class="bs-hd">核心主张</span></div>
-    <div style="padding:0 16px">
-      <div class="claim"><span class="claim-zh">"深养于内，盛故于外"</span><span class="claim-en">Nourished Within, Radiant Without.</span></div>
-      <div class="claim"><span class="claim-zh">"以大爱之心，蕴生命之美。"</span><span class="claim-en">With Great Love, We Cultivate the Beauty of Life.</span></div>
-      <div class="claim"><span class="claim-zh">"不追逐时光，只蕴养风华。"</span><span class="claim-en">Not Chasing Time, Just Nurturing Grace.</span></div>
-    </div>
-    <div class="br-pad"></div>
-  </div>
-
-</div><!-- screen end -->
-
-<!-- TabBar -->
-<div class="tabbar">
-  <button class="tab on" id="tb-home" onclick="go('home')">
-    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    首页
-  </button>
-  <button class="tab" id="tb-ai" onclick="go('ai')">
-    <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-    面诊
-  </button>
-  <button class="tab" id="tb-book" onclick="go('book')">
-    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    预约
-  </button>
-  <button class="tab" id="tb-menu" onclick="go('menu')">
-    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    疗愈
-  </button>
-  <button class="tab" id="tb-brand" onclick="go('brand')">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-    明子
-  </button>
 </div>
 
-</div><!-- shell end -->
+<!-- ══ AI 体质问卷 ══ -->
+<div class="page" id="pg-ai">
+  <div class="ai-hd">
+    <span class="ai-eye">BODY CONSTITUTION ANALYSIS</span>
+    <span class="ai-title">体质测评 · 定制方案</span>
+    <span class="ai-sub">回答 10 个问题，AI 为您分析体质类型并推荐最适合的疗愈项目</span>
+  </div>
+
+  <!-- 问卷区 -->
+  <div id="quiz-area">
+    <div class="q-progress">
+      <div class="q-prog-bar"><div class="q-prog-fill" id="prog-fill" style="width:10%"></div></div>
+      <span class="q-prog-txt" id="prog-txt">1 / 10</span>
+    </div>
+    <div class="q-card">
+      <span class="q-num" id="q-num">问题 01</span>
+      <span class="q-text" id="q-text">加载中...</span>
+      <div class="q-opts" id="q-opts"></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" id="btn-prev" onclick="prevQ()">上一题</button>
+      <button class="btn-next" id="btn-next" onclick="nextQ()">下一题</button>
+    </div>
+  </div>
+
+  <!-- 结果区 -->
+  <div id="result-area" style="display:none">
+    <div class="res-wrap">
+      <div class="const-card">
+        <span class="const-badge" id="res-badge">体质类型</span>
+        <span class="const-type" id="res-type"></span>
+        <span class="const-sub" id="res-desc"></span>
+      </div>
+      <span class="r-lbl">五维能量指数</span>
+      <div class="bars" id="res-bars"></div>
+      <div class="tags" id="res-tags"></div>
+      <span class="r-lbl">AI 推荐疗愈方案</span>
+      <div id="res-recs"></div>
+      <button class="btn-retry" onclick="restartQuiz()">重新测评</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 预约页 ══ -->
+<div class="page" id="pg-book">
+  <div class="book-wrap">
+    <div class="book-top">
+      <span class="book-top-eye">BOOKING · 明子疗愈预约</span>
+      <span class="book-top-title">立即预约疗愈服务</span>
+      <span class="book-top-sub">点击下方按钮，填写预约信息<br>我们将在 2 小时内与您确认预约</span>
+    </div>
+
+    <div class="book-notice">
+      <span class="bn-title">预约须知</span>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>请提前 30 分钟到店，以便做好个性化准备</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>如需更改或取消，请提前 24 小时告知</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>营业时间 09:00 — 22:00，全年无休</span></div>
+      <div class="bn-item"><span class="bn-dot">✦</span><span>首次到店赠体质初诊，时长约 15 分钟</span></div>
+    </div>
+
+    <button class="btn-book-main" onclick="openBook()">
+      📋 &nbsp;填写预约信息
+    </button>
+    <span class="book-tips">填写完成后，您的预约信息将实时同步至门店<br>工作人员将通过您填写的手机号与您联系</span>
+
+    <div class="shd" style="padding:20px 0 10px"><span>全部疗愈项目</span></div>
+    <div class="book-items">
+      <span class="bi-title">HEALING SESSIONS · 共 23 项</span>
+      <span class="bi-cat">本源 · 生命能量</span>
+      <div class="bi-item"><span class="bi-nm">【蕴生】本草盆腔深层活化</span><span class="bi-pr">¥29,800</span></div>
+      <div class="bi-item"><span class="bi-nm">【生息】女性根源能量深调</span><span class="bi-pr">¥26,800</span></div>
+      <div class="bi-item"><span class="bi-nm">【若水】私享花域紧致温养</span><span class="bi-pr">¥19,800</span></div>
+      <span class="bi-cat">内和 · 五脏调理</span>
+      <div class="bi-item"><span class="bi-nm">【初露】绿素本源深度蕴养</span><span class="bi-pr">¥20,000</span></div>
+      <div class="bi-item"><span class="bi-nm">【至悦】五脏微观宇宙净化</span><span class="bi-pr">¥15,800</span></div>
+      <div class="bi-item"><span class="bi-nm">【普悦】脏腑草本周期平衡</span><span class="bi-pr">¥12,800</span></div>
+      <div class="bi-item"><span class="bi-nm">【筑基】东方体质深层重构</span><span class="bi-pr">¥7,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【心悦】宁心安神气血舒缓</span><span class="bi-pr">¥6,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【初蕊】内在生机基础唤醒</span><span class="bi-pr">¥5,980</span></div>
+      <span class="bi-cat">立骨 · 经络气血</span>
+      <div class="bi-item"><span class="bi-nm">【循经】十四经络古法推揉</span><span class="bi-pr">¥5,680</span></div>
+      <div class="bi-item"><span class="bi-nm">【立骨】本草精气深层复苏</span><span class="bi-pr">¥4,300</span></div>
+      <div class="bi-item"><span class="bi-nm">【行气】周天气血温润理疗</span><span class="bi-pr">¥3,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【净澈】全身水律净化舒缓</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item"><span class="bi-nm">【温中】带脉暖阳通络抚触</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item"><span class="bi-nm">【聚能】盆底气血温养理疗</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item"><span class="bi-nm">【释压】植萃肩颈五感深眠</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【轻盈】肩颈基础释压护理</span><span class="bi-pr">¥990</span></div>
+      <span class="bi-cat">风华 · 面部高定</span>
+      <div class="bi-item"><span class="bi-nm">【凝时】古法骨相轮廓重塑</span><span class="bi-pr">¥29,800</span></div>
+      <div class="bi-item"><span class="bi-nm">【焕光】东方经络面部焕和</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item"><span class="bi-nm">【韶华】植萃凝时深层滋养</span><span class="bi-pr">¥2,380</span></div>
+      <div class="bi-item"><span class="bi-nm">【抚痕】面部肌理温和舒平</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【晨露】沁透活水舒缓唤醒</span><span class="bi-pr">¥1,980</span></div>
+      <div class="bi-item"><span class="bi-nm">【数字】科技肌底平滑修护</span><span class="bi-pr">¥800</span></div>
+      <div class="bi-item"><span class="bi-nm">【源泉】无创深波补水注入</span><span class="bi-pr">¥600</span></div>
+    </div>
+    <button class="btn-book-main" onclick="openBook()">📋 &nbsp;立即填写预约</button>
+  </div>
+</div>
+
+<!-- ══ 疗愈项目 ══ -->
+<div class="page" id="pg-menu">
+  <div class="mn-hd">
+    <div class="mn-hd-row">
+      <svg width="22" height="27" viewBox="0 0 100 122" fill="none">
+        <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+        <path fill="rgba(255,255,255,0.85)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+        <path fill="rgba(255,255,255,0.85)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+        <path fill="rgba(255,255,255,0.85)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+      </svg>
+    </div>
+    <span class="mn-title">全部疗愈项目</span>
+    <span class="mn-sub">HEALING SESSIONS · MING ZI · 共 23 项</span>
+  </div>
+  <div id="menu-content"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ══ 品牌 ══ -->
+<div class="page" id="pg-brand">
+  <div class="br-hd">
+    <div class="br-circle">
+      <svg width="50" height="61" viewBox="0 0 100 122" fill="none">
+        <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C42,42 30,24 16,12 C6,2 -2,10 0,26 C2,38 12,50 26,54 C36,56 44,56 50,52Z M16,24 C14,14 19,8 26,12 C33,16 33,30 26,34 C19,36 14,30 16,24Z"/>
+        <path fill="rgba(255,255,255,0.9)" fill-rule="evenodd" d="M50,52 C58,42 70,24 84,12 C94,2 102,10 100,26 C98,38 88,50 74,54 C64,56 56,56 50,52Z M84,24 C86,14 81,8 74,12 C67,16 67,30 74,34 C81,36 86,30 84,24Z"/>
+        <path fill="rgba(255,255,255,0.9)" d="M50,52 C42,60 28,76 16,90 C6,102 4,116 14,120 C24,122 40,112 46,98 C50,88 50,68 50,52Z"/>
+        <path fill="rgba(255,255,255,0.9)" d="M50,52 C58,60 72,76 84,90 C94,102 96,116 86,120 C76,122 60,112 54,98 C50,88 50,68 50,52Z"/>
+      </svg>
+    </div>
+    <span class="br-zh">明子</span>
+    <span class="br-en">MING ZI</span>
+    <span class="br-sl">BRAND GUIDELINES · 2024</span>
+  </div>
+  <div class="br-sec"><span class="bs-hd">品牌故事</span><span class="bs-bd">明子笃信一个最古老也最质朴的真理：极致的容颜，往往是深层健康的自然显化，犹如一朵旷世的蝴蝶兰——它不依靠叶片的涂抹来获取艳丽，而是依赖根系在土壤深处日复一日的汲取。美，从来不是被制造出来的，它是被"养"出来的。</span></div>
+  <div class="br-div"></div>
+  <div class="br-sec" style="padding-bottom:6px"><span class="bs-hd">品牌哲学</span></div>
+  <div style="padding:0 12px">
+    <div class="cl-c"><span class="cl-n">01 · 仁爱为底</span><span class="cl-zh">身心同调的厚度</span><span class="cl-en">The Philosophy of Benevolence</span><span class="cl-ds">最高级的疗愈，是带着"爱"去触碰。我们面对的是一个个鲜活、承载着压力的灵魂。</span></div>
+    <div class="cl-c"><span class="cl-n">02 · 根源之美</span><span class="cl-zh">由内而外的生机</span><span class="cl-en">Beauty from Within</span><span class="cl-ds">没有内在的健康，所有的外在保养都是无源之水。坚守"固本培元"的调理哲学。</span></div>
+  </div>
+  <div class="br-div" style="margin-top:8px"></div>
+  <div class="br-sec" style="padding-bottom:4px"><span class="bs-hd">核心主张</span></div>
+  <div style="padding:0 16px 20px">
+    <div class="claim"><span class="claim-zh">"深养于内，盛故于外"</span><span class="claim-en">Nourished Within, Radiant Without.</span></div>
+    <div class="claim"><span class="claim-zh">"以大爱之心，蕴生命之美。"</span><span class="claim-en">With Great Love, We Cultivate the Beauty of Life.</span></div>
+    <div class="claim"><span class="claim-zh">"不追逐时光，只蕴养风华。"</span><span class="claim-en">Not Chasing Time, Just Nurturing Grace.</span></div>
+  </div>
+</div>
+
+</div><!-- screen -->
+
+<div class="tabbar">
+  <button class="tab on" id="tb-home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>首页</button>
+  <button class="tab" id="tb-ai" onclick="go('ai')"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>面诊</button>
+  <button class="tab" id="tb-book" onclick="go('book')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>预约</button>
+  <button class="tab" id="tb-menu" onclick="go('menu')"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>疗愈</button>
+  <button class="tab" id="tb-brand" onclick="go('brand')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>明子</button>
+</div>
+</div>
 
 <script>
-// ── 全部服务数据 ──
-const SVCS={
-  '本源':[
-    {id:'by1',name:'【明子·蕴生】本草盆腔深层活化',price:'¥ 29,800',dur:'高定私享',desc:'循古法经络，疏通盆底淤堵，唤醒内部生命力。'},
-    {id:'by2',name:'【明子·生息】女性根源能量深调',price:'¥ 26,800',dur:'高定私享',desc:'摒弃外力干预，温润内在土壤，让内分泌回归自然韵律。'},
-    {id:'by3',name:'【明子·若水】私享花域紧致温养',price:'¥ 19,800',dur:'高定私享',desc:'极度私密的柔和护理，重塑如初绽般的紧致与健康生态。'}
-  ],
-  '内和':[
-    {id:'nh1',name:'【明子·初露】绿素本源深度蕴养',price:'¥ 20,000',dur:'深度疗愈',desc:'汲取自然植萃的磅礴能量，深度净化并滋养每一寸土壤。'},
-    {id:'nh2',name:'【明子·至悦】五脏微观宇宙净化',price:'¥ 15,800',dur:'深度疗愈',desc:'卸下五脏六腑长久积压的浊气，恢复内在生态秩序与宁静。'},
-    {id:'nh3',name:'【明子·普悦】脏腑草本周期平衡',price:'¥ 12,800',dur:'周期调理',desc:'循序渐进的内循环调理，为身体建立长效的生态平衡机制。'},
-    {id:'nh4',name:'【明子·筑基】东方体质深层重构',price:'¥ 7,980',dur:'体质重构',desc:'结合中医智慧，从根源改善易疲劳与亚健康状态。'},
-    {id:'nh5',name:'【明子·心悦】宁心安神气血舒缓',price:'¥ 6,980',dur:'情志调养',desc:'抚平焦躁情绪，通过草本温养达到深度的宁静与彻底放松。'},
-    {id:'nh6',name:'【明子·初蕊】内在生机基础唤醒',price:'¥ 5,980',dur:'基础入门',desc:'针对初级气血亏虚，温和唤醒身体底层的自然活力。'}
-  ],
-  '立骨':[
-    {id:'lg1',name:'【明子·循经】十四经络古法推揉',price:'¥ 5,680',dur:'经络理疗',desc:'顺应人体十四经脉走向，以带有温度的精油驱散深层宫寒。'},
-    {id:'lg2',name:'【明子·立骨】本草精气深层复苏',price:'¥ 4,300',dur:'骨骼深层',desc:'疏通骨缝与关节深处的寒湿，唤醒身体本源的精气神。'},
-    {id:'lg3',name:'【明子·行气】周天气血温润理疗',price:'¥ 3,980',dur:'气血调理',desc:'打通身体气血淤堵的节点，让健康气色由内而外红润。'},
-    {id:'lg4',name:'【明子·净澈】全身水律净化舒缓',price:'¥ 2,380',dur:'全身护理',desc:'温和代谢身体的停滞与浊水，为全身带来极致的轻盈感。'},
-    {id:'lg5',name:'【明子·温中】带脉暖阳通络抚触',price:'¥ 2,380',dur:'腰腹核心',desc:'专注腰腹核心区，以草本热能驱散中段的寒气与滞重感。'},
-    {id:'lg6',name:'【明子·聚能】盆底气血温养理疗',price:'¥ 2,380',dur:'盆底修护',desc:'改善久坐带来的下焦循环不畅，重塑盆底能量与生机。'},
-    {id:'lg7',name:'【明子·释压】植萃肩颈五感深眠',price:'¥ 1,980',dur:'肩颈深度',desc:'精准化解肩颈僵硬，伴随植物香气让大脑进入深度休息。'},
-    {id:'lg8',name:'【明子·轻盈】肩颈基础释压护理',price:'¥ 990',dur:'日常维护',desc:'快速缓解日常肌肉紧绷，适合快节奏日常中的片刻喘息。'}
-  ],
-  '风华':[
-    {id:'fh1',name:'【明子·凝时】古法骨相轮廓重塑',price:'¥ 29,800',dur:'面部高定',desc:'弃用机器，以精湛手法由肌理深层向上托举，重塑岁月风骨。'},
-    {id:'fh2',name:'【明子·焕光】东方经络面部焕和',price:'¥ 2,380',dur:'60 分钟',desc:'拨开岁月的蒙尘，释放深层压力，让肌肤透出纯净光泽。'},
-    {id:'fh3',name:'【明子·韶华】植萃凝时深层滋养',price:'¥ 2,380',dur:'75 分钟',desc:'为肌肤提供极其丰盈的草本营养，温和抚平岁月痕迹。'},
-    {id:'fh4',name:'【明子·抚痕】面部肌理温和舒平',price:'¥ 1,980',dur:'60 分钟',desc:'细腻解开面部筋膜粘连，还原本真的柔软、平滑与放松。'},
-    {id:'fh5',name:'【明子·晨露】沁透活水舒缓唤醒',price:'¥ 1,980',dur:'45 分钟',desc:'如晨露拂过叶脉般轻柔，修护受损屏障，带来深层沁润。'},
-    {id:'fh6',name:'【明子·数字】科技肌底平滑修护',price:'¥ 800',dur:'30 分钟',desc:'借助精密仪器，温和导入科技精华，精准且克制地修护肌底。'},
-    {id:'fh7',name:'【明子·源泉】无创深波补水注入',price:'¥ 600',dur:'25 分钟',desc:'高效、快速的深层源泉补水，适合日常状态的密集养护。'}
-  ]
-};
-const CAT_EN={'本源':'INTIMATE & CORE ENERGY','内和':'INNER HARMONY','立骨':'MERIDIAN FLOW','风华':'FACIAL RADIANCE'};
+// ══ 腾讯文档预约表单链接 ══
+const BOOK_URL = 'https://docs.qq.com/form/page/DQUVnUGpqZXZyWWRh';
 
-// ── 状态 ──
-let curCat='风华', selDate='', selTime='11:00', selSvcIds=new Set();
+function openBook() {
+  window.open(BOOK_URL, '_blank');
+}
 
-// ── 导航 ──
-function go(id){
+// ══ 导航 ══
+function go(id) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.getElementById('pg-'+id).classList.add('active');
-  const tb=document.getElementById('tb-'+id);
-  if(tb)tb.classList.add('on');
-  document.getElementById('screen').scrollTop=0;
+  const tb = document.getElementById('tb-'+id);
+  if(tb) tb.classList.add('on');
+  document.getElementById('screen').scrollTop = 0;
 }
 
-// ── AI 面诊 ──
-function doScan(){
-  const btn=document.querySelector('#ai-scan .btn-g');
-  btn.textContent='分析中...';btn.disabled=true;
-  setTimeout(()=>{
-    document.getElementById('ai-scan').style.display='none';
-    document.getElementById('ai-result').style.display='block';
-    btn.textContent='开始诊断';btn.disabled=false;
-  },2200);
-}
-function resetScan(){
-  document.getElementById('ai-scan').style.display='block';
-  document.getElementById('ai-result').style.display='none';
-  document.getElementById('screen').scrollTop=0;
-}
+// ══ 体质问卷 ══
+const QUESTIONS = [
+  { text:'您平时最常见的身体感受是？', opts:['容易疲倦乏力，说话没劲','手脚发凉，怕冷怕风','面色发黄，头晕眼花','口干舌燥，手心发热','身体沉重，容易出油'] },
+  { text:'您的睡眠状况如何？', opts:['容易入睡但总觉得睡不够','睡眠很浅，容易惊醒','难以入睡，心烦意乱','睡得多但睡醒仍然疲倦','入睡困难，多梦易醒'] },
+  { text:'您的情绪状态通常是？', opts:['情绪低落，容易萎靡','情绪起伏大，容易紧张','焦虑烦躁，压力大','平稳但偶有郁闷','喜怒无常，情绪不稳'] },
+  { text:'您的皮肤状态是？', opts:['偏干，易起皮脱屑','肤色暗沉，黑眼圈重','T区出油，两颊偏干','细腻但容易潮红过敏','油腻，毛孔粗大'] },
+  { text:'您的消化功能如何？', opts:['食欲不振，饭量小','吃生冷食物容易腹泻','口苦，消化慢','口干，喜欢喝水','腹部容易胀气'] },
+  { text:'您的月经状况（男士选最后一项）？', opts:['量少，颜色浅淡','量少且有血块，痛经','周期不规律，量时多时少','量少，色深且黑','我是男士'] },
+  { text:'您最近身体哪个部位最不舒服？', opts:['腰膝酸软无力','肩颈僵硬酸痛','腹部寒凉，小腹坠胀','眼睛干涩，耳鸣','头脑不清晰，记忆力下降'] },
+  { text:'您的体型特征是？', opts:['偏瘦，肌肉松软','偏胖，容易水肿','正常但脂肪松弛','偏瘦，皮肤干燥','腰腹部赘肉多'] },
+  { text:'您对什么最敏感？', opts:['对劳累敏感，稍动就累','对寒冷敏感，冬天特别难熬','对压力敏感，容易烦躁','对干燥敏感，皮肤紧绷','对潮湿敏感，阴天身体重'] },
+  { text:'您最希望通过疗愈改善什么？', opts:['气色和精力状态','手脚冰凉和怕冷','情绪和睡眠质量','肌肤干燥和暗沉','身体沉重和水肿感'] }
+];
 
-// ── 预约服务列表 ──
-function renderSvcList(cat){
-  const list=document.getElementById('svc-list');
-  list.innerHTML='';
-  (SVCS[cat]||[]).forEach(s=>{
-    const sel=selSvcIds.has(s.id);
-    const div=document.createElement('div');
-    div.className='svc-it'+(sel?' sel':'');
-    div.innerHTML=`<div class="sv-top"><span class="sv-nm">${s.name}</span><div class="sv-chk${sel?' on':''}">${sel?'✓':''}</div></div><span class="sv-ds">${s.desc}</span><div class="sv-ft"><span class="sv-tm">${s.dur}</span><span class="sv-pr">${s.price}</span></div>`;
-    div.onclick=()=>{
-      if(selSvcIds.has(s.id))selSvcIds.delete(s.id);else selSvcIds.add(s.id);
-      renderSvcList(curCat);
+// 体质类型映射（选项0-4对应）
+const TYPES = [
+  { name:'气虚型',   en:'QI DEFICIENCY',   desc:'气血不足、容易疲倦，身体底层能量亏耗。建议以补气养血为核心，温和激活身体的自我修复力。',
+    dims:[{n:'气血充盈',v:45},{n:'脏腑和谐',v:62},{n:'经络通畅',v:58},{n:'面部活力',v:55},{n:'情志平衡',v:68}],
+    tags:['气血亏虚','容易疲倦','脏腑偏弱','需补气养血'],
+    recs:[{icon:'🌿',nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',why:'气血指数偏低，专为气虚底层设计，温和激活自我修复动能'},
+          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'调和气血同时安抚情志，适合气虚伴随的轻度焦虑'},
+          {icon:'🌸',nm:'【行气】周天气血温润理疗',pr:'¥3,980',why:'疏通气血运行路径，让能量自然流转全身'}] },
+  { name:'阳虚型',   en:'YANG DEFICIENCY',  desc:'阳气不足、体寒畏冷，经络运行迟缓。需以温阳散寒、疏通经络为主，重建身体内在的温度与生机。',
+    dims:[{n:'气血充盈',v:52},{n:'脏腑和谐',v:48},{n:'经络通畅',v:44},{n:'面部活力',v:50},{n:'情志平衡',v:65}],
+    tags:['体寒阳虚','经络迟滞','宫寒明显','需温阳散寒'],
+    recs:[{icon:'🔥',nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',why:'专注腰腹核心区，以草本热能驱散中段寒气，阳虚首选'},
+          {icon:'🌿',nm:'【循经】十四经络古法推揉',pr:'¥5,680',why:'以温热精油顺应经脉走向，驱散深层宫寒，改善阳虚体质'},
+          {icon:'✦',nm:'【筑基】东方体质深层重构',pr:'¥7,980',why:'从根源改善体质偏寒状态，建立长效温阳机制'}] },
+  { name:'气郁型',   en:'QI STAGNATION',    desc:'情志郁结、气机不畅，长期压力导致身体内循环受阻。以疏肝解郁、调畅气机为核心，释放深层情绪积压。',
+    dims:[{n:'气血充盈',v:60},{n:'脏腑和谐',v:55},{n:'经络通畅',v:50},{n:'面部活力',v:62},{n:'情志平衡',v:40}],
+    tags:['情志郁结','气机不畅','压力积压','需疏肝解郁'],
+    recs:[{icon:'🌙',nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',why:'精准化解肩颈郁结，伴随植物香气让大脑深度放松'},
+          {icon:'✦',nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',why:'气郁型首要任务是安定情志，通过宁心带动气机自然流转'},
+          {icon:'🌿',nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',why:'卸下五脏积压的浊气，从深层恢复内在生态秩序'}] },
+  { name:'阴虚型',   en:'YIN DEFICIENCY',   desc:'阴液亏虚、虚热内生，肌肤缺乏内在滋润。以滋阴润养、清热生津为核心，由内而外恢复肌肤的饱满与光泽。',
+    dims:[{n:'气血充盈',v:65},{n:'脏腑和谐',v:58},{n:'经络通畅',v:68},{n:'面部活力',v:55},{n:'情志平衡',v:52}],
+    tags:['阴津不足','虚热内生','肌肤干燥','需滋阴润养'],
+    recs:[{icon:'💧',nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',why:'如晨露拂过叶脉，专为阴虚肌肤修护屏障，带来深层沁润'},
+          {icon:'✨',nm:'【焕光】东方经络面部焕和',pr:'¥2,380',why:'释放深层热郁，让肌肤透出纯净光泽，改善阴虚暗沉'},
+          {icon:'🌿',nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',why:'深度净化并滋养，从根源补充阴液，适合阴虚较重者'}] },
+  { name:'痰湿型',   en:'PHLEGM-DAMPNESS',  desc:'湿气偏重、代谢迟缓，身体容易积滞。以化湿行气、健脾利水为核心，唤醒身体的代谢动力与轻盈感。',
+    dims:[{n:'气血充盈',v:55},{n:'脏腑和谐',v:50},{n:'经络通畅',v:48},{n:'面部活力',v:58},{n:'情志平衡',v:62}],
+    tags:['湿气偏重','代谢迟缓','身体沉重','需化湿行气'],
+    recs:[{icon:'🌊',nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',why:'温和代谢停滞与浊水，痰湿体质必选，带来极致轻盈感'},
+          {icon:'🌿',nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',why:'循序渐进建立内循环平衡机制，改善痰湿体质的根本'},
+          {icon:'✦',nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',why:'改善下焦循环不畅，重塑能量与生机，减轻下肢沉重感'}] }
+];
+
+let curQ = 0, answers = [];
+
+function renderQ() {
+  const q = QUESTIONS[curQ];
+  document.getElementById('q-num').textContent = `问题 ${String(curQ+1).padStart(2,'0')}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('prog-fill').style.width = ((curQ+1)/QUESTIONS.length*100)+'%';
+  document.getElementById('prog-txt').textContent = `${curQ+1} / ${QUESTIONS.length}`;
+  document.getElementById('btn-prev').style.opacity = curQ === 0 ? '0.3' : '1';
+  document.getElementById('btn-next').textContent = curQ === QUESTIONS.length-1 ? '查看结果' : '下一题';
+
+  const opts = document.getElementById('q-opts');
+  opts.innerHTML = '';
+  q.opts.forEach((o,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'q-opt' + (answers[curQ]===i?' sel':'');
+    btn.textContent = o;
+    btn.onclick = () => {
+      answers[curQ] = i;
+      document.querySelectorAll('.q-opt').forEach(b=>b.classList.remove('sel'));
+      btn.classList.add('sel');
     };
-    list.appendChild(div);
+    opts.appendChild(btn);
   });
 }
-function switchCat(cat,el){
-  curCat=cat;
-  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
-  renderSvcList(cat);
+
+function prevQ() {
+  if(curQ > 0) { curQ--; renderQ(); }
 }
 
-// ── 日期 ──
-function initDates(){
-  const wrap=document.getElementById('days');
-  const weeks=['日','一','二','三','四','五','六'];
-  const today=new Date();
-  wrap.innerHTML='';
-  for(let i=0;i<7;i++){
-    const d=new Date(today);d.setDate(today.getDate()+i);
-    const dateStr=`${d.getMonth()+1}月${d.getDate()}日`;
-    const btn=document.createElement('button');
-    btn.className='dy'+(i===1?' on':'');
-    btn.innerHTML=`<span class="dy-w">周${weeks[d.getDay()]}</span><span class="dy-d">${d.getDate()}</span>`;
-    btn.onclick=()=>{
-      document.querySelectorAll('.dy').forEach(b=>b.classList.remove('on'));
-      btn.classList.add('on');selDate=dateStr;
-    };
-    if(i===1)selDate=dateStr;
-    wrap.appendChild(btn);
+function nextQ() {
+  if(answers[curQ] === undefined) {
+    alert('请先选择一个选项');return;
   }
-}
-function selSlot(el){
-  if(el.classList.contains('dis'))return;
-  document.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
-  el.classList.add('on');selTime=el.textContent;
+  if(curQ < QUESTIONS.length-1) { curQ++; renderQ(); }
+  else { showResult(); }
 }
 
-// ── 确认预约 ──
-function confirmBook(){
-  if(!selSvcIds.size){alert('请选择疗愈项目');return;}
-  if(!selDate){alert('请选择日期');return;}
-  document.getElementById('suc-date').textContent=selDate;
-  document.getElementById('suc-time').textContent=selTime;
-  go('success');
+function showResult() {
+  // 统计最多选的体质倾向
+  const count = [0,0,0,0,0];
+  answers.forEach(a => { if(a!==undefined) count[a]++; });
+  const typeIdx = count.indexOf(Math.max(...count));
+  const t = TYPES[typeIdx];
+
+  document.getElementById('res-badge').textContent = t.en;
+  document.getElementById('res-type').textContent = t.name;
+  document.getElementById('res-desc').textContent = t.desc;
+
+  const barsEl = document.getElementById('res-bars');
+  barsEl.innerHTML = '';
+  t.dims.forEach(d=>{
+    barsEl.innerHTML += `<div class="bar-r"><span class="bar-l">${d.n}</span><div class="bar-t"><div class="bar-f" style="width:${d.v}%"></div></div><span class="bar-v">${d.v}</span></div>`;
+  });
+
+  const tagsEl = document.getElementById('res-tags');
+  tagsEl.innerHTML = t.tags.map(g=>`<span class="tag-i">${g}</span>`).join('');
+
+  const recsEl = document.getElementById('res-recs');
+  recsEl.innerHTML = t.recs.map(r=>`
+    <div class="rec-c">
+      <div class="rc-head">
+        <div class="rc-dot">${r.icon}</div>
+        <div><span class="rc-nm">${r.nm}</span><span class="rc-pr">${r.pr}</span></div>
+      </div>
+      <div class="rc-why"><b>推荐理由：</b>${r.why}</div>
+      <button class="rc-book-btn" onclick="openBook()">📋 立即预约此项目</button>
+    </div>`).join('');
+
+  document.getElementById('quiz-area').style.display = 'none';
+  document.getElementById('result-area').style.display = 'block';
+  document.getElementById('screen').scrollTop = 0;
 }
 
-// ── 疗愈菜单 ──
-function renderMenu(){
-  const mc=document.getElementById('menu-content');
-  mc.innerHTML='';
-  ['本源','内和','立骨','风华'].forEach(cat=>{
-    const sec=document.createElement('div');
-    sec.className='mn-sec';
-    sec.innerHTML=`<div class="mn-sec-hd"><div class="mn-dot"></div><span class="mn-cat-zh">${cat}</span></div><span class="mn-cat-en">${CAT_EN[cat]}</span>`;
-    SVCS[cat].forEach(s=>{
-      const it=document.createElement('div');it.className='mn-it';
-      it.innerHTML=`<div class="mn-il"><span class="mn-nm">${s.name}</span><span class="mn-ds">${s.desc}</span></div><div class="mn-ir"><span class="mn-pr">${s.price}</span><span class="mn-bk">预约 ›</span></div>`;
-      it.onclick=()=>go('book');
+function restartQuiz() {
+  curQ = 0; answers = [];
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('result-area').style.display = 'none';
+  renderQ();
+  document.getElementById('screen').scrollTop = 0;
+}
+
+// ══ 疗愈菜单 ══
+const SVCS = {
+  '本源':{ en:'INTIMATE & CORE ENERGY', items:[
+    {nm:'【蕴生】本草盆腔深层活化',pr:'¥29,800',ds:'循古法经络，疏通盆底淤堵，唤醒内部生命力。'},
+    {nm:'【生息】女性根源能量深调',pr:'¥26,800',ds:'摒弃外力干预，温润内在土壤，让内分泌回归自然韵律。'},
+    {nm:'【若水】私享花域紧致温养',pr:'¥19,800',ds:'极度私密的柔和护理，重塑如初绽般的紧致与健康生态。'}
+  ]},
+  '内和':{ en:'INNER HARMONY', items:[
+    {nm:'【初露】绿素本源深度蕴养',pr:'¥20,000',ds:'汲取自然植萃的磅礴能量，深度净化并滋养每一寸土壤。'},
+    {nm:'【至悦】五脏微观宇宙净化',pr:'¥15,800',ds:'卸下五脏六腑长久积压的浊气，恢复内在生态秩序与宁静。'},
+    {nm:'【普悦】脏腑草本周期平衡',pr:'¥12,800',ds:'循序渐进的内循环调理，为身体建立长效的生态平衡机制。'},
+    {nm:'【筑基】东方体质深层重构',pr:'¥7,980',ds:'结合中医智慧，从根源改善易疲劳与亚健康状态。'},
+    {nm:'【心悦】宁心安神气血舒缓',pr:'¥6,980',ds:'抚平焦躁情绪，通过草本温养达到深度的宁静与彻底放松。'},
+    {nm:'【初蕊】内在生机基础唤醒',pr:'¥5,980',ds:'针对初级气血亏虚，温和唤醒身体底层的自然活力。'}
+  ]},
+  '立骨':{ en:'MERIDIAN FLOW', items:[
+    {nm:'【循经】十四经络古法推揉',pr:'¥5,680',ds:'顺应人体十四经脉走向，以带有温度的精油驱散深层宫寒。'},
+    {nm:'【立骨】本草精气深层复苏',pr:'¥4,300',ds:'疏通骨缝与关节深处的寒湿，唤醒身体本源的精气神。'},
+    {nm:'【行气】周天气血温润理疗',pr:'¥3,980',ds:'打通身体气血淤堵的节点，让健康气色由内而外红润。'},
+    {nm:'【净澈】全身水律净化舒缓',pr:'¥2,380',ds:'温和代谢身体的停滞与浊水，为全身带来极致的轻盈感。'},
+    {nm:'【温中】带脉暖阳通络抚触',pr:'¥2,380',ds:'专注腰腹核心区，以草本热能驱散中段的寒气与滞重感。'},
+    {nm:'【聚能】盆底气血温养理疗',pr:'¥2,380',ds:'改善久坐带来的下焦循环不畅，重塑盆底能量与生机。'},
+    {nm:'【释压】植萃肩颈五感深眠',pr:'¥1,980',ds:'精准化解肩颈僵硬，伴随植物香气让大脑进入深度休息。'},
+    {nm:'【轻盈】肩颈基础释压护理',pr:'¥990',ds:'快速缓解日常肌肉紧绷，适合快节奏日常中的片刻喘息。'}
+  ]},
+  '风华':{ en:'FACIAL RADIANCE', items:[
+    {nm:'【凝时】古法骨相轮廓重塑',pr:'¥29,800',ds:'弃用机器，以精湛手法由肌理深层向上托举，重塑岁月风骨。'},
+    {nm:'【焕光】东方经络面部焕和',pr:'¥2,380',ds:'拨开岁月的蒙尘，释放深层压力，让肌肤透出纯净光泽。'},
+    {nm:'【韶华】植萃凝时深层滋养',pr:'¥2,380',ds:'为肌肤提供极其丰盈的草本营养，温和抚平岁月痕迹。'},
+    {nm:'【抚痕】面部肌理温和舒平',pr:'¥1,980',ds:'细腻解开面部筋膜粘连，还原本真的柔软、平滑与放松。'},
+    {nm:'【晨露】沁透活水舒缓唤醒',pr:'¥1,980',ds:'如晨露拂过叶脉般轻柔，修护受损屏障，带来深层沁润。'},
+    {nm:'【数字】科技肌底平滑修护',pr:'¥800',ds:'借助精密仪器，温和导入科技精华，精准且克制地修护肌底。'},
+    {nm:'【源泉】无创深波补水注入',pr:'¥600',ds:'高效、快速的深层源泉补水，适合日常状态的密集养护。'}
+  ]}
+};
+
+function renderMenu() {
+  const mc = document.getElementById('menu-content');
+  mc.innerHTML = '';
+  Object.keys(SVCS).forEach(cat=>{
+    const c = SVCS[cat];
+    const sec = document.createElement('div');
+    sec.className = 'mn-sec';
+    sec.innerHTML = `<div class="mn-sec-hd"><div class="mn-dot"></div><span class="mn-cat-zh">${cat}</span></div><span class="mn-cat-en">${c.en}</span>`;
+    c.items.forEach(s=>{
+      const it = document.createElement('div');
+      it.className = 'mn-it';
+      it.onclick = openBook;
+      it.innerHTML = `<div style="flex:1"><span class="mn-nm">${s.nm}</span><span class="mn-ds">${s.ds}</span></div><div style="text-align:right;flex-shrink:0;margin-left:10px"><span class="mn-pr">${s.pr}</span><span class="mn-bk">预约 ›</span></div>`;
       sec.appendChild(it);
     });
     mc.appendChild(sec);
   });
 }
 
-// ── 初始化 ──
-renderSvcList('风华');
-initDates();
 renderMenu();
+renderQ();
 </script>
 </body>
 </html>

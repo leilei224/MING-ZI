@@ -1,0 +1,2 @@
+# MING-ZI
+明子 MING ZI
